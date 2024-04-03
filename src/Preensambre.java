@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class test {
+public class Preensambre {
    public static void main(String[] args) {
        Scanner scanner = new Scanner(System.in);
        boolean salir = false;
@@ -32,20 +32,20 @@ public class test {
 
 
        while (!salir) {
-           System.out.println("Bienvenido a ALRM-TECH Encuentra todo para tu PC ideal aquí");
-           System.out.println("1. Piezas");
-           System.out.println("2. Sistema de armado guiado");
+           System.out.println("Bienvenido al ALRM-TECH Piezas");
+           System.out.println("Seleccione la marca del procesador");
+           System.out.println("1. INTEL");
+           System.out.println("2. AMD");
            System.out.println();
            System.out.print("Ingrese su opción: ");
            opcion = scanner.nextInt();
 
            switch (opcion) {
                 case 1:
-                   System.out.println("Bienvenido al ALRM-TECH Piezas");
-                   
+                   System.out.println("Ahora seleccione la Generacion de su procesador");
                     break;
                 case 2:
-                    salir = true;
+                    System.out.println("Ahora seleccione la Generacion de su procesador");
                     break;
                 default:
                    System.out.println("Opción inválida. Inténtelo de nuevo.");
