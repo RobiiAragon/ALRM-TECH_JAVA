@@ -32,7 +32,7 @@ public class Preensambre {
 
 
        while (!salir) {
-           System.out.println("Bienvenido al ALRM-TECH Piezas");
+           System.out.println("Bienvenido al ALRM-TECH Preensamble");
            System.out.println("Seleccione la marca del procesador");
            System.out.println("1. INTEL");
            System.out.println("2. AMD");
@@ -42,9 +42,11 @@ public class Preensambre {
 
            switch (opcion) {
                 case 1:
+                System.out.println("Ha seleciconado INTEL");
                    System.out.println("Ahora seleccione la Generacion de su procesador");
                     break;
                 case 2:
+                System.out.println("Ha seleciconado INTEL");
                     System.out.println("Ahora seleccione la Generacion de su procesador");
                     break;
                 default:
