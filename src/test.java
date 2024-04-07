@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Preensamble {
+public class test {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean repetir = true;
@@ -183,75 +183,6 @@ public class Preensamble {
                             }
 
                             break;
-                            /*case 2:
-                            System.out.println("Ha seleccionado Intel Core 13th");
-                            System.out.println("Seleccione la gama del procesador:");
-                            for (int i = 0; i < intel13thCPU.length; i++) {
-                                System.out.println((i + 1) + ". " + intel13thCPU[i] + " $" + preciosintel13th[i]);
-                            }
-                            System.out.println();
-                            System.out.print("Ingrese su opción: ");
-                            opcionIntel13th = scanner.nextInt();
-                            scanner.nextLine();
-                            System.out.println();
-                            //------------------------------------------------Sacar los whatts actuales
-                            whatts += whattsintel13th[opcionIntel13th - 1];
-                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
-                            //------------------------------------------------Sacar el subtotal
-                            subtotal += preciosintel13th[opcionIntel13th - 1];
-                            System.out.println("El subtotal actual es de: $" + String.format( "%.2f", subtotal));
-                            //--------------------------------------------------------------------------- Seleccionando Motherboard
-                            System.out.println();
-                            for (int i = 0; i < lga1700.length; i++) {
-                                System.out.println((i + 1) + ". " + lga1700[i] + " $" + precioslga1700[i]);
-                            }
-                            System.out.println();
-                            System.out.print("Ingrese su opción: ");
-                            Motherboards = scanner.nextInt();
-                            switch(Motherboards){
-                                case 1:
-                                break;
-                                case 2:
-                                break;
-                                default:
-                                break;
-                            }
-                            break;
-                        case 3:
-                            System.out.println("Ha seleccionado Intel Core 14th");
-                            System.out.println("Seleccione la gama del procesador:");
-                            for (int i = 0; i < intel14thCPU.length; i++) {
-                                System.out.println((i + 1) + ". " + intel14thCPU[i] + " $" + preciosintel14th[i]);
-                            }
-                            System.out.println();
-                            System.out.print("Ingrese su opción: ");
-                            opcionIntel14th = scanner.nextInt();
-                            scanner.nextLine();
-                            System.out.println();
-                            //------------------------------------------------Sacar los whatts actuales
-                            whatts += whattsintel14th[opcionIntel14th - 1];
-                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
-                            //------------------------------------------------Sacar el subtotal
-                            subtotal += preciosintel14th[opcionIntel14th - 1];
-                            System.out.println("El subtotal actual es de: $" + String.format( "%.2f", subtotal));
-                            //--------------------------------------------------------------------------- Seleccionando Motherboard
-                            System.out.println();
-                            for (int i = 0; i < lga1700.length; i++) {
-                                System.out.println((i + 1) + ". " + lga1700[i] + " $" + precioslga1700[i]);
-                            }
-                            System.out.println();
-                            System.out.print("Ingrese su opción: ");
-                            Motherboards = scanner.nextInt();
-                            switch(Motherboards){
-                                case 1:
-                                break;
-                                case 2:
-                                break;
-                                default:
-                                break;
-                            }
-                            break;*/
-
                         default:
                             System.out.println("Opción inválida. Inténtelo de nuevo.");
                             break;
