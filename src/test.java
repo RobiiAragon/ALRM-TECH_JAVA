@@ -7,6 +7,7 @@ public class test {
         double subtotal = 0;
         double whatts = 0; // Inicializamos la variable para almacenar el consumo total de watts
         int opcionIntel, opcionMotherboard, DDR;
+        String opcionSeleccionada; // Variable para almacenar la opción seleccionada por el usuario
 
         //----------------------------------Seleccion marca de Procesador
         String[] marcaCPU = {"INTEL", "AMD"};
@@ -73,7 +74,7 @@ public class test {
             switch (opcion) {
                 case 1:
                     System.out.println();
-                    System.out.println("Ha seleccionado INTEL");
+                    System.out.println("Ha seleccionado " + marcaCPU[opcion - 1]); // Se corrige aquí
                     System.out.println("Seleccione la generación de su procesador:");
                     System.out.println();
                     for (int i = 0; i < intelGenCPU.length; i++) {
@@ -89,7 +90,7 @@ public class test {
 
                     switch (opcionIntel) {
                         case 1:
-                            System.out.println("Ha seleccionado Intel Core 12th");
+                            System.out.println("Ha seleccionado " + intelGenCPU[opcionIntel - 1]); // Se corrige aquí
                             System.out.println();
                             System.out.println("Seleccione la gama del procesador:");
                             for (int i = 0; i < intel12thCPU.length; i++) {
@@ -105,7 +106,7 @@ public class test {
 
                             subtotal += preciosintel12th[opcionCPU - 1]; // Suma el precio del procesador seleccionado
                             System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
-
+                            System.out.println();
                             System.out.println("Continuemos con las Motherboards");
                             System.out.println("Estas son las Motherboards compatibles con tu CPU");
                             System.out.println();
@@ -119,7 +120,8 @@ public class test {
                             scanner.nextLine();
 
                             DDR = (opcionMotherboard <= 2) ? 4 : 5;
-
+                            System.out.println("Ha seleccionado " + lga1700[opcionMotherboard - 1]);
+                            System.out.println();
                             if (opcionMotherboard >= 1 && opcionMotherboard <= 3) {
                                 whatts += whattslga1700[opcionMotherboard - 1];
                                 System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
@@ -155,6 +157,10 @@ public class test {
                                     System.out.println("Opción inválida. No se ha seleccionado RAM.");
                                 }
                                 subtotal += precioRAM;
+                                System.out.println();
+                                opcionSeleccionada = (DDR == 4) ? DDR4[opcionRAM - 1] : DDR5[opcionRAM - 1];
+                                System.out.println();
+                                System.out.println("Ha seleccionado " + opcionSeleccionada);
                                 System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                 System.out.printf("El consumo actual es de: %.0f Watts%n", whatts); // Imprimimos el consumo total de watts
                             }
@@ -165,23 +171,78 @@ public class test {
                             for (int i = 0; i < TipoAlmacenamiento.length; i++) {
                                 System.out.println((i + 1) + ". " + TipoAlmacenamiento[i]);
                             }
+                            System.out.println();
+                            System.out.print("Ingrese su opción: ");
                             int opcionAlmacenamiento = scanner.nextInt();
+                            opcionSeleccionada = TipoAlmacenamiento[opcionAlmacenamiento - 1]; // Asignar la opción seleccionada
                             switch (opcionAlmacenamiento) {
                                 case 1:
-                                System.out.println("HDD");
+                                    System.out.println();
+                                    System.out.println("Has seleccionado HDD");
+                                    System.out.println("Estas son las opciones de HDD disponibles:");
+                                    System.out.println();
+                                    for (int i = 0; i < HDDsata.length; i++) {
+                                        System.out.println((i + 1) + ". " + HDDsata[i] + " $" + preciosHDD[i]);
+                                    }
+                                    System.out.println();
+                                    System.out.print("Ingrese su opción: ");
+                                    int opcionHDD = scanner.nextInt();
+                                    scanner.nextLine();
+                                    opcionSeleccionada = HDDsata[opcionHDD - 1]; // Asignar la opción seleccionada
+                                    System.out.println();
+                                    System.out.println("Ha seleccionado el " + opcionSeleccionada);
+                                    System.out.println();
+                                    subtotal += preciosHDD[opcionHDD - 1]; // Suma el precio del HDD seleccionado al subtotal
+                                    System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                     break;
                                 case 2:
-                                System.out.println("SDD");
+                                    System.out.println();
+                                    System.out.println("Has seleccionado SSD");
+                                    System.out.println("Estas son las opciones de SSD disponibles:");
+                                    for (int i = 0; i < SSDsata.length; i++) {
+                                        System.out.println((i + 1) + ". " + SSDsata[i] + " $" + preciosSSD[i]);
+                                    }
+                                    System.out.println();
+                                    System.out.print("Ingrese su opción: ");
+                                    int opcionSSD = scanner.nextInt();
+                                    scanner.nextLine();
+                                    opcionSeleccionada = SSDsata[opcionSSD - 1]; // Asignar la opción seleccionada
+                                    System.out.println();
+                                    System.out.println("Ha seleccionado " + opcionSeleccionada);
+                                    System.out.println();
+                                    subtotal += preciosSSD[opcionSSD - 1]; // Suma el precio del SSD seleccionado al subtotal
+                                    System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                     break;
                                 case 3:
-                                System.out.println("NVMe");
+                                    System.out.println();
+                                    System.out.println("Has seleccionado NVMe");
+                                    System.out.println("Estas son las opciones de NVMe disponibles:");
+                                    for (int i = 0; i < NVMe.length; i++) {
+                                        System.out.println((i + 1) + ". " + NVMe[i] + " $" + preciosNVMe[i]);
+                                    }
+                                    System.out.println();
+                                    System.out.print("Ingrese su opción: ");
+                                    int opcionNVMe = scanner.nextInt();
+                                    scanner.nextLine();
+                                    opcionSeleccionada = NVMe[opcionNVMe - 1]; // Asignar la opción seleccionada
+                                    System.out.println();
+                                    System.out.println("Ha seleccionado " + opcionSeleccionada);
+                                    System.out.println();
+                                    subtotal += preciosNVMe[opcionNVMe - 1]; // Suma el precio del NVMe seleccionado al subtotal
+                                    System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                     break;
-                            
                                 default:
-                                System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                    System.out.println("Opción inválida. Inténtelo de nuevo.");
                                     break;
                             }
+                            System.out.println();
+                            System.out.println("Es hora se seleccionar un Gabinete");
+                            System.out.println();
+                            System.out.println("Este es el catalogo de gabinetes disponibles compatibles con tu placa madre");
 
+                            if(tamañoCase !ATX){
+                                System.out.println("Este es el catalogo de gabinetes disponibles compatibles con tu placa madre");
+                            }
                             break;
                         default:
                             System.out.println("Opción inválida. Inténtelo de nuevo.");

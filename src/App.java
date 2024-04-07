@@ -6,6 +6,7 @@ public class App {
     public static void main(String[] args) {
         boolean repetir = true;
         int MenuPrincipal;
+        int opcion;
         //--------------------------------------------------Comienzan declaraciones del apartado de piezas
         boolean salir = false;
 
@@ -93,6 +94,7 @@ public class App {
             System.out.println("Bienvenido a ALRM-TECH Encuentra todo para tu PC ideal aquí");
             System.out.println("1. Piezas");
             System.out.println("2. Sistema de armado guiado");
+            System.out.println("3. Salir");
             System.out.println();
             System.out.print("Ingrese su opción: ");
             MenuPrincipal = scanner.nextInt();
@@ -124,14 +126,11 @@ public class App {
                         System.out.println();
                         System.out.print("Ingrese su opción: ");
             
-                        int opcion;
+                        
                         try {
                             opcion = scanner.nextInt();
                             scanner.nextLine(); // Limpiar el buffer del scanner
                         } catch (java.util.InputMismatchException e) {
-                            System.out.println();
-                            System.out.println("Entrada inválida. Inténtelo de nuevo.");
-                            System.out.println();
                             scanner.nextLine(); // Limpiar la cache
                             continue;
                         }
@@ -166,6 +165,7 @@ public class App {
                                 }
                                 System.out.print("Ingrese el nombre del producto que desea comprar: ");
                                 String compraProducto = scanner.nextLine();
+                                boolean productoEncontrado = false;
                                 for (int i = 0; i < productos[categoriaSeleccionada].length; i++) {
                                     if (productos[categoriaSeleccionada][i].equalsIgnoreCase(compraProducto)) {
                                         carrito[indiceCarrito] = productos[categoriaSeleccionada][i];
@@ -174,14 +174,16 @@ public class App {
                                         System.out.println("Ha agregado un " + productos[categoriaSeleccionada][i] + " al carrito.");
                                         System.out.println();
                                         indiceCarrito++;
+                                        productoEncontrado = true;
                                         break;
-                                    }else{
+                                    }
+                                }   if (!productoEncontrado) {
                                         System.out.println();
                                         System.out.println("El producto ingresado no está disponible.");
                                         System.out.println();
                                     break;
                                     }
-                                }
+                                
                                 break;
                             case 16:
                                 if (indiceCarrito == 0) {
