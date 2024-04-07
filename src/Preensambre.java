@@ -44,10 +44,19 @@ public class Preensambre {
                 case 1:
                 System.out.println("Ha seleciconado INTEL");
                    System.out.println("Ahora seleccione la Generacion de su procesador");
+                   System.out.println();
+                   System.out.println("Intel 12th Gen");
+                   System.out.println("Intel 13th Gen");
+                   System.out.println("Intel 14th Gen");
+                   
                     break;
                 case 2:
                 System.out.println("Ha seleciconado INTEL");
                     System.out.println("Ahora seleccione la Generacion de su procesador");
+                    System.out.println();
+                    System.out.println("AMD 3000 Series");
+                    System.out.println("AMD 5000 Series");
+                    System.out.println("AMD 7000 Series");
                     break;
                 default:
                    System.out.println("Opción inválida. Inténtelo de nuevo.");

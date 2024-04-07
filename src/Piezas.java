@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class App {
+public class Piezas {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean salir = false;
@@ -80,12 +80,12 @@ public class App {
             int opcion;
             try {
                 opcion = scanner.nextInt();
-                scanner.nextLine(); // evitar error si el usuario salta una linea vacia permitiendo seleccionar
+                scanner.nextLine();
             } catch (java.util.InputMismatchException e) {
                 System.out.println();
                 System.out.println("Entrada inválida. Inténtelo de nuevo.");
                 System.out.println();
-                scanner.nextLine(); // Limpiar la cache
+                scanner.nextLine();
                 continue;
             }
 
