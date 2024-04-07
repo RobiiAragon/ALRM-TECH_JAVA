@@ -10,8 +10,8 @@ public class App {
         boolean salir = false;
 
         String[] categorias = {"Procesadores", "Tarjetas gráficas", "Monitores", "Motherboards", "Memorias RAM",
-                "Almacenamientos", "Fuentes de poder PSUs", "Gabinetes", "Teclados", "Ratones", "Cascos",
-                "Alfombrillas", "Material Conductivo", "Refrigeraciones", "Microfonos"};
+                "Almacenamientos", "Fuentes de poder PSUs", "Gabinetes", "Teclados", "Ratones", "Headsets",
+                "Alfombrillas para raton", "Material de Conductividad termica", "Refrigeraciones", "Microfonos"};
 
         double[][] precios = {
                 //--------Procesadores
@@ -417,6 +417,7 @@ public class App {
                     }
                         scanner.close();
                     break;
+                    
                 case 2:
                     System.out.println();
                     System.out.println("Bienvenido al sistema de armado guiado de PC de ALRM-TECH");
