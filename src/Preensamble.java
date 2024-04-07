@@ -5,6 +5,7 @@ public class Preensamble {
         Scanner scanner = new Scanner(System.in);
         boolean repetir = true; // inicializamos repetir como true
         double subtotal = 0; // inicializamos el subtotal en 0
+        double whatts;
         
         //----------------------------------Procesadores
         //-------------------------------------------------------------------------------INTEL
@@ -34,6 +35,12 @@ public class Preensamble {
         String[] amd7000CPU = {"AMD Ryzen 3 7100", "AMD Ryzen 5 7600", "AMD Ryzen 7 7700X", "AMD Ryzen 9 7900X"};
         double[] whattsamd7000 = { 100, 200, 300, 400};
         double[] preciosamd7000 = { 2259, 5013, 4904, 12059};
+        //--------------------------------------Motherboards
+        //-------------------------------------------------------------------------------INTEL
+        String[] lga1700 = {"MSI Micro-ATX PRO H610M-G DDR4, S-1700, Intel H610, 64GB DDR4", "MSI Micro-ATX PRO B760M-A WIFI, S-1700, Intel B760, 192GB DDR5", "ASUS GAMING ATX ROG Strix Z790-F WIFI, S-1700, Intel Z790, 128GB DDR5"};
+        double[] precioslga1700 = {1269, 2778, 6255};
+        
+        
         
         while (repetir) {
             System.out.println("Bienvenido a sistema de armado guiado de PC de ALRM-TECH");
@@ -45,6 +52,7 @@ public class Preensamble {
             }
             System.out.println();
             System.out.print("Ingrese su opción: ");
+            whatts = 0;
 
             int opcion;
             try {
@@ -68,6 +76,7 @@ public class Preensamble {
                     System.out.print("Ingrese su opción: ");
                     int opcionIntel = scanner.nextInt();
                     scanner.nextLine(); // Limpiar el buffer del scanner
+                    whatts = whatts + whattsintel;
                     
                     // Manejar la selección de la generación de procesador Intel
                     switch (opcionIntel) {
@@ -81,8 +90,9 @@ public class Preensamble {
                             System.out.print("Ingrese su opción: ");
                             int opcionIntel12th = scanner.nextInt();
                             scanner.nextLine();
-                            subtotal += preciosintel12th[opcionIntel12th - 1]; // Corregir el índice aquí
+                            subtotal += preciosintel12th[opcionIntel12th - 1];
                             System.out.println(subtotal);
+                            switch(Motherboards){}
                             break;
                         case 2:
                             System.out.println("Ha seleccionado Intel Core 13th");
@@ -94,7 +104,7 @@ public class Preensamble {
                             System.out.print("Ingrese su opción: ");
                             int opcionIntel13th = scanner.nextInt();
                             scanner.nextLine();
-                            subtotal += preciosintel13th[opcionIntel13th - 1]; // Corregir el índice aquí
+                            subtotal += preciosintel13th[opcionIntel13th - 1];
                             System.out.println(subtotal);
                             break;
                         case 3:
@@ -107,14 +117,14 @@ public class Preensamble {
                             System.out.print("Ingrese su opción: ");
                             int opcionIntel14th = scanner.nextInt();
                             scanner.nextLine();
-                            subtotal += preciosintel14th[opcionIntel14th - 1]; // Corregir el índice aquí
+                            subtotal += preciosintel14th[opcionIntel14th - 1];
                             System.out.println(subtotal);
                             break;
                         default:
                             System.out.println("Opción inválida. Inténtelo de nuevo.");
                             break;
                     }                    
-                    break;
+                    break;/* 
                 case 2:
                     System.out.println("Ha seleccionado AMD");
                     System.out.println("Seleccione la generación de su procesador:");
@@ -156,7 +166,7 @@ public class Preensamble {
                             System.out.println("Opción inválida. Inténtelo de nuevo.");
                             break;
                     }
-                    break;
+                    break;*/
                 default:
                     System.out.println("Opción inválida. Inténtelo de nuevo.");
                     break;
