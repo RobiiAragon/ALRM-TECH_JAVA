@@ -241,6 +241,7 @@ public class App {
                                                 carrito[indiceCarrito - 1] = null;
                                                 preciosCarrito[indiceCarrito - 1] = 0.0;
                                                 indiceCarrito--;
+                                                subtotal = 0;
                                                 System.out.println();
                                                 System.out.println("Producto eliminado del carrito.");
                                                 System.out.println();
