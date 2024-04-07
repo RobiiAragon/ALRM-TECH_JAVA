@@ -84,7 +84,11 @@ public class App {
         int indiceCarrito = 0;
         double subtotal = 0.0;
         //----------------------------------------------------------------termina declaraciones del apartado de piezas
+        
+        //--------------------------------------------------Comienzan declaraciones del apartado Preensamblado
 
+        //----------------------------------------------------------------termina declaraciones del apartado de Preensamblado
+        while (!salir) {
         while (repetir) {
             System.out.println("Bienvenido a ALRM-TECH Encuentra todo para tu PC ideal aquí");
             System.out.println("1. Piezas");
@@ -99,8 +103,18 @@ public class App {
                     repetir = false; // Salir del bucle después de procesar la opción 1
                     while (!salir) {
                         System.out.println("Bienvenido al ALRM-TECH Piezas");
+                        try {
+                            Thread.sleep(500); // 500 milisegundos = medio segundo
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         System.out.println();
                         System.out.println("¿Qué desea comprar?");
+                        try {
+                            Thread.sleep(500); // 500 milisegundos = medio segundo
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         System.out.println();
                         for (int i = 0; i < categorias.length; i++) {
                             System.out.println((i + 1) + ". " + categorias[i]);
@@ -141,6 +155,11 @@ public class App {
                                 int categoriaSeleccionada = opcion - 1;
                                 System.out.println();
                                 System.out.println("Productos disponibles en la categoría \"" + categorias[categoriaSeleccionada] + "\":");
+                                try {
+                                    Thread.sleep(500); // 500 milisegundos = medio segundo
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                                 System.out.println();
                                 for (int i = 0; i < productos[categoriaSeleccionada].length; i++) {
                                     System.out.println(productos[categoriaSeleccionada][i] + " - $" + precios[categoriaSeleccionada][i]);
@@ -169,11 +188,22 @@ public class App {
                             case 16:
                                 if (indiceCarrito == 0) {
                                     System.out.println();
-                                    System.out.println("El carrito está vacío.");
+                                    repetir = false; // Salir del bucle después de procesar la opción 3
+                                    System.out.print("El carrito está vacio");
+                                        try {
+                                            Thread.sleep(500); // 500 milisegundos = medio segundo
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                     System.out.println();
                                 } else {
                                     System.out.println();
                                     System.out.println("Productos en el carrito:");
+                                    try {
+                                        Thread.sleep(500); // 500 milisegundos = medio segundo
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
                                     System.out.println();
                                     for (int i = 0; i < indiceCarrito; i++) {
                                         System.out.println((i + 1) + ". " + carrito[i] + " - $" + preciosCarrito[i]);
@@ -186,6 +216,11 @@ public class App {
                                     System.out.println("IVA: $" + String.format("%.2f", iva));
                                     System.out.println("Total (incluye el IVA): $" + String.format("%.2f", total));
                                     System.out.println();
+                                    try {
+                                        Thread.sleep(500); // 500 milisegundos = medio segundo
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
                                     System.out.println("1. Eliminar un producto");
                                     System.out.println("2. Pagar");
                                     System.out.println("3. Regresar al menú principal");
@@ -212,6 +247,11 @@ public class App {
                                             } else {
                                                 System.out.println();
                                                 System.out.println("Índice inválido.");
+                                                try {
+                                                    Thread.sleep(500); // 500 milisegundos = medio segundo
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
                                                 System.out.println();
                                             }
                                             break;
@@ -226,6 +266,11 @@ public class App {
                                             if (metodoPago == 1) {
                                                 // Generar un número de recibo simple
                                                 long numeroRecibo = Math.abs((long) (Math.random() * 9000000000L) + 1000000000L);
+                                                try {
+                                                    Thread.sleep(500); // 500 milisegundos = medio segundo
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
                                                 System.out.println("Recibo de pago en efectivo:");
                                                 System.out.println("Número de recibo: " + numeroRecibo);
                                                 System.out.println("Detalles del pago:");
@@ -242,8 +287,18 @@ public class App {
                                             } else if (metodoPago == 2) {
                                                 System.out.print("Ingrese el nombre del titular de la tarjeta: ");
                                                 String titularTarjeta = scanner.nextLine();
+                                                try {
+                                                    Thread.sleep(500); // 500 milisegundos = medio segundo
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
                                                 System.out.print("Ingrese los 16 dígitos de la tarjeta: ");
                                                 String numeroTarjeta = scanner.nextLine();
+                                                try {
+                                                    Thread.sleep(500); // 500 milisegundos = medio segundo
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
                                                 if (numeroTarjeta.length() != 16) {
                                                     System.out.println();
                                                     System.out.println("El número de tarjeta debe tener exactamente 16 dígitos.");
@@ -252,6 +307,11 @@ public class App {
                                                 }
                                                 System.out.print("Ingrese la fecha de vencimiento (MM/AA): ");
                                                 String fechaVencimiento = scanner.nextLine();
+                                                try {
+                                                    Thread.sleep(500); // 500 milisegundos = medio segundo
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                }
 
                                                 // Verificar si la longitud de la cadena es correcta (5 caracteres incluyendo la barra)
                                                 if (fechaVencimiento.length() != 5) {
@@ -337,6 +397,16 @@ public class App {
                                 }
                                 break;
                             case 17:
+                                repetir = false; // Salir del bucle después de procesar la opción 17
+                                System.out.print("Saliendo");
+                                for (int i = 0; i < 3; i++) {// bucle para repetir 3 veces el . que colocamos para que se mire bien el salir y este no sea instantaneo
+                                    try {
+                                        Thread.sleep(500); // 500 milisegundos = medio segundo
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    System.out.print(".");
+                                }
                                 salir = true;
                                 break;
                             default:
@@ -346,17 +416,36 @@ public class App {
                                 break;
                         }
                     }
-                
+                        scanner.close();
                     break;
                 case 2:
                     System.out.println();
                     System.out.println("Bienvenido al sistema de armado guiado de PC de ALRM-TECH");
                     repetir = false; // Salir del bucle después de procesar la opción 2
+                    try {
+                        Thread.sleep(500); // 500 milisegundos = medio segundo
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     break;
+                case 3:
+                    repetir = false; // Salir del bucle después de procesar la opción 3
+                    System.out.print("Saliendo");
+                    for (int i = 0; i < 3; i++) {// bucle para repetir 3 veces el . que colocamos para que se mire bien el salir y este no sea instantaneo
+                        try {
+                            Thread.sleep(500); // 500 milisegundos = medio segundo
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.print(".");
+                    }
+                    salir = true;
+                    break;                
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
                     break;
             }
         }
     }
+}
 }
