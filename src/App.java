@@ -166,10 +166,8 @@ public class App {
                                 }
                                 System.out.print("Ingrese el nombre del producto que desea comprar: ");
                                 String compraProducto = scanner.nextLine();
-                                boolean encontradoProducto = false;
                                 for (int i = 0; i < productos[categoriaSeleccionada].length; i++) {
                                     if (productos[categoriaSeleccionada][i].equalsIgnoreCase(compraProducto)) {
-                                        encontradoProducto = true;
                                         carrito[indiceCarrito] = productos[categoriaSeleccionada][i];
                                         preciosCarrito[indiceCarrito] = precios[categoriaSeleccionada][i];
                                         System.out.println();
@@ -177,12 +175,12 @@ public class App {
                                         System.out.println();
                                         indiceCarrito++;
                                         break;
+                                    }else{
+                                        System.out.println();
+                                        System.out.println("El producto ingresado no está disponible.");
+                                        System.out.println();
+                                    break;
                                     }
-                                }
-                                if (!encontradoProducto) {
-                                    System.out.println();
-                                    System.out.println("El producto ingresado no está disponible.");
-                                    System.out.println();
                                 }
                                 break;
                             case 16:
