@@ -82,6 +82,7 @@ public class App {
         String[] carrito = new String[100];
         double[] preciosCarrito = new double[100];
         int indiceCarrito = 0;
+        double subtotal = 0.0;
         //----------------------------------------------------------------termina declaraciones del apartado de piezas
 
         while (repetir) {
@@ -171,7 +172,6 @@ public class App {
                                     System.out.println("El carrito está vacío.");
                                     System.out.println();
                                 } else {
-                                    double subtotal = 0.0;
                                     System.out.println();
                                     System.out.println("Productos en el carrito:");
                                     System.out.println();
@@ -252,9 +252,61 @@ public class App {
                                                 }
                                                 System.out.print("Ingrese la fecha de vencimiento (MM/AA): ");
                                                 String fechaVencimiento = scanner.nextLine();
+
+                                                // Verificar si la longitud de la cadena es correcta (5 caracteres incluyendo la barra)
+                                                if (fechaVencimiento.length() != 5) {
+                                                    System.out.println();
+                                                    System.out.println("Ingrese una fecha de vencimiento válida en formato MM/AA");
+                                                    System.out.println();
+                                                    break;
+                                                }
+
+                                                // Verificar si la cadena contiene solo dígitos y la barra en la posición correcta
+                                                for (int i = 0; i < fechaVencimiento.length(); i++) {
+                                                    if (i == 2) {
+                                                        if (fechaVencimiento.charAt(i) != '/') {
+                                                            System.out.println();
+                                                            System.out.println("Ingrese una fecha de vencimiento válida en formato MM/AA");
+                                                            System.out.println();
+                                                            break;
+                                                        }
+                                                    } else {
+                                                        if (!Character.isDigit(fechaVencimiento.charAt(i))) {
+                                                            System.out.println();
+                                                            System.out.println("Ingrese una fecha de vencimiento válida en formato MM/AA");
+                                                            System.out.println();
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+
+                                                // Verificar si el mes está en el rango válido (01 - 12)
+                                                int mes = Integer.parseInt(fechaVencimiento.substring(0, 2));
+                                                if (mes < 1 || mes > 12) {
+                                                    System.out.println();
+                                                    System.out.println("El mes debe estar entre 01 y 12");
+                                                    System.out.println();
+                                                    break;
+                                                }
+
+                                                // Verificar si el año está en el rango válido (00 - 99)
+                                                int año = Integer.parseInt(fechaVencimiento.substring(3));
+                                                if (año < 25 || año > 99) {
+                                                    System.out.println();
+                                                    System.out.println("El año debe estar entre 00 y 99");
+                                                    System.out.println();
+                                                    break;
+                                                }
+                                                //-----------------------------------------------------------------validar codigo de seguridad
                                                 System.out.print("Ingrese el código de seguridad (3 dígitos): ");
                                                 String codigoSeguridad = scanner.nextLine();
-            
+                                                if (codigoSeguridad.length() != 3) {
+                                                    System.out.println();
+                                                    System.out.println("El codigo de seguridad debe tener exactamente 3 dígitos.");
+                                                    System.out.println();
+                                                    break;
+                                                }
+                                                
                                                 System.out.println("Procesando el pago con tarjeta a nombre de " + titularTarjeta + "...");
                                                 System.out.println();
                                                 System.out.println("Pago realizado con éxito.");
