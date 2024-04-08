@@ -5,11 +5,15 @@ public class Preensamble {
         Scanner scanner = new Scanner(System.in);
         boolean repetir = true;
         double subtotal = 0;
-        double whatts = 0; // Inicializamos la variable para almacenar el consumo total de watts
-        int opcionIntel, opcionMotherboard, DDR;
+        double whatts = 0;
+        int opcionIntel, opcionAMD, opcionNvidia, opcionMotherboard, DDR;
+        String opcionSeleccionada; // Variable para almacenar la opción seleccionada por el usuario
+        opcionAMD = 0;
+        opcionNvidia = 0;
 
         //----------------------------------Seleccion marca de Procesador
         String[] marcaCPU = {"INTEL", "AMD"};
+        //--------------------------------------------------------------------------INTEL
         String[] intelGenCPU = {"Intel Core 12th", "Intel Core 13th", "Intel Core 14th"};
         double[] whattsintel = {100, 200, 300};
         //-------------------------------------------------------------------------------Generacion INTEL CPU
@@ -22,16 +26,35 @@ public class Preensamble {
         String[] intel14thCPU = {"Intel Core i3 14100", "Intel Core i5 14600", "Intel Core i7 14700", "Intel Core i9 14900"};
         double[] whattsintel14th = {100, 200, 300, 400};
         double[] preciosintel14th = {2259, 5013, 4904, 12059};
-        //--------------------------------------Motherboards INTEL
+
+        //-------------------------------------------------------------------------------------Motherboards INTEL
         String[] lga1700 = {"MSI Micro-ATX PRO H610M-G, S-1700, MAX 64GB DDR4", "MSI Micro-ATX PRO B760M-A, S-1700, MAX 192GB DDR5", "ASUS ROG Strix ATX Z790-F, S-1700, MAX 128GB DDR5"};
         double[] precioslga1700 = {1269, 2778, 6255};
         double[] whattslga1700 = {100, 100, 100};
-        //--------------------------------------Gabinetes
-        String[] tamañoCase = {"MicroATX", "ATX"};
-        String[] catalogoPlacaMicroATX = {"Game Factor CSG550 con Ventana, 2 Ventiladores, Micro ATX, Negro", "NZXT H510, RGB, Cristal Templado, 2 Ventiladores, ATX, Negro", "Corsair 3000D, Cristal Templado 2 Ventiladores ATX, Negro", "Corsair 4000D, Cristal Templado, 2 Ventiladores, ATX, Blanco"};
-        double[] precioMicroATX = {2500, 3000, 3000, 3000};
-        String[] catalogoPlacaATX = {"NZXT H510, RGB, Cristal Templado, 2 Ventiladores, ATX, Negro", "Corsair 3000D, Cristal Templado 2 Ventiladores ATX, Negro", "Corsair 4000D, Cristal Templado, 2 Ventiladores, ATX, Blanco"};
-        double[] precioATX = {3000, 3000, 3000};
+
+        //--------------------------------------------------------------------------AMD
+        String[] amdGenCPU = {"AMD Ryzen 3000", "AMD Ryzen 5000", "AMD Ryzen 7000"};
+        double[] whattsAmd = {100, 200, 300};
+        //-------------------------------------------------------------------------------Generacion AMD CPU
+        String[] amd3000CPU = {"AMD Ryzen 3 3100", "AMD Ryzen 5 3600", "AMD Ryzen 7 3700X", "AMD Ryzen 9 3900X"};
+        double[] whattsAmd3000 = {100, 200, 300, 400};
+        double[] preciosAmd3000 = {1359, 2447, 4906, 13402}; 
+        String[] amd5000CPU = {"AMD Ryzen 3 5100", "AMD Ryzen 5 5600", "AMD Ryzen 7 5700X", "AMD Ryzen 9 5900X"};
+        double[] whattsAmd5000 = {100, 200, 300, 400};
+        double[] preciosAmd5000 = {1500, 2880, 3435, 5741};
+        String[] amd7000CPU = {"AMD Ryzen 3 7100", "AMD Ryzen 5 7600", "AMD Ryzen 7 7700X", "AMD Ryzen 9 7900X"};
+        double[] whattsAmd7000 = {100, 200, 300, 400};
+        double[] preciosAmd7000 = {2259, 5013, 4904, 12059};
+        //---------------------------------------------------------------------------------------Motherboards AMD
+        //-------------------------------------------------------------------------------AMD AM4
+        String[] amd3000 = {"MSI Micro-ATX PRO H610M-G DDR4, S-1700, Intel H610, 64GB DDR4", "MSI Micro-ATX PRO B760M-A WIFI, S-1700, Intel B760, 192GB DDR5", "ASUS GAMING ATX ROG Strix Z790-F WIFI, S-1700, Intel Z790, 128GB DDR5"};
+        double[] preciosMotheramd3000 = {1269, 2778, 6255};
+        double[] whattsMotheramd3000 = {100,100,100};
+        //-------------------------------------------------------------------------------AMD AM5
+        String[] amd5000 = {"MSI Micro-ATX PRO H610M-G DDR4, S-1700, Intel H610, 64GB DDR4", "MSI Micro-ATX PRO B760M-A WIFI, S-1700, Intel B760, 192GB DDR5", "ASUS GAMING ATX ROG Strix Z790-F WIFI, S-1700, Intel Z790, 128GB DDR5"};
+        double[] preciosMotheramd5000 = {1269, 2778, 6255};
+        double[] whattsMotheramd5000 = {100,100,100};
+
         //--------------------------------------RAM
         String[] DDR4 = {"Corsair Dominator RGB 8GB DDR4, 3200MHz, 1x8GB", "Corsair Dominator RGB 16GB DDR4, 3200MHz, 2x8GB", "Kingston FURY Beast 32GB DDR4, 3200MHz, 1X32GB", "Kingston FURY Beast 64GB DDR4, 3200MHz, 2X32GB"};
         double[] preciosDDR4 = {500, 800, 1200, 2400};
@@ -45,7 +68,45 @@ public class Preensamble {
         double[] preciosSSD = {749, 899, 1059};
         String[] NVMe = {"NVMe Kingston NV2, 1TB, PCI Express 4.0", "NVMe PNY CS1030, 500GB, PCI Express 3.0", "NVMe WD Blue SN580, 2TB, PCI Express 4.0"};
         double[] preciosNVMe = {969, 659, 2089};
-        
+        //--------------------------------------Gabinetes
+        String[] catalogoPlacaMicroATX = {"Game Factor CSG550 con Ventana, 2 Ventiladores, Micro ATX, Negro", "NZXT H510, RGB, Cristal Templado, 2 Ventiladores, ATX, Negro", "Corsair 3000D, Cristal Templado 2 Ventiladores ATX, Negro", "Corsair 4000D, Cristal Templado, 2 Ventiladores, ATX, Blanco"};
+        double[] precioMicroATX = {2500, 3000, 3000, 3000};
+        String[] catalogoPlacaATX = {"NZXT H510, RGB, Cristal Templado, 2 Ventiladores, ATX, Negro", "Corsair 3000D, Cristal Templado 2 Ventiladores ATX, Negro", "Corsair 4000D, Cristal Templado, 2 Ventiladores, ATX, Blanco"};
+        double[] precioATX = {3000, 3000, 3000};
+        //--------------------------------------Nvidia Geforce
+        String[] NvidiaGenGPU = {"RTX 2000", "RTX 3000", "RTX 4000"};
+        double[] whattsNvidia = {100, 200, 300};
+        //--------------------------------------RTX 2000
+        String[] NvidiaRTX2000 = {"Asus dual RTX 2060 12GB GDDR6", "MSI RTX 2070 8GB GDDR6", "GIGABYTE RTX 2080 8GB GDDR6"};
+        double[] PreciosRTX2000 = {4065, 4829, 5244};
+        double[] whattsRTX2000 = {100, 200, 300, 400};
+        //--------------------------------------RTX 3000
+        String[] NvidiaRTX3000 = {"Asus RTX 3060 12GB GDDR6", "MSI RTX 3070 8GB GDRR6", "Gigabyte RTX 3080 10GB GDDR6X", "PNY RTX 3090 24 GB XLR8"};
+        double[] PreciosRTX3000 = { 5726, 12664, 16344, 22069};
+        double[] whattsRTX3000 = {100, 200, 300, 400};
+        //--------------------------------------RTX 4000
+        String[] NvidiaRTX4000 = {"ZOTAC RTX 4060 8 GB GDDR6", "ASUS RTX 4070 12GB GDDR6X", "MSI RTX 4080 16GB GDDR6X", "Asus RTX 4090 24GB GDDR6X"};
+        double[] PreciosRTX4000 = {5709, 10993, 26660, 35748};
+        double[] whattsRTX4000 = {100, 200, 300, 400};
+
+        //--------------------------------------AMD Radeon
+        String[] AMDGenGPU = {"RX 5000", "RX 6000", "RX 7000"};
+        double[] whattsAMD = {100, 200, 300};
+
+        //--------------------------------------RX 5000
+        String[] AMDRX5000 = {"ASUS RX 5600 XT GDDR6", "Gigabyte RX 5700 XT 8GB GDDR6"};
+        double[] PreciosRX5000 = {4000, 5280};
+        double[] whattsRX5000 = {100, 200, 300};
+
+        //--------------------------------------RX 6000
+        String[] AMDRX6000 = {"MSI RX 6600 8GB GDDR6", "ASUS RX 6700 XT 12GB GDDR6", "Sapphire RX 6800 16GB GDDR6"};
+        double[] PreciosRX6000 = {6850, 10069, 11809};
+        double[] whattsRX6000 = {100, 200, 300};
+
+        //--------------------------------------RX 7000
+        String[] AMDRX7000 = {"ASUS RX 7600 8GB GDDR6", "ASUS RX 7700 XT 12GB GDDR6", "Sapphire RX 7800 XT 16GB GDDR6"};
+        double[] PreciosRX7000 = {5609, 8629, 9889};
+        double[] whattsRX7000 = {100, 200, 300};
 
         while (repetir) {
             System.out.println("Bienvenido a sistema de armado guiado de PC de ALRM-TECH");
@@ -73,7 +134,7 @@ public class Preensamble {
             switch (opcion) {
                 case 1:
                     System.out.println();
-                    System.out.println("Ha seleccionado INTEL");
+                    System.out.println("Ha seleccionado " + marcaCPU[opcion - 1]); 
                     System.out.println("Seleccione la generación de su procesador:");
                     System.out.println();
                     for (int i = 0; i < intelGenCPU.length; i++) {
@@ -88,8 +149,8 @@ public class Preensamble {
                     System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
 
                     switch (opcionIntel) {
-                        case 1:
-                            System.out.println("Ha seleccionado Intel Core 12th");
+                        case 1://--------------------------------------------------------------------------------------------INTEL
+                            System.out.println("Ha seleccionado " + intelGenCPU[opcionIntel - 1]); 
                             System.out.println();
                             System.out.println("Seleccione la gama del procesador:");
                             for (int i = 0; i < intel12thCPU.length; i++) {
@@ -99,169 +160,747 @@ public class Preensamble {
                             System.out.print("Ingrese su opción: ");
                             int opcionCPU = scanner.nextInt();
                             scanner.nextLine();
-                            whatts += whattsintel12th[opcionCPU - 1]; // Suma el consumo de watts del procesador seleccionado
+                            whatts += whattsintel12th[opcionCPU - 1]; 
                             System.out.println();
                             System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
 
-                            subtotal += preciosintel12th[opcionCPU - 1]; // Suma el precio del procesador seleccionado
+                            subtotal += preciosintel12th[opcionCPU - 1]; 
                             System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
-
-                            System.out.println("Continuemos con las Motherboards");
-                            System.out.println("Estas son las Motherboards compatibles con tu CPU");
-                            System.out.println();
-                            for (int i = 0; i < lga1700.length; i++) {
-                                System.out.println((i + 1) + ". " + lga1700[i] + " $" + precioslga1700[i]);
-                            }
-                            System.out.println();
-                            System.out.print("Ingrese su opción: ");
-                            opcionMotherboard = scanner.nextInt();
-                            System.out.println();
-                            scanner.nextLine();
-
-                            DDR = (opcionMotherboard <= 2) ? 4 : 5;
-
-                            if (opcionMotherboard >= 1 && opcionMotherboard <= 3) {
-                                whatts += whattslga1700[opcionMotherboard - 1];
-                                System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
-
-                                subtotal += precioslga1700[opcionMotherboard - 1];
-                                System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
-
-                                // Mostrar el catálogo de RAM correspondiente
-                                System.out.println();
-                                System.out.println("Ahora toca seleccionar la memoria RAM");
-                                System.out.println("Debido a que tu Motherboard es DDR" + DDR + ", estos son el catálogo de RAMs disponibles para tu Motherboard");
-                                System.out.println();
-                                if (DDR == 4) {
-                                    for (int i = 0; i < DDR4.length; i++) {
-                                        System.out.println((i + 1) + ". " + DDR4[i] + " $" + preciosDDR4[i]);
-                                    }
-                                } else if (DDR == 5) {
-                                    for (int i = 0; i < DDR5.length; i++) {
-                                        System.out.println((i + 1) + ". " + DDR5[i] + " $" + preciosDDR5[i]);
-                                    }
-                                } else {
-                                    System.out.println("No hay catálogo de RAM disponible para este tipo de placa base.");
-                                }
-                                System.out.println();
-                                System.out.print("Ingrese su opción: ");
-                                int opcionRAM = scanner.nextInt();
-                                double precioRAM = 0;
-                                if (DDR == 4 && opcionRAM >= 1 && opcionRAM <= DDR4.length) {
-                                    precioRAM = preciosDDR4[opcionRAM - 1];
-                                } else if (DDR == 5 && opcionRAM >= 1 && opcionRAM <= DDR5.length) {
-                                    precioRAM = preciosDDR5[opcionRAM - 1];
-                                } else {
-                                    System.out.println("Opción inválida. No se ha seleccionado RAM.");
-                                }
-                                subtotal += precioRAM;
-                                System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
-                                System.out.printf("El consumo actual es de: %.0f Watts%n", whatts); // Imprimimos el consumo total de watts
-                            }
-
-                            System.out.println();
-                            System.out.println("Es turno de que selecciones un tipo de almacenamiento");
-                            System.out.println();
-                            for (int i = 0; i < TipoAlmacenamiento.length; i++) {
-                                System.out.println((i + 1) + ". " + TipoAlmacenamiento[i]);
-                            }
-                            int opcionAlmacenamiento = scanner.nextInt();
-                            switch (opcionAlmacenamiento) {
-                                case 1:
-                                System.out.println("HDD");
-                                    break;
-                                case 2:
-                                System.out.println("SDD");
-                                    break;
-                                case 3:
-                                System.out.println("NVMe");
-                                    break;
-                            
-                                default:
-                                System.out.println("Opción inválida. Inténtelo de nuevo.");
-                                    break;
-                            }
-
                             break;
-                            /*case 2:
-                            System.out.println("Ha seleccionado Intel Core 13th");
+                        case 2:
+                            System.out.println("Ha seleccionado " + intelGenCPU[opcionIntel - 1]); 
+                            System.out.println();
                             System.out.println("Seleccione la gama del procesador:");
                             for (int i = 0; i < intel13thCPU.length; i++) {
                                 System.out.println((i + 1) + ". " + intel13thCPU[i] + " $" + preciosintel13th[i]);
                             }
                             System.out.println();
                             System.out.print("Ingrese su opción: ");
-                            opcionIntel13th = scanner.nextInt();
+                            opcionCPU = scanner.nextInt();
                             scanner.nextLine();
+                            whatts += whattsintel13th[opcionCPU - 1]; 
                             System.out.println();
-                            //------------------------------------------------Sacar los whatts actuales
-                            whatts += whattsintel13th[opcionIntel13th - 1];
                             System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
-                            //------------------------------------------------Sacar el subtotal
-                            subtotal += preciosintel13th[opcionIntel13th - 1];
-                            System.out.println("El subtotal actual es de: $" + String.format( "%.2f", subtotal));
-                            //--------------------------------------------------------------------------- Seleccionando Motherboard
-                            System.out.println();
-                            for (int i = 0; i < lga1700.length; i++) {
-                                System.out.println((i + 1) + ". " + lga1700[i] + " $" + precioslga1700[i]);
-                            }
-                            System.out.println();
-                            System.out.print("Ingrese su opción: ");
-                            Motherboards = scanner.nextInt();
-                            switch(Motherboards){
-                                case 1:
-                                break;
-                                case 2:
-                                break;
-                                default:
-                                break;
-                            }
+
+                            subtotal += preciosintel13th[opcionCPU - 1]; 
+                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                             break;
                         case 3:
-                            System.out.println("Ha seleccionado Intel Core 14th");
+                            System.out.println("Ha seleccionado " + intelGenCPU[opcionIntel - 1]); 
+                            System.out.println();
                             System.out.println("Seleccione la gama del procesador:");
                             for (int i = 0; i < intel14thCPU.length; i++) {
                                 System.out.println((i + 1) + ". " + intel14thCPU[i] + " $" + preciosintel14th[i]);
                             }
                             System.out.println();
                             System.out.print("Ingrese su opción: ");
-                            opcionIntel14th = scanner.nextInt();
+                            opcionCPU = scanner.nextInt();
                             scanner.nextLine();
+                            whatts += whattsintel14th[opcionCPU - 1]; 
                             System.out.println();
-                            //------------------------------------------------Sacar los whatts actuales
-                            whatts += whattsintel14th[opcionIntel14th - 1];
                             System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
-                            //------------------------------------------------Sacar el subtotal
-                            subtotal += preciosintel14th[opcionIntel14th - 1];
-                            System.out.println("El subtotal actual es de: $" + String.format( "%.2f", subtotal));
-                            //--------------------------------------------------------------------------- Seleccionando Motherboard
-                            System.out.println();
-                            for (int i = 0; i < lga1700.length; i++) {
-                                System.out.println((i + 1) + ". " + lga1700[i] + " $" + precioslga1700[i]);
-                            }
-                            System.out.println();
-                            System.out.print("Ingrese su opción: ");
-                            Motherboards = scanner.nextInt();
-                            switch(Motherboards){
-                                case 1:
-                                break;
-                                case 2:
-                                break;
-                                default:
-                                break;
-                            }
-                            break;*/
 
+                            subtotal += preciosintel14th[opcionCPU - 1]; 
+                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                            break;
                         default:
                             System.out.println("Opción inválida. Inténtelo de nuevo.");
                             break;
                     }
+                    // Agregar selección de motherboards INTEL
+                        System.out.println();
+                        System.out.println("Continuemos con las Motherboards");
+                        System.out.println("Estas son las Motherboards compatibles con tu CPU");
+                        System.out.println();
+                        for (int i = 0; i < lga1700.length; i++) {
+                            System.out.println((i + 1) + ". " + lga1700[i] + " $" + precioslga1700[i]);
+                        }
+                        System.out.println();
+                        System.out.print("Ingrese su opción: ");
+                        opcionMotherboard = scanner.nextInt();
+                        System.out.println();
+                        scanner.nextLine();
+
+                        DDR = (opcionMotherboard <= 2) ? 4 : 5;
+                        System.out.println("Ha seleccionado " + lga1700[opcionMotherboard - 1]);
+                        System.out.println();
+                        if (opcionMotherboard >= 1 && opcionMotherboard <= 3) {
+                            whatts += whattslga1700[opcionMotherboard - 1];
+                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+
+                            subtotal += precioslga1700[opcionMotherboard - 1];
+                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                            //--------------------------------------RAM
+                    System.out.println();
+                    System.out.println("Ahora toca seleccionar la memoria RAM");
+                    System.out.println("Debido a que tu Motherboard es DDR" + DDR + ", estos son el catálogo de RAMs disponibles para tu Motherboard");
+                    System.out.println();
+                    if (DDR == 4) {
+                        for (int i = 0; i < DDR4.length; i++) {
+                            System.out.println((i + 1) + ". " + DDR4[i] + " $" + preciosDDR4[i]);
+                        }
+                    } else if (DDR == 5) {
+                        for (int i = 0; i < DDR5.length; i++) {
+                            System.out.println((i + 1) + ". " + DDR5[i] + " $" + preciosDDR5[i]);
+                        }
+                    } else {
+                        System.out.println("No hay catálogo de RAM disponible para este tipo de placa base.");
+                    }
+                    System.out.println();
+                    System.out.print("Ingrese su opción: ");
+                    int opcionRAM = scanner.nextInt();
+                    double precioRAM = 0;
+                    if (DDR == 4 && opcionRAM >= 1 && opcionRAM <= DDR4.length) {
+                        precioRAM = preciosDDR4[opcionRAM - 1];
+                    } else if (DDR == 5 && opcionRAM >= 1 && opcionRAM <= DDR5.length) {
+                        precioRAM = preciosDDR5[opcionRAM - 1];
+                    } else {
+                        System.out.println("Opción inválida. No se ha seleccionado RAM.");
+                    }
+                    subtotal += precioRAM;
+                    System.out.println();
+                    opcionSeleccionada = (DDR == 4) ? DDR4[opcionRAM - 1] : DDR5[opcionRAM - 1];
+                    System.out.println();
+                    System.out.println("Ha seleccionado " + opcionSeleccionada);
+                    System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                    System.out.printf("El consumo actual es de: %.0f Watts%n", whatts); // Imprimimos el consumo total de watts
+
+                    System.out.println();
+                    //-----------------------------------------------------------------------------------Almacenamiento
+                            System.out.println("Es turno de que selecciones un tipo de almacenamiento");
+                            System.out.println();
+                            for (int i = 0; i < TipoAlmacenamiento.length; i++) {
+                                System.out.println((i + 1) + ". " + TipoAlmacenamiento[i]);
+                            }
+                            System.out.println();
+                            System.out.print("Ingrese su opción: ");
+                            int opcionAlmacenamiento = scanner.nextInt();
+                            scanner.nextLine();
+                            opcionSeleccionada = TipoAlmacenamiento[opcionAlmacenamiento - 1]; // Asignar la opción seleccionada
+                            switch (opcionAlmacenamiento) {
+                                case 1:
+                                    System.out.println();
+                                    System.out.println("Has seleccionado HDD");
+                                    System.out.println("Estas son las opciones de HDD disponibles:");
+                                    System.out.println();
+                                    for (int i = 0; i < HDDsata.length; i++) {
+                                        System.out.println((i + 1) + ". " + HDDsata[i] + " $" + preciosHDD[i]);
+                                    }
+                                    System.out.println();
+                                    System.out.print("Ingrese su opción: ");
+                                    int opcionHDD = scanner.nextInt();
+                                    scanner.nextLine();
+                                    opcionSeleccionada = HDDsata[opcionHDD - 1]; // Asignar la opción seleccionada
+                                    System.out.println();
+                                    System.out.println("Ha seleccionado el " + opcionSeleccionada);
+                                    System.out.println();
+                                    subtotal += preciosHDD[opcionHDD - 1]; // Suma el precio del HDD seleccionado al subtotal
+                                    System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                    break;
+                                case 2:
+                                    System.out.println();
+                                    System.out.println("Has seleccionado SSD");
+                                    System.out.println("Estas son las opciones de SSD disponibles:");
+                                    for (int i = 0; i < SSDsata.length; i++) {
+                                        System.out.println((i + 1) + ". " + SSDsata[i] + " $" + preciosSSD[i]);
+                                    }
+                                    System.out.println();
+                                    System.out.print("Ingrese su opción: ");
+                                    int opcionSSD = scanner.nextInt();
+                                    scanner.nextLine();
+                                    opcionSeleccionada = SSDsata[opcionSSD - 1]; // Asignar la opción seleccionada
+                                    System.out.println();
+                                    System.out.println("Ha seleccionado " + opcionSeleccionada);
+                                    System.out.println();
+                                    subtotal += preciosSSD[opcionSSD - 1]; // Suma el precio del SSD seleccionado al subtotal
+                                    System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                    break;
+                                case 3:
+                                    System.out.println();
+                                    System.out.println("Has seleccionado NVMe");
+                                    System.out.println("Estas son las opciones de NVMe disponibles:");
+                                    for (int i = 0; i < NVMe.length; i++) {
+                                        System.out.println((i + 1) + ". " + NVMe[i] + " $" + preciosNVMe[i]);
+                                    }
+                                    System.out.println();
+                                    System.out.print("Ingrese su opción: ");
+                                    int opcionNVMe = scanner.nextInt();
+                                    scanner.nextLine();
+                                    opcionSeleccionada = NVMe[opcionNVMe - 1]; // Asignar la opción seleccionada
+                                    System.out.println();
+                                    System.out.println("Ha seleccionado " + opcionSeleccionada);
+                                    System.out.println();
+                                    subtotal += preciosNVMe[opcionNVMe - 1]; // Suma el precio del NVMe seleccionado al subtotal
+                                    System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                    break;
+                                default:
+                                    System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                    break;
+                            }
+
+                                System.out.println();
+                                System.out.println("Es hora de seleccionar un Gabinete");
+                                System.out.println();
+                                System.out.println("Este es el catálogo de gabinetes disponibles compatibles con tu placa madre");
+                                System.out.println();
+
+                                if (opcionMotherboard <= 2) { // Si es una placa MicroATX
+                                    for (int i = 0; i < catalogoPlacaMicroATX.length; i++) {
+                                        System.out.println((i + 1) + ". " + catalogoPlacaMicroATX[i] + " $" + precioMicroATX[i]);
+                                    }
+                                } else { // Si es una placa ATX
+                                    for (int i = 0; i < catalogoPlacaATX.length; i++) {
+                                        System.out.println((i + 1) + ". " + catalogoPlacaATX[i] + " $" + precioATX[i]);
+                                    }
+                                }
+
+                                System.out.println();
+                                System.out.print("Ingrese su opción: ");
+                                int opcionGabinete = scanner.nextInt();
+                                scanner.nextLine();
+                                String gabineteSeleccionado = (opcionMotherboard <= 2) ? catalogoPlacaMicroATX[opcionGabinete - 1] : catalogoPlacaATX[opcionGabinete - 1];
+                                double precioGabinete = (opcionMotherboard <= 2) ? precioMicroATX[opcionGabinete - 1] : precioATX[opcionGabinete - 1];
+                                System.out.println();
+                                System.out.println("Ha seleccionado " + gabineteSeleccionado);
+                                System.out.println();
+                                subtotal += precioGabinete; // Sumar el precio del gabinete al subtotal
+                                System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                System.out.println();
+
+                                System.out.println("Es hora de seleccionar una Tarjeta Gráfica");
+                                System.out.println("Este es el catálogo de Tarjetas Gráficas disponibles:");
+                                System.out.println();
+                                System.out.println("1. Nvidia Geforce");
+                                System.out.println("2. AMD Radeon");
+                                System.out.println();
+                                System.out.print("Ingrese su opción (1 para Nvidia, 2 para AMD): ");
+                                int opcionGPU = scanner.nextInt();
+                                scanner.nextLine();
+
+                                switch (opcionGPU) {
+                                    case 1: // Nvidia
+                                        System.out.println();
+                                        System.out.println("Has seleccionado Nvidia Geforce");
+                                        System.out.println("Estas son las generaciones de Nvidia Geforce disponibles:");
+                                        for (int i = 0; i < NvidiaGenGPU.length; i++) {
+                                            System.out.println((i + 1) + ". " + NvidiaGenGPU[i]);
+                                        }
+                                        System.out.println();
+                                        System.out.print("Ingrese su opción: ");
+                                        int opcionGenNvidia = scanner.nextInt();
+                                        scanner.nextLine();
+                                        String genSeleccionada = NvidiaGenGPU[opcionGenNvidia - 1];
+                                        whatts += whattsNvidia[opcionGenNvidia - 1]; 
+                                        System.out.println();
+                                        System.out.println("Has seleccionado " + genSeleccionada);
+                                        System.out.println("Estas son las opciones disponibles para " + genSeleccionada + ":");
+                                        String[] opcionesNvidia = null;
+                                        double[] preciosNvidia = null;
+                                        double[] wattsNvidia = null;
+                                        switch (genSeleccionada) {
+                                            case "RTX 2000":
+                                                opcionesNvidia = NvidiaRTX2000;
+                                                preciosNvidia = PreciosRTX2000;
+                                                wattsNvidia = whattsRTX2000;
+                                                break;
+                                            case "RTX 3000":
+                                                opcionesNvidia = NvidiaRTX3000;
+                                                preciosNvidia = PreciosRTX3000;
+                                                wattsNvidia = whattsRTX3000;
+                                                break;
+                                            case "RTX 4000":
+                                                opcionesNvidia = NvidiaRTX4000;
+                                                preciosNvidia = PreciosRTX4000;
+                                                wattsNvidia = whattsRTX4000;
+                                                break;
+                                            default:
+                                                System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                                break;
+                                        }
+                                        if (opcionesNvidia != null) {
+                                            for (int i = 0; i < opcionesNvidia.length; i++) {
+                                                System.out.println((i + 1) + ". " + opcionesNvidia[i] + " $" + preciosNvidia[i]);
+                                            }
+                                            System.out.println();
+                                            System.out.print("Ingrese su opción: ");
+                                            opcionNvidia = scanner.nextInt();
+                                            scanner.nextLine();
+                                            String gpuNvidiaSeleccionada = opcionesNvidia[opcionNvidia - 1];
+                                            whatts += wattsNvidia[opcionNvidia - 1]; 
+                                            subtotal += preciosNvidia[opcionNvidia - 1];
+                                            System.out.println();
+                                            System.out.println("Ha seleccionado " + gpuNvidiaSeleccionada);
+                                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                                            System.out.println();
+                                        }
+                                        break;
+                                    case 2: // AMD
+                                        System.out.println();
+                                        System.out.println("Has seleccionado AMD Radeon");
+                                        System.out.println("Estas son las generaciones de AMD Radeon disponibles:");
+                                        for (int i = 0; i < AMDGenGPU.length; i++) {
+                                            System.out.println((i + 1) + ". " + AMDGenGPU[i]);
+                                        }
+                                        System.out.println();
+                                        System.out.print("Ingrese su opción: ");
+                                        int opcionGenAMD = scanner.nextInt();
+                                        scanner.nextLine();
+                                        String genAMDSeleccionada = AMDGenGPU[opcionGenAMD - 1];
+                                        whatts += whattsAMD[opcionGenAMD - 1]; 
+                                        System.out.println();
+                                        System.out.println("Has seleccionado " + genAMDSeleccionada);
+                                        System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                                        System.out.println("Estas son las opciones disponibles para " + genAMDSeleccionada + ":");
+                                        String[] opcionesAMD = null;
+                                        double[] preciosAMD = null;
+                                        double[] wattsAMD = null;
+                                        switch (genAMDSeleccionada) {
+                                            case "RX 5000":
+                                                opcionesAMD = AMDRX5000;
+                                                preciosAMD = PreciosRX5000;
+                                                wattsAMD = whattsRX5000;
+                                                break;
+                                            case "RX 6000":
+                                                opcionesAMD = AMDRX6000;
+                                                preciosAMD = PreciosRX6000;
+                                                wattsAMD = whattsRX6000;
+                                                break;
+                                            case "RX 7000":
+                                                opcionesAMD = AMDRX7000;
+                                                preciosAMD = PreciosRX7000;
+                                                wattsAMD = whattsRX7000;
+                                                break;
+                                            default:
+                                                System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                                break;
+                                        }
+                                        if (opcionesAMD != null) {
+                                            for (int i = 0; i < opcionesAMD.length; i++) {
+                                                System.out.println((i + 1) + ". " + opcionesAMD[i] + " $" + preciosAMD[i]);
+                                            }
+                                            System.out.println();
+                                            System.out.print("Ingrese su opción: ");
+                                            opcionAMD = scanner.nextInt();
+                                            scanner.nextLine();
+                                            String gpuAMDSeleccionada = opcionesAMD[opcionAMD - 1];
+                                            whatts += wattsAMD[opcionAMD - 1]; 
+                                            subtotal += preciosAMD[opcionAMD - 1];
+                                            System.out.println();
+                                            System.out.println("Ha seleccionado " + gpuAMDSeleccionada);
+                                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                                            System.out.println();
+                                        }
+                                        break;
+                                    default:
+                                        System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                        break;
+                            }
+                        }
                     break;
+                    case 2://--------------------------------------------------------------------------------------------------------------------------------AMD
+                        System.out.println();
+                        System.out.println("Ha seleccionado " + marcaCPU[opcion - 1]); 
+                        System.out.println("Seleccione la generación de su procesador:");
+                        System.out.println();
+                        for (int i = 0; i < amdGenCPU.length; i++) {
+                            System.out.println((i + 1) + ". " + amdGenCPU[i]);
+                        }
+                        System.out.println();
+                        System.out.print("Ingrese su opción: ");
+                        opcionAMD = scanner.nextInt();
+                        scanner.nextLine();
+                        whatts += whattsAmd[opcionAMD - 1];
+                        System.out.println();
+                        System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+
+                    switch (opcionAMD) {
+                        case 1:
+                            System.out.println("Ha seleccionado " + amdGenCPU[opcionAMD - 1]); 
+                            System.out.println();
+                            System.out.println("Seleccione el procesador:");
+                            for (int i = 0; i < amd3000CPU.length; i++) {
+                                System.out.println((i + 1) + ". " + amd3000CPU[i] + " $" + preciosAmd3000[i]);
+                            }
+                            System.out.println();
+                            System.out.print("Ingrese su opción: ");
+                            int opcionCPU = scanner.nextInt();
+                            scanner.nextLine();
+                            whatts += whattsAmd3000[opcionCPU - 1]; 
+                            System.out.println();
+                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+
+                            subtotal += preciosAmd3000[opcionCPU - 1]; 
+                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                            break;
+                        case 2:
+                            System.out.println("Ha seleccionado " + amdGenCPU[opcionAMD - 1]); 
+                            System.out.println();
+                            System.out.println("Seleccione el procesador:");
+                            for (int i = 0; i < amd5000CPU.length; i++) {
+                                System.out.println((i + 1) + ". " + amd5000CPU[i] + " $" + preciosAmd5000[i]);
+                            }
+                            System.out.println();
+                            System.out.print("Ingrese su opción: ");
+                            opcionCPU = scanner.nextInt();
+                            scanner.nextLine();
+                            whatts += whattsAmd5000[opcionCPU - 1]; 
+                            System.out.println();
+                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+
+                            subtotal += preciosAmd5000[opcionCPU - 1]; 
+                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                            break;
+                        case 3:
+                            System.out.println("Ha seleccionado " + amdGenCPU[opcionAMD - 1]); 
+                            System.out.println();
+                            System.out.println("Seleccione el procesador:");
+                            for (int i = 0; i < amd7000CPU.length; i++) {
+                                System.out.println((i + 1) + ". " + amd7000CPU[i] + " $" + preciosAmd7000[i]);
+                            }
+                            System.out.println();
+                            System.out.print("Ingrese su opción: ");
+                            opcionCPU = scanner.nextInt();
+                            scanner.nextLine();
+                            whatts += whattsAmd7000[opcionCPU - 1]; 
+                            System.out.println();
+                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+
+                            subtotal += preciosAmd7000[opcionCPU - 1]; 
+                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                            break;
+                            
                 default:
                     System.out.println("Opción inválida. Inténtelo de nuevo.");
                     break;
             }
+            // Agregar selección de motherboards AMD
+                System.out.println();
+                System.out.println("Continuemos con las Motherboards");
+                System.out.println("Estas son las Motherboards compatibles con tu CPU");
+                System.out.println();
+                if (opcionAMD == 1) { // AMD Ryzen 3000
+                    for (int i = 0; i < amd3000.length; i++) {
+                        System.out.println((i + 1) + ". " + amd3000[i] + " $" + preciosMotheramd3000[i]);
+                    }
+                    System.out.println();
+                    System.out.print("Ingrese su opción: ");
+                    opcionMotherboard = scanner.nextInt();
+                    System.out.println();
+                    scanner.nextLine();
+
+                    DDR = (opcionMotherboard <= 2) ? 4 : 5;
+                    System.out.println("Ha seleccionado " + amd3000[opcionMotherboard - 1]);
+                    System.out.println();
+                    if (opcionMotherboard >= 1 && opcionMotherboard <= 3) {
+                        whatts += whattsMotheramd3000[opcionMotherboard - 1];
+                        System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+
+                        subtotal += preciosMotheramd3000[opcionMotherboard - 1];
+                        System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                        System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                    }
+                } else { // AMD Ryzen 5000 o 7000
+                    for (int i = 0; i < amd5000.length; i++) {
+                        System.out.println((i + 1) + ". " + amd5000[i] + " $" + preciosMotheramd5000[i]);
+                    }
+                    System.out.println();
+                    System.out.print("Ingrese su opción: ");
+                    opcionMotherboard = scanner.nextInt();
+                    System.out.println();
+                    scanner.nextLine();
+
+                    DDR = (opcionMotherboard <= 2) ? 4 : 5;
+                    System.out.println("Ha seleccionado " + amd5000[opcionMotherboard - 1]);
+                    System.out.println();
+                    if (opcionMotherboard >= 1 && opcionMotherboard <= 3) {
+                        whatts += whattsMotheramd5000[opcionMotherboard - 1];
+                        System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+
+                        subtotal += preciosMotheramd5000[opcionMotherboard - 1];
+                        System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                        System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+
+                        //--------------------------------------RAM
+                        System.out.println();
+                        System.out.println("Ahora toca seleccionar la memoria RAM");
+                        System.out.println("Debido a que tu Motherboard es DDR" + DDR + ", estos son el catálogo de RAMs disponibles para tu Motherboard");
+                        System.out.println();
+                        if (DDR == 4) {
+                            for (int i = 0; i < DDR4.length; i++) {
+                                System.out.println((i + 1) + ". " + DDR4[i] + " $" + preciosDDR4[i]);
+                            }
+                        } else if (DDR == 5) {
+                            for (int i = 0; i < DDR5.length; i++) {
+                                System.out.println((i + 1) + ". " + DDR5[i] + " $" + preciosDDR5[i]);
+                            }
+                        } else {
+                            System.out.println("No hay catálogo de RAM disponible para este tipo de placa base.");
+                        }
+                        System.out.println();
+                        System.out.print("Ingrese su opción: ");
+                        int opcionRAM = scanner.nextInt();
+                        double precioRAM = 0;
+                        if (DDR == 4 && opcionRAM >= 1 && opcionRAM <= DDR4.length) {
+                            precioRAM = preciosDDR4[opcionRAM - 1];
+                        } else if (DDR == 5 && opcionRAM >= 1 && opcionRAM <= DDR5.length) {
+                            precioRAM = preciosDDR5[opcionRAM - 1];
+                        } else {
+                            System.out.println("Opción inválida. No se ha seleccionado RAM.");
+                        }
+                        subtotal += precioRAM;
+                        System.out.println();
+                        opcionSeleccionada = (DDR == 4) ? DDR4[opcionRAM - 1] : DDR5[opcionRAM - 1];
+                        System.out.println();
+                        System.out.println("Ha seleccionado " + opcionSeleccionada);
+                        System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                        System.out.printf("El consumo actual es de: %.0f Watts%n", whatts); // Imprimimos el consumo total de watts
+                        System.out.println();
+                        //------------------------------------------------------------------------------Almacenamiento
+                        System.out.println("Es turno de que selecciones un tipo de almacenamiento");
+                        System.out.println();
+                        for (int i = 0; i < TipoAlmacenamiento.length; i++) {
+                            System.out.println((i + 1) + ". " + TipoAlmacenamiento[i]);
+                        }
+                        System.out.println();
+                        System.out.print("Ingrese su opción: ");
+                        int opcionAlmacenamiento = scanner.nextInt();
+                        scanner.nextLine();
+                        opcionSeleccionada = TipoAlmacenamiento[opcionAlmacenamiento - 1]; // Asignar la opción seleccionada
+                        switch (opcionAlmacenamiento) {
+                            case 1:
+                                System.out.println();
+                                System.out.println("Has seleccionado HDD");
+                                System.out.println("Estas son las opciones de HDD disponibles:");
+                                System.out.println();
+                                for (int i = 0; i < HDDsata.length; i++) {
+                                    System.out.println((i + 1) + ". " + HDDsata[i] + " $" + preciosHDD[i]);
+                                }
+                                System.out.println();
+                                System.out.print("Ingrese su opción: ");
+                                int opcionHDD = scanner.nextInt();
+                                scanner.nextLine();
+                                opcionSeleccionada = HDDsata[opcionHDD - 1]; // Asignar la opción seleccionada
+                                System.out.println();
+                                System.out.println("Ha seleccionado el " + opcionSeleccionada);
+                                System.out.println();
+                                subtotal += preciosHDD[opcionHDD - 1]; // Suma el precio del HDD seleccionado al subtotal
+                                System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                break;
+                            case 2:
+                                System.out.println();
+                                System.out.println("Has seleccionado SSD");
+                                System.out.println("Estas son las opciones de SSD disponibles:");
+                                for (int i = 0; i < SSDsata.length; i++) {
+                                    System.out.println((i + 1) + ". " + SSDsata[i] + " $" + preciosSSD[i]);
+                                }
+                                System.out.println();
+                                System.out.print("Ingrese su opción: ");
+                                int opcionSSD = scanner.nextInt();
+                                scanner.nextLine();
+                                opcionSeleccionada = SSDsata[opcionSSD - 1]; // Asignar la opción seleccionada
+                                System.out.println();
+                                System.out.println("Ha seleccionado " + opcionSeleccionada);
+                                System.out.println();
+                                subtotal += preciosSSD[opcionSSD - 1]; // Suma el precio del SSD seleccionado al subtotal
+                                System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                break;
+                            case 3:
+                                System.out.println();
+                                System.out.println("Has seleccionado NVMe");
+                                System.out.println("Estas son las opciones de NVMe disponibles:");
+                                for (int i = 0; i < NVMe.length; i++) {
+                                    System.out.println((i + 1) + ". " + NVMe[i] + " $" + preciosNVMe[i]);
+                                }
+                                System.out.println();
+                                System.out.print("Ingrese su opción: ");
+                                int opcionNVMe = scanner.nextInt();
+                                scanner.nextLine();
+                                opcionSeleccionada = NVMe[opcionNVMe - 1]; // Asignar la opción seleccionada
+                                System.out.println();
+                                System.out.println("Ha seleccionado " + opcionSeleccionada);
+                                System.out.println();
+                                subtotal += preciosNVMe[opcionNVMe - 1]; // Suma el precio del NVMe seleccionado al subtotal
+                                System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                break;
+                            default:
+                                System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                break;
+                        }
+                        System.out.println();
+                            System.out.println("Es hora de seleccionar un Gabinete");
+                            System.out.println();
+                            System.out.println("Este es el catálogo de gabinetes disponibles compatibles con tu placa madre");
+                            System.out.println();
+
+                            if (opcionMotherboard <= 2) { // Si es una placa MicroATX
+                                for (int i = 0; i < catalogoPlacaMicroATX.length; i++) {
+                                    System.out.println((i + 1) + ". " + catalogoPlacaMicroATX[i] + " $" + precioMicroATX[i]);
+                                }
+                            } else { // Si es una placa ATX
+                                for (int i = 0; i < catalogoPlacaATX.length; i++) {
+                                    System.out.println((i + 1) + ". " + catalogoPlacaATX[i] + " $" + precioATX[i]);
+                                }
+                            }
+
+                            System.out.println();
+                            System.out.print("Ingrese su opción: ");
+                            int opcionGabinete = scanner.nextInt();
+                            scanner.nextLine();
+                            String gabineteSeleccionado = (opcionMotherboard <= 2) ? catalogoPlacaMicroATX[opcionGabinete - 1] : catalogoPlacaATX[opcionGabinete - 1];
+                            double precioGabinete = (opcionMotherboard <= 2) ? precioMicroATX[opcionGabinete - 1] : precioATX[opcionGabinete - 1];
+                            System.out.println();
+                            System.out.println("Ha seleccionado " + gabineteSeleccionado);
+                            System.out.println();
+                            subtotal += precioGabinete; // Sumar el precio del gabinete al subtotal
+                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                            System.out.println();
+
+                            System.out.println();
+                            System.out.println("Es hora de seleccionar una Tarjeta Gráfica");
+                            System.out.println();
+                            System.out.println("Este es el catálogo de Tarjetas Gráficas disponibles:");
+                            System.out.println();
+
+                            System.out.println("1. Nvidia Geforce");
+                            System.out.println("2. AMD Radeon");
+
+                            System.out.println();
+                            System.out.print("Ingrese su opción (1 para Nvidia, 2 para AMD): ");
+                            int opcionGPU = scanner.nextInt();
+                            scanner.nextLine();
+
+                            switch (opcionGPU) {
+                                case 1: // Nvidia
+                                    System.out.println();
+                                    System.out.println("Has seleccionado Nvidia Geforce");
+                                    System.out.println("Estas son las generaciones de Nvidia Geforce disponibles:");
+                                    for (int i = 0; i < NvidiaGenGPU.length; i++) {
+                                        System.out.println((i + 1) + ". " + NvidiaGenGPU[i]);
+                                    }
+                                    System.out.println();
+                                    System.out.print("Ingrese su opción: ");
+                                    int opcionGenNvidia = scanner.nextInt();
+                                    scanner.nextLine();
+                                    String genSeleccionada = NvidiaGenGPU[opcionGenNvidia - 1];
+                                    whatts += whattsNvidia[opcionGenNvidia - 1]; 
+                                    System.out.println();
+                                    System.out.println("Has seleccionado " + genSeleccionada);
+                                    System.out.println("Estas son las opciones disponibles para " + genSeleccionada + ":");
+                                    String[] opcionesNvidia = null;
+                                    double[] preciosNvidia = null;
+                                    double[] wattsNvidia = null;
+                                    switch (genSeleccionada) {
+                                        case "RTX 2000":
+                                            opcionesNvidia = NvidiaRTX2000;
+                                            preciosNvidia = PreciosRTX2000;
+                                            wattsNvidia = whattsRTX2000;
+                                            break;
+                                        case "RTX 3000":
+                                            opcionesNvidia = NvidiaRTX3000;
+                                            preciosNvidia = PreciosRTX3000;
+                                            wattsNvidia = whattsRTX3000;
+                                            break;
+                                        case "RTX 4000":
+                                            opcionesNvidia = NvidiaRTX4000;
+                                            preciosNvidia = PreciosRTX4000;
+                                            wattsNvidia = whattsRTX4000;
+                                            break;
+                                        default:
+                                            System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                            break;
+                                    }
+                                    if (opcionesNvidia != null) {
+                                        for (int i = 0; i < opcionesNvidia.length; i++) {
+                                            System.out.println((i + 1) + ". " + opcionesNvidia[i] + " $" + preciosNvidia[i]);
+                                        }
+                                        System.out.println();
+                                        System.out.print("Ingrese su opción: ");
+                                        opcionNvidia = scanner.nextInt();
+                                        scanner.nextLine();
+                                        String gpuNvidiaSeleccionada = opcionesNvidia[opcionNvidia - 1];
+                                        whatts += wattsNvidia[opcionNvidia - 1]; 
+                                        subtotal += preciosNvidia[opcionNvidia - 1];
+                                        System.out.println();
+                                        System.out.println("Ha seleccionado " + gpuNvidiaSeleccionada);
+                                        System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                        System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                                        System.out.println();
+                                    }
+                                    break;
+                                case 2: // AMD
+                                    System.out.println();
+                                    System.out.println("Has seleccionado AMD Radeon");
+                                    System.out.println("Estas son las generaciones de AMD Radeon disponibles:");
+                                    for (int i = 0; i < AMDGenGPU.length; i++) {
+                                        System.out.println((i + 1) + ". " + AMDGenGPU[i]);
+                                    }
+                                    System.out.println();
+                                    System.out.print("Ingrese su opción: ");
+                                    int opcionGenAMD = scanner.nextInt();
+                                    scanner.nextLine();
+                                    String genAMDSeleccionada = AMDGenGPU[opcionGenAMD - 1];
+                                    whatts += whattsAMD[opcionGenAMD - 1]; 
+                                    System.out.println();
+                                    System.out.println("Has seleccionado " + genAMDSeleccionada);
+                                    System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                                    System.out.println("Estas son las opciones disponibles para " + genAMDSeleccionada + ":");
+                                    String[] opcionesAMD = null;
+                                    double[] preciosAMD = null;
+                                    double[] wattsAMD = null;
+                                    switch (genAMDSeleccionada) {
+                                        case "RX 5000":
+                                            opcionesAMD = AMDRX5000;
+                                            preciosAMD = PreciosRX5000;
+                                            wattsAMD = whattsRX5000;
+                                            break;
+                                        case "RX 6000":
+                                            opcionesAMD = AMDRX6000;
+                                            preciosAMD = PreciosRX6000;
+                                            wattsAMD = whattsRX6000;
+                                            break;
+                                        case "RX 7000":
+                                            opcionesAMD = AMDRX7000;
+                                            preciosAMD = PreciosRX7000;
+                                            wattsAMD = whattsRX7000;
+                                            break;
+                                        default:
+                                            System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                        break;
+                                    }
+                                if (opcionesAMD != null) {
+                                for (int i = 0; i < opcionesAMD.length; i++) {
+                                System.out.println((i + 1) + ". " + opcionesAMD[i] + " $" + preciosAMD[i]);
+                            }
+                            System.out.println();
+                            System.out.print("Ingrese su opción: ");
+                            opcionAMD = scanner.nextInt();
+                            scanner.nextLine();
+                            String gpuAMDSeleccionada = opcionesAMD[opcionAMD - 1];
+                            whatts += wattsAMD[opcionAMD - 1]; 
+                            subtotal += preciosAMD[opcionAMD - 1];
+                            System.out.println();
+                            System.out.println("Ha seleccionado " + gpuAMDSeleccionada);
+                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                            System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                            System.out.println();
+                        }
+                        break;
+                        default:
+                            System.out.println("Opción inválida. Inténtelo de nuevo.");
+                        break;
+                        }
+                    }
+                }
+                break;
+            }
+            scanner.close();
         }
-        scanner.close();
     }
 }
