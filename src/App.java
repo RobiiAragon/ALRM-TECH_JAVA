@@ -70,19 +70,19 @@ public class App {
                 //--------Gabinetes
                 {"Corsair Gabinete ATX Midi-Tower 4000D Airflow, Cristal Templado, Negro", "NZXT Gabinete ATX Mid-Tower H510i Compact, Cristal Templado, Negro", "Lian Li Gabinete ATX Full Tower PC-O11 Dynamic, Cristal Templado, Negro"},
                 //--------Teclados
-                {"Razer Teclado Mecánico Gaming BlackWidow V3, Switch Verde, RGB", "Logitech Teclado Mecánico Gaming G413 Carbon, Switch Romer-G, Iluminación Roja", "Corsair Teclado Mecánico Gaming K95 RGB PLATINUM XT, Cherry MX Speed, RGB, Aluminio"},
+                {"Razer Teclado Mecanico Gaming BlackWidow V3, Switch Verde, RGB", "Logitech Teclado Mecanico Gaming G413 Carbon, Switch Romer-G, Iluminacion Roja", "Corsair Teclado Mecanico Gaming K95 RGB PLATINUM XT, Cherry MX Speed, RGB, Aluminio"},
                 //--------Ratones
-                {"Logitech Ratón Gamer G502 HERO, 16000 DPI, RGB", "Razer Ratón Gamer DeathAdder V2 Mini, 8500 DPI, RGB", "SteelSeries Ratón Gamer Rival 3, 8500 DPI, RGB"},
+                {"Logitech Raton Gamer G502 HERO, 16000 DPI, RGB", "Razer Raton Gamer DeathAdder V2 Mini, 8500 DPI, RGB", "SteelSeries Raton Gamer Rival 3, 8500 DPI, RGB"},
                 //--------Headsets
                 {"Razer Auriculares Gaming Kraken Ultimate USB, THX Spatial Audio, RGB", "HyperX Auriculares Gaming Cloud Alpha S 7.1, Cableado, Surround Sound, Negro", "Logitech Auriculares Gaming G PRO X, Sonido Envolvente 7.1, Negro"},
                 //--------Alfombrillas para raton
-                {"Razer Alfombrilla de Ratón Goliathus Extended Chroma RGB, Suave, Negro", "HyperX Alfombrilla de Ratón FURY S Pro Gaming, Tela, Tamaño M, Negro", "Corsair Alfombrilla de Ratón MM300 Anti-Fray Cloth Gaming, Tamaño Extendido, Negro"},
+                {"Razer Alfombrilla de Raton Goliathus Extended Chroma RGB, Suave, Negro", "HyperX Alfombrilla de Raton FURY S Pro Gaming, Tela, Tamaño M, Negro", "Corsair Alfombrilla de Raton MM300 Anti-Fray Cloth Gaming, Tamaño Extendido, Negro"},
                 //--------Material de Conductividad termica
-                {"Geltérmico térmico GD900 para CPU GPU, Pasta de Grasa Térmica, 30g", "Pasta Térmica Arctic MX-4, Alto Rendimiento, 4g", "Pasta Térmica Noctua NT-H2, 3.5g"},
+                {"Geltermico termico GD900 para CPU GPU, Pasta de Grasa Termica, 30g", "Pasta Termica Arctic MX-4, Alto Rendimiento, 4g", "Pasta Termica Noctua NT-H2, 3.5g"},
                 //--------Refrigeraciones
-                {"Corsair Refrigeración Líquida Hydro H100i RGB PLATINUM, Radiador 240mm, Dos Ventiladores ML PRO", "Cooler Master Refrigeración Líquida MasterLiquid ML240L RGB V2, Radiador 240mm, Dos Ventiladores SickleFlow", "Noctua Refrigeración por Aire NH-D15, Ventilador de Doble Torre, Secuencias PWM"},
+                {"Corsair Refrigeracion Liquida Hydro H100i RGB PLATINUM, Radiador 240mm, Dos Ventiladores ML PRO", "Cooler Master Refrigeracion Liquida MasterLiquid ML240L RGB V2, Radiador 240mm, Dos Ventiladores SickleFlow", "Noctua Refrigeracion por Aire NH-D15, Ventilador de Doble Torre, Secuencias PWM"},
                 //--------Microfonos
-                {"Razer Micrófono USB Seiren X, Unidireccional, Reducción de Ruido", "HyperX Micrófono QuadCast, Condensador, Patrón de captura Estéreo, Anti-Golpes, Rojo", "Blue Yeti Micrófono USB, Patrón Múltiple, Mute, Negro"}
+                {"Razer Microfono USB Seiren X, Unidireccional, Reduccion de Ruido", "HyperX Microfono QuadCast, Condensador, Patron de captura Estereo, Anti-Golpes, Rojo", "Blue Yeti Microfono USB, Patron Múltiple, Mute, Negro"}
         };
 
         
@@ -133,8 +133,8 @@ public class App {
                 double[] preciosMotheramd5000 = {1269, 2778, 6255};
                 double[] whattsMotheramd5000 = {100,100,100};
         
-                //-------------------------------------------------------------------------------Refrigeraciónes
-                String[] refrigeracion = {"Corsair Refrigeración Líquida Hydro H100i RGB PLATINUM, Radiador 240mm, Dos Ventiladores ML PRO", "Cooler Master Refrigeración Líquida MasterLiquid ML240L RGB V2, Radiador 240mm, Dos Ventiladores SickleFlow", "NZXT Refrigeración Líquida Kraken X53, Radiador 240mm, Dos Ventiladores AER P 120mm"};
+                //-------------------------------------------------------------------------------Refrigeraciones
+                String[] refrigeracion = {"Corsair Refrigeracion Liquida Hydro H100i RGB PLATINUM, Radiador 240mm, Dos Ventiladores ML PRO", "Cooler Master Refrigeracion Liquida MasterLiquid ML240L RGB V2, Radiador 240mm, Dos Ventiladores SickleFlow", "NZXT Refrigeracion Liquida Kraken X53, Radiador 240mm, Dos Ventiladores AER P 120mm"};
                 double[] preciosRefrigeracion = {2500, 2000, 3000};
         
                 //--------------------------------------RAM
@@ -200,22 +200,22 @@ public class App {
                 String[] PSUs1600 = {"Fuente de Poder EVGA 80 PLUS Gold, Modular, 1600W", "Fuente de Poder Cybercore 80 PLUS Platinum, 1600W"};
                 double[] preciosPSUs1600 = {3000, 3500};
                 int opcionIntel, opcionAMD, opcionNvidia, opcionMotherboard, DDR;
-                String opcionSeleccionada; // Variable para almacenar la opción seleccionada por el usuario
+                String opcionSeleccionada; // Variable para almacenar la opcion seleccionada por el usuario
         //----------------------------------------------------------------termina declaraciones del apartado de Preensamblado
         while (!salir) {
         while (repetir) {
-            System.out.println("Bienvenido a ALRM-TECH Encuentra todo para tu PC ideal aquí");
+            System.out.println("Bienvenido a ALRM-TECH Encuentra todo para tu PC ideal aqui");
             System.out.println("1. Piezas");
             System.out.println("2. Sistema de armado guiado");
             System.out.println("3. Salir");
             System.out.println();
-            System.out.print("Ingrese su opción: ");
+            System.out.print("Ingrese su opcion: ");
             MenuPrincipal = scanner.nextInt();
 
             switch (MenuPrincipal) {
                 case 1:
                     System.out.println();
-                    repetir = false; // Salir del bucle después de procesar la opción 1
+                    repetir = false; // Salir del bucle despues de procesar la opcion 1
                     while (!salir) {
                         System.out.println("Bienvenido al ALRM-TECH Piezas");
                         try {
@@ -224,7 +224,7 @@ public class App {
                             e.printStackTrace();
                         }
                         System.out.println();
-                        System.out.println("¿Qué desea comprar?");
+                        System.out.println("¿Que desea comprar?");
                         try {
                             Thread.sleep(500); // 500 milisegundos = medio segundo
                         } catch (InterruptedException e) {
@@ -237,7 +237,7 @@ public class App {
                         System.out.println((categorias.length + 1) + ". Ver carrito");
                         System.out.println((categorias.length + 2) + ". Salir");
                         System.out.println();
-                        System.out.print("Ingrese su opción: ");
+                        System.out.print("Ingrese su opcion: ");
             
                         
                         try {
@@ -266,7 +266,7 @@ public class App {
                             case 15:
                                 int categoriaSeleccionada = opcion - 1;
                                 System.out.println();
-                                System.out.println("Productos disponibles en la categoría \"" + categorias[categoriaSeleccionada] + "\":");
+                                System.out.println("Productos disponibles en la categoria \"" + categorias[categoriaSeleccionada] + "\":");
                                 try {
                                     Thread.sleep(500); // 500 milisegundos = medio segundo
                                 } catch (InterruptedException e) {
@@ -301,7 +301,7 @@ public class App {
                             case 16:
                                 if (indiceCarrito == 0) {
                                     System.out.println();
-                                    repetir = false; // Salir del bucle después de procesar la opción 3
+                                    repetir = false; // Salir del bucle despues de procesar la opcion 3
                                     System.out.print("El carrito está vacio");
                                         try {
                                             Thread.sleep(500); // 500 milisegundos = medio segundo
@@ -337,7 +337,7 @@ public class App {
                                     System.out.println("1. Eliminar un producto");
                                     System.out.println("2. Pagar");
                                     System.out.println("3. Regresar al menú principal");
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     int opcionCarrito = scanner.nextInt();
                                     scanner.nextLine(); // Consumir el salto de linea
                                     switch (opcionCarrito) {
@@ -360,7 +360,7 @@ public class App {
                                                 System.out.println();
                                             } else {
                                                 System.out.println();
-                                                System.out.println("Índice inválido.");
+                                                System.out.println("indice inválido.");
                                                 try {
                                                     Thread.sleep(500); // 500 milisegundos = medio segundo
                                                 } catch (InterruptedException e) {
@@ -371,12 +371,12 @@ public class App {
                                             break;
                                         case 2:
                                             System.out.println();
-                                            System.out.println("Seleccione el método de pago:");
+                                            System.out.println("Seleccione el metodo de pago:");
                                             System.out.println("1. Efectivo");
                                             System.out.println("2. Tarjeta");
-                                            System.out.print("Ingrese su opción: ");
+                                            System.out.print("Ingrese su opcion: ");
                                             int metodoPago = scanner.nextInt();
-                                            scanner.nextLine(); // Consumir el salto de línea pendiente
+                                            scanner.nextLine(); // Consumir el salto de linea pendiente
                                             if (metodoPago == 1) {
                                                 // Generar un número de recibo simple
                                                 long numeroRecibo = Math.abs((long) (Math.random() * 9000000000L) + 1000000000L);
@@ -406,7 +406,7 @@ public class App {
                                                 } catch (InterruptedException e) {
                                                     e.printStackTrace();
                                                 }
-                                                System.out.print("Ingrese los 16 dígitos de la tarjeta: ");
+                                                System.out.print("Ingrese los 16 digitos de la tarjeta: ");
                                                 String numeroTarjeta = scanner.nextLine();
                                                 try {
                                                     Thread.sleep(500); // 500 milisegundos = medio segundo
@@ -415,7 +415,7 @@ public class App {
                                                 }
                                                 if (numeroTarjeta.length() != 16) {
                                                     System.out.println();
-                                                    System.out.println("El número de tarjeta debe tener exactamente 16 dígitos.");
+                                                    System.out.println("El número de tarjeta debe tener exactamente 16 digitos.");
                                                     System.out.println();
                                                     break;
                                                 }
@@ -435,7 +435,7 @@ public class App {
                                                     break;
                                                 }
 
-                                                // Verificar si la cadena contiene solo dígitos y la barra en la posición correcta
+                                                // Verificar si la cadena contiene solo digitos y la barra en la posicion correcta
                                                 for (int i = 0; i < fechaVencimiento.length(); i++) {
                                                     if (i == 2) {
                                                         if (fechaVencimiento.charAt(i) != '/') {
@@ -472,18 +472,18 @@ public class App {
                                                     break;
                                                 }
                                                 //-----------------------------------------------------------------validar codigo de seguridad
-                                                System.out.print("Ingrese el código de seguridad (3 dígitos): ");
+                                                System.out.print("Ingrese el codigo de seguridad (3 digitos): ");
                                                 String codigoSeguridad = scanner.nextLine();
                                                 if (codigoSeguridad.length() != 3) {
                                                     System.out.println();
-                                                    System.out.println("El codigo de seguridad debe tener exactamente 3 dígitos.");
+                                                    System.out.println("El codigo de seguridad debe tener exactamente 3 digitos.");
                                                     System.out.println();
                                                     break;
                                                 }
                                                 
                                                 System.out.println("Procesando el pago con tarjeta a nombre de " + titularTarjeta + "...");
                                                 System.out.println();
-                                                System.out.println("Pago realizado con éxito.");
+                                                System.out.println("Pago realizado con exito.");
                                                 System.out.println("Detalles del pago:");
                                                 for (int i = 0; i < indiceCarrito; i++) {
                                                     System.out.println((i + 1) + ". " + carrito[i] + " - $" + preciosCarrito[i]);
@@ -496,7 +496,7 @@ public class App {
                                                 salir = true;
                                             } else {
                                                 System.out.println();
-                                                System.out.println("Opción de pago inválida.");
+                                                System.out.println("Opcion de pago inválida.");
                                                 System.out.println();
                                             }
                                             break;
@@ -504,14 +504,14 @@ public class App {
                                             break;
                                         default:
                                             System.out.println();
-                                            System.out.println("Opción inválida.");
+                                            System.out.println("Opcion inválida.");
                                             System.out.println();
                                             break;
                                     }
                                 }
                                 break;
                             case 17:
-                                repetir = false; // Salir del bucle después de procesar la opción 17
+                                repetir = false; // Salir del bucle despues de procesar la opcion 17
                                 System.out.print("Saliendo");
                                 for (int i = 0; i < 3; i++) {// bucle para repetir 3 veces el . que colocamos para que se mire bien el salir y este no sea instantaneo
                                     try {
@@ -525,7 +525,7 @@ public class App {
                                 break;
                             default:
                                 System.out.println();
-                                System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                System.out.println("Opcion inválida. Intentelo de nuevo.");
                                 System.out.println();
                                 break;
                         }
@@ -549,13 +549,13 @@ public class App {
                         System.out.println((i + 1) + ". " + marcaCPU[i]);
                     }
                     System.out.println();
-                    System.out.print("Ingrese su opción: ");
+                    System.out.print("Ingrese su opcion: ");
                     try {
                         opcion = scanner.nextInt();
                         scanner.nextLine();
                     } catch (java.util.InputMismatchException e) {
                         System.out.println();
-                        System.out.println("Entrada inválida. Inténtelo de nuevo.");
+                        System.out.println("Entrada inválida. Intentelo de nuevo.");
                         System.out.println();
                         scanner.nextLine();
                         continue;
@@ -564,13 +564,13 @@ public class App {
                         case 1:
                             System.out.println();
                             System.out.println("Ha seleccionado " + marcaCPU[opcion - 1]); 
-                            System.out.println("Seleccione la generación de su procesador:");
+                            System.out.println("Seleccione la generacion de su procesador:");
                             System.out.println();
                             for (int i = 0; i < intelGenCPU.length; i++) {
                                 System.out.println((i + 1) + ". " + intelGenCPU[i]);
                             }
                             System.out.println();
-                            System.out.print("Ingrese su opción: ");
+                            System.out.print("Ingrese su opcion: ");
                             opcionIntel = scanner.nextInt();
                             scanner.nextLine();
                             whatts += whattsintel[opcionIntel - 1];
@@ -586,7 +586,7 @@ public class App {
                                         System.out.println((i + 1) + ". " + intel12thCPU[i] + " $" + preciosintel12th[i]);
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     int opcionCPU = scanner.nextInt();
                                     scanner.nextLine();
                                     whatts += whattsintel12th[opcionCPU - 1]; 
@@ -604,7 +604,7 @@ public class App {
                                         System.out.println((i + 1) + ". " + intel13thCPU[i] + " $" + preciosintel13th[i]);
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     opcionCPU = scanner.nextInt();
                                     scanner.nextLine();
                                     whatts += whattsintel13th[opcionCPU - 1]; 
@@ -622,7 +622,7 @@ public class App {
                                         System.out.println((i + 1) + ". " + intel14thCPU[i] + " $" + preciosintel14th[i]);
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     opcionCPU = scanner.nextInt();
                                     scanner.nextLine();
                                     whatts += whattsintel14th[opcionCPU - 1]; 
@@ -633,10 +633,10 @@ public class App {
                                     System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                     break;
                                 default:
-                                    System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                    System.out.println("Opcion inválida. Intentelo de nuevo.");
                                     break;
                             }
-                            // Agregar selección de motherboards INTEL
+                            // Agregar seleccion de motherboards INTEL
                                 System.out.println();
                                 System.out.println("Continuemos con las Motherboards");
                                 System.out.println("Estas son las Motherboards compatibles con tu CPU");
@@ -645,7 +645,7 @@ public class App {
                                     System.out.println((i + 1) + ". " + lga1700[i] + " $" + precioslga1700[i]);
                                 }
                                 System.out.println();
-                                System.out.print("Ingrese su opción: ");
+                                System.out.print("Ingrese su opcion: ");
                                 opcionMotherboard = scanner.nextInt();
                                 System.out.println();
                                 scanner.nextLine();
@@ -660,15 +660,15 @@ public class App {
                                     System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                     System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
         
-                                    //--------------------------------------Refrigeración
+                                    //--------------------------------------Refrigeracion
                                     System.out.println();
-                                    System.out.println("Es hora de seleccionar un sistema de refrigeración");
+                                    System.out.println("Es hora de seleccionar un sistema de refrigeracion");
                                     System.out.println();
                                     for (int i = 0; i < refrigeracion.length; i++) {
                                         System.out.println((i + 1) + ". " + refrigeracion[i] + " $" + preciosRefrigeracion[i]);
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     int opcionRefrigeracion = scanner.nextInt();
                                     scanner.nextLine();
                                     String refrigeracionSeleccionada = refrigeracion[opcionRefrigeracion - 1];
@@ -676,7 +676,7 @@ public class App {
                                     System.out.println();
                                     System.out.println("Ha seleccionado " + refrigeracionSeleccionada);
                                     System.out.println();
-                                    subtotal += precioRefrigeracion; // Sumar el precio de la refrigeración al subtotal
+                                    subtotal += precioRefrigeracion; // Sumar el precio de la refrigeracion al subtotal
                                     System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                     System.out.println();
         
@@ -697,7 +697,7 @@ public class App {
                                         System.out.println("No hay catálogo de RAM disponible para este tipo de placa base.");
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     int opcionRAM = scanner.nextInt();
                                     double precioRAM = 0;
                                     if (DDR == 4 && opcionRAM >= 1 && opcionRAM <= DDR4.length) {
@@ -705,7 +705,7 @@ public class App {
                                     } else if (DDR == 5 && opcionRAM >= 1 && opcionRAM <= DDR5.length) {
                                         precioRAM = preciosDDR5[opcionRAM - 1];
                                     } else {
-                                        System.out.println("Opción inválida. No se ha seleccionado RAM.");
+                                        System.out.println("Opcion inválida. No se ha seleccionado RAM.");
                                     }
                                     subtotal += precioRAM;
                                     System.out.println();
@@ -723,10 +723,10 @@ public class App {
                                         System.out.println((i + 1) + ". " + TipoAlmacenamiento[i]);
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     int opcionAlmacenamiento = scanner.nextInt();
                                     scanner.nextLine();
-                                    opcionSeleccionada = TipoAlmacenamiento[opcionAlmacenamiento - 1]; // Asignar la opción seleccionada
+                                    opcionSeleccionada = TipoAlmacenamiento[opcionAlmacenamiento - 1]; // Asignar la opcion seleccionada
                                     switch (opcionAlmacenamiento) {
                                         case 1:
                                             System.out.println();
@@ -737,10 +737,10 @@ public class App {
                                                 System.out.println((i + 1) + ". " + HDDsata[i] + " $" + preciosHDD[i]);
                                             }
                                             System.out.println();
-                                            System.out.print("Ingrese su opción: ");
+                                            System.out.print("Ingrese su opcion: ");
                                             int opcionHDD = scanner.nextInt();
                                             scanner.nextLine();
-                                            opcionSeleccionada = HDDsata[opcionHDD - 1]; // Asignar la opción seleccionada
+                                            opcionSeleccionada = HDDsata[opcionHDD - 1]; // Asignar la opcion seleccionada
                                             System.out.println();
                                             System.out.println("Ha seleccionado el " + opcionSeleccionada);
                                             System.out.println();
@@ -755,10 +755,10 @@ public class App {
                                                 System.out.println((i + 1) + ". " + SSDsata[i] + " $" + preciosSSD[i]);
                                             }
                                             System.out.println();
-                                            System.out.print("Ingrese su opción: ");
+                                            System.out.print("Ingrese su opcion: ");
                                             int opcionSSD = scanner.nextInt();
                                             scanner.nextLine();
-                                            opcionSeleccionada = SSDsata[opcionSSD - 1]; // Asignar la opción seleccionada
+                                            opcionSeleccionada = SSDsata[opcionSSD - 1]; // Asignar la opcion seleccionada
                                             System.out.println();
                                             System.out.println("Ha seleccionado " + opcionSeleccionada);
                                             System.out.println();
@@ -773,10 +773,10 @@ public class App {
                                                 System.out.println((i + 1) + ". " + NVMe[i] + " $" + preciosNVMe[i]);
                                             }
                                             System.out.println();
-                                            System.out.print("Ingrese su opción: ");
+                                            System.out.print("Ingrese su opcion: ");
                                             int opcionNVMe = scanner.nextInt();
                                             scanner.nextLine();
-                                            opcionSeleccionada = NVMe[opcionNVMe - 1]; // Asignar la opción seleccionada
+                                            opcionSeleccionada = NVMe[opcionNVMe - 1]; // Asignar la opcion seleccionada
                                             System.out.println();
                                             System.out.println("Ha seleccionado " + opcionSeleccionada);
                                             System.out.println();
@@ -784,7 +784,7 @@ public class App {
                                             System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                             break;
                                         default:
-                                            System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                            System.out.println("Opcion inválida. Intentelo de nuevo.");
                                             break;
                                     }
         
@@ -805,7 +805,7 @@ public class App {
                                         }
         
                                         System.out.println();
-                                        System.out.print("Ingrese su opción: ");
+                                        System.out.print("Ingrese su opcion: ");
                                         int opcionGabinete = scanner.nextInt();
                                         scanner.nextLine();
                                         String gabineteSeleccionado = (opcionMotherboard <= 2) ? catalogoPlacaMicroATX[opcionGabinete - 1] : catalogoPlacaATX[opcionGabinete - 1];
@@ -823,7 +823,7 @@ public class App {
                                         System.out.println("1. Nvidia Geforce");
                                         System.out.println("2. AMD Radeon");
                                         System.out.println();
-                                        System.out.print("Ingrese su opción (1 para Nvidia, 2 para AMD): ");
+                                        System.out.print("Ingrese su opcion (1 para Nvidia, 2 para AMD): ");
                                         int opcionGPU = scanner.nextInt();
                                         scanner.nextLine();
         
@@ -836,7 +836,7 @@ public class App {
                                                     System.out.println((i + 1) + ". " + NvidiaGenGPU[i]);
                                                 }
                                                 System.out.println();
-                                                System.out.print("Ingrese su opción: ");
+                                                System.out.print("Ingrese su opcion: ");
                                                 int opcionGenNvidia = scanner.nextInt();
                                                 scanner.nextLine();
                                                 String genSeleccionada = NvidiaGenGPU[opcionGenNvidia - 1];
@@ -864,7 +864,7 @@ public class App {
                                                         wattsNvidia = whattsRTX4000;
                                                         break;
                                                     default:
-                                                        System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                                        System.out.println("Opcion inválida. Intentelo de nuevo.");
                                                         break;
                                                 }
                                                 if (opcionesNvidia != null) {
@@ -872,7 +872,7 @@ public class App {
                                                         System.out.println((i + 1) + ". " + opcionesNvidia[i] + " $" + preciosNvidia[i]);
                                                     }
                                                     System.out.println();
-                                                    System.out.print("Ingrese su opción: ");
+                                                    System.out.print("Ingrese su opcion: ");
                                                     opcionNvidia = scanner.nextInt();
                                                     scanner.nextLine();
                                                     String gpuNvidiaSeleccionada = opcionesNvidia[opcionNvidia - 1];
@@ -893,7 +893,7 @@ public class App {
                                                     System.out.println((i + 1) + ". " + AMDGenGPU[i]);
                                                 }
                                                 System.out.println();
-                                                System.out.print("Ingrese su opción: ");
+                                                System.out.print("Ingrese su opcion: ");
                                                 int opcionGenAMD = scanner.nextInt();
                                                 scanner.nextLine();
                                                 String genAMDSeleccionada = AMDGenGPU[opcionGenAMD - 1];
@@ -922,7 +922,7 @@ public class App {
                                                         wattsAMD = whattsRX7000;
                                                         break;
                                                     default:
-                                                        System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                                        System.out.println("Opcion inválida. Intentelo de nuevo.");
                                                         break;
                                                 }
                                                 if (opcionesAMD != null) {
@@ -930,7 +930,7 @@ public class App {
                                                         System.out.println((i + 1) + ". " + opcionesAMD[i] + " $" + preciosAMD[i]);
                                                     }
                                                     System.out.println();
-                                                    System.out.print("Ingrese su opción: ");
+                                                    System.out.print("Ingrese su opcion: ");
                                                     opcionAMD = scanner.nextInt();
                                                     scanner.nextLine();
                                                     String gpuAMDSeleccionada = opcionesAMD[opcionAMD - 1];
@@ -944,7 +944,7 @@ public class App {
                                                 }
                                                 break;
                                             default:
-                                                System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                                System.out.println("Opcion inválida. Intentelo de nuevo.");
                                                 break;
                                     }
                                 System.out.println();
@@ -959,7 +959,7 @@ public class App {
                                         System.out.println((i + 1) + ". " + PSUs600[i] + " $" + preciosPSUs600[i]);
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     int opcionFuente = scanner.nextInt();
                                     scanner.nextLine();
                                     String fuenteSeleccionada = PSUs600[opcionFuente - 1];
@@ -980,7 +980,7 @@ public class App {
                                         System.out.println((i + 1) + ". " + PSUs800[i] + " $" + preciosPSUs800[i]);
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     int opcionFuente = scanner.nextInt();
                                     scanner.nextLine();
                                     String fuenteSeleccionada = PSUs800[opcionFuente - 1];
@@ -1000,7 +1000,7 @@ public class App {
                                         System.out.println((i + 1) + ". " + PSUs1200[i] + " $" + preciosPSUs1200[i]);
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     int opcionFuente = scanner.nextInt();
                                     scanner.nextLine();
                                     String fuenteSeleccionada = PSUs1200[opcionFuente - 1];
@@ -1020,7 +1020,7 @@ public class App {
                                         System.out.println((i + 1) + ". " + PSUs1600[i] + " $" + preciosPSUs1600[i]);
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     int opcionFuente = scanner.nextInt();
                                     scanner.nextLine();
                                     String fuenteSeleccionada = PSUs1600[opcionFuente - 1];
@@ -1046,7 +1046,7 @@ public class App {
                             System.out.println();
                             System.out.println("Procesador: " + opcionSeleccionada);
                             System.out.println("Motherboard: " + opcionSeleccionada);
-                            System.out.println("Refrigeración: " + refrigeracionSeleccionada);
+                            System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
                             System.out.println("RAM: " + opcionSeleccionada);
                             System.out.println("Almacenamiento: " + opcionSeleccionada);
                             System.out.println("Gabinete: " + gabineteSeleccionado);
@@ -1060,12 +1060,12 @@ public class App {
                             System.out.println("Total: $" + String.format("%.2f", subtotal + iva));
         
                             System.out.println();
-                            System.out.println("Seleccione el método de pago:");
+                            System.out.println("Seleccione el metodo de pago:");
                             System.out.println("1. Efectivo");
                             System.out.println("2. Tarjeta");
-                            System.out.print("Ingrese su opción: ");
+                            System.out.print("Ingrese su opcion: ");
                             int metodoPago = scanner.nextInt();
-                            scanner.nextLine(); // Consumir el salto de línea pendiente
+                            scanner.nextLine(); // Consumir el salto de linea pendiente
                             if (metodoPago == 1) {
                             // Generar un número de recibo simple
                             long numeroRecibo = Math.abs((long) (Math.random() * 9000000000L) + 1000000000L);
@@ -1083,7 +1083,7 @@ public class App {
                             System.out.println();
                             System.out.println("Procesador: " + opcionSeleccionada);
                             System.out.println("Motherboard: " + opcionSeleccionada);
-                            System.out.println("Refrigeración: " + refrigeracionSeleccionada);
+                            System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
                             System.out.println("RAM: " + opcionSeleccionada);
                             System.out.println("Almacenamiento: " + opcionSeleccionada);
                             System.out.println("Gabinete: " + gabineteSeleccionado);
@@ -1095,7 +1095,7 @@ public class App {
                             System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
                             System.out.println("Total: $" + String.format("%.2f", subtotal + iva));
                             System.out.println("Presente este recibo para recoger su compra en una tienda de conveniencia (Oxxo, 7eleven, etc.).");
-                            System.out.println("Nota: el numero de recivo expira en 7 días.");
+                            System.out.println("Nota: el numero de recivo expira en 7 dias.");
                             System.out.println("Gracias por su compra.");
         
                             } else if (metodoPago == 2) {
@@ -1106,7 +1106,7 @@ public class App {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                            System.out.print("Ingrese los 16 dígitos de la tarjeta: ");
+                            System.out.print("Ingrese los 16 digitos de la tarjeta: ");
                             String numeroTarjeta = scanner.nextLine();
                             try {
                                 Thread.sleep(500); // 500 milisegundos = medio segundo
@@ -1115,7 +1115,7 @@ public class App {
                             }
                             if (numeroTarjeta.length() != 16) {
                                 System.out.println();
-                                System.out.println("El número de tarjeta debe tener exactamente 16 dígitos.");
+                                System.out.println("El número de tarjeta debe tener exactamente 16 digitos.");
                                 System.out.println();
                             break;
                             }
@@ -1135,7 +1135,7 @@ public class App {
                             break;
                             }
         
-                            // Verificar si la cadena contiene solo dígitos y la barra en la posición correcta
+                            // Verificar si la cadena contiene solo digitos y la barra en la posicion correcta
                             for (i = 0; i < fechaVencimiento.length(); i++) {
                                 if (i == 2) {
                                     if (fechaVencimiento.charAt(i) != '/') {
@@ -1171,18 +1171,18 @@ public class App {
                             break;
                             }
                             //-----------------------------------------------------------------validar codigo de seguridad
-                            System.out.print("Ingrese el código de seguridad (3 dígitos): ");
+                            System.out.print("Ingrese el codigo de seguridad (3 digitos): ");
                             String codigoSeguridad = scanner.nextLine();
                             if (codigoSeguridad.length() != 3) {
                                 System.out.println();
-                                System.out.println("El codigo de seguridad debe tener exactamente 3 dígitos.");
+                                System.out.println("El codigo de seguridad debe tener exactamente 3 digitos.");
                                 System.out.println();
                             break;
                             }
                                                         
                             System.out.println("Procesando el pago con tarjeta a nombre de " + titularTarjeta + "...");
                             System.out.println();
-                            System.out.println("Pago realizado con éxito.");
+                            System.out.println("Pago realizado con exito.");
                             System.out.println("Detalles del pago:");
                             System.out.println("--------------------------------------------------");
                             System.out.println("                PC COMPONENTES");
@@ -1190,7 +1190,7 @@ public class App {
                             System.out.println();
                             System.out.println("Procesador: " + opcionSeleccionada);
                             System.out.println("Motherboard: " + opcionSeleccionada);
-                            System.out.println("Refrigeración: " + refrigeracionSeleccionada);
+                            System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
                             System.out.println("RAM: " + opcionSeleccionada);
                             System.out.println("Almacenamiento: " + opcionSeleccionada);
                             System.out.println("Gabinete: " + gabineteSeleccionado);
@@ -1211,13 +1211,13 @@ public class App {
                         case 2://--------------------------------------------------------------------------------------------------------------------------------AMD
                     System.out.println();
                     System.out.println("Ha seleccionado " + marcaCPU[opcion - 1]); 
-                    System.out.println("Seleccione la generación de su procesador:");
+                    System.out.println("Seleccione la generacion de su procesador:");
                     System.out.println();
                         for (int i = 0; i < amdGenCPU.length; i++) {
                             System.out.println((i + 1) + ". " + amdGenCPU[i]);
                         }
                     System.out.println();
-                    System.out.print("Ingrese su opción: ");
+                    System.out.print("Ingrese su opcion: ");
                     opcionAMD = scanner.nextInt();
                     scanner.nextLine();
                     whatts += whattsAmd[opcionAMD - 1];
@@ -1233,7 +1233,7 @@ public class App {
                                     System.out.println((i + 1) + ". " + amd3000CPU[i] + " $" + preciosAmd3000[i]);
                                 }
                                 System.out.println();
-                                System.out.print("Ingrese su opción: ");
+                                System.out.print("Ingrese su opcion: ");
                                 int opcionCPU = scanner.nextInt();
                                 scanner.nextLine();
                                 whatts += whattsAmd3000[opcionCPU - 1]; 
@@ -1252,7 +1252,7 @@ public class App {
                                     System.out.println((i + 1) + ". " + amd5000CPU[i] + " $" + preciosAmd5000[i]);
                                 }
                                 System.out.println();
-                                System.out.print("Ingrese su opción: ");
+                                System.out.print("Ingrese su opcion: ");
                                 opcionCPU = scanner.nextInt();
                                 scanner.nextLine();
                                 whatts += whattsAmd5000[opcionCPU - 1]; 
@@ -1271,7 +1271,7 @@ public class App {
                                     System.out.println((i + 1) + ". " + amd7000CPU[i] + " $" + preciosAmd7000[i]);
                                 }
                                 System.out.println();
-                                System.out.print("Ingrese su opción: ");
+                                System.out.print("Ingrese su opcion: ");
                                 opcionCPU = scanner.nextInt();
                                 scanner.nextLine();
                                 whatts += whattsAmd7000[opcionCPU - 1]; 
@@ -1284,11 +1284,11 @@ public class App {
                                 break;
                                 
                             default:
-                            System.out.println("Opción inválida. Inténtelo de nuevo.");
+                            System.out.println("Opcion inválida. Intentelo de nuevo.");
                             break;
                         }
             
-                        // Agregar selección de motherboards AMD
+                        // Agregar seleccion de motherboards AMD
                         System.out.println();
                         System.out.println("Continuemos con las Motherboards");
                         System.out.println("Estas son las Motherboards compatibles con tu CPU");
@@ -1298,7 +1298,7 @@ public class App {
                                 System.out.println((i + 1) + ". " + amd3000[i] + " $" + preciosMotheramd3000[i]);
                             }
                             System.out.println();
-                            System.out.print("Ingrese su opción: ");
+                            System.out.print("Ingrese su opcion: ");
                             opcionMotherboard = scanner.nextInt();
                             System.out.println();
                             scanner.nextLine();
@@ -1318,7 +1318,7 @@ public class App {
                                 System.out.println((i + 1) + ". " + amd5000[i] + " $" + preciosMotheramd5000[i]);
                             }
                             System.out.println();
-                            System.out.print("Ingrese su opción: ");
+                            System.out.print("Ingrese su opcion: ");
                             opcionMotherboard = scanner.nextInt();
                             System.out.println();
                             scanner.nextLine();
@@ -1336,15 +1336,15 @@ public class App {
                             }
                         }
 
-                        //--------------------------------------Refrigeración
+                        //--------------------------------------Refrigeracion
                         System.out.println();
-                        System.out.println("Es hora de seleccionar un sistema de refrigeración");
+                        System.out.println("Es hora de seleccionar un sistema de refrigeracion");
                         System.out.println();
                         for (int i = 0; i < refrigeracion.length; i++) {
                             System.out.println((i + 1) + ". " + refrigeracion[i] + " $" + preciosRefrigeracion[i]);
                         }
                         System.out.println();
-                        System.out.print("Ingrese su opción: ");
+                        System.out.print("Ingrese su opcion: ");
                         int opcionRefrigeracion = scanner.nextInt();
                         scanner.nextLine();
                         String refrigeracionSeleccionada = refrigeracion[opcionRefrigeracion - 1];
@@ -1352,7 +1352,7 @@ public class App {
                         System.out.println();
                         System.out.println("Ha seleccionado " + refrigeracionSeleccionada);
                         System.out.println();
-                        subtotal += precioRefrigeracion; // Sumar el precio de la refrigeración al subtotal
+                        subtotal += precioRefrigeracion; // Sumar el precio de la refrigeracion al subtotal
                         System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                         System.out.println();
 
@@ -1373,7 +1373,7 @@ public class App {
                             System.out.println("No hay catálogo de RAM disponible para este tipo de placa base.");
                         }
                         System.out.println();
-                        System.out.print("Ingrese su opción: ");
+                        System.out.print("Ingrese su opcion: ");
                         int opcionRAM = scanner.nextInt();
                         double precioRAM = 0;
                         if (DDR == 4 && opcionRAM >= 1 && opcionRAM <= DDR4.length) {
@@ -1381,7 +1381,7 @@ public class App {
                         } else if (DDR == 5 && opcionRAM >= 1 && opcionRAM <= DDR5.length) {
                             precioRAM = preciosDDR5[opcionRAM - 1];
                         } else {
-                            System.out.println("Opción inválida. No se ha seleccionado RAM.");
+                            System.out.println("Opcion inválida. No se ha seleccionado RAM.");
                         }
                         subtotal += precioRAM;
                         System.out.println();
@@ -1398,10 +1398,10 @@ public class App {
                             System.out.println((i + 1) + ". " + TipoAlmacenamiento[i]);
                         }
                         System.out.println();
-                        System.out.print("Ingrese su opción: ");
+                        System.out.print("Ingrese su opcion: ");
                         int opcionAlmacenamiento = scanner.nextInt();
                         scanner.nextLine();
-                        opcionSeleccionada = TipoAlmacenamiento[opcionAlmacenamiento - 1]; // Asignar la opción seleccionada
+                        opcionSeleccionada = TipoAlmacenamiento[opcionAlmacenamiento - 1]; // Asignar la opcion seleccionada
                         switch (opcionAlmacenamiento) {
                             case 1:
                                 System.out.println();
@@ -1412,10 +1412,10 @@ public class App {
                                     System.out.println((i + 1) + ". " + HDDsata[i] + " $" + preciosHDD[i]);
                                 }
                                 System.out.println();
-                                System.out.print("Ingrese su opción: ");
+                                System.out.print("Ingrese su opcion: ");
                                 int opcionHDD = scanner.nextInt();
                                 scanner.nextLine();
-                                opcionSeleccionada = HDDsata[opcionHDD - 1]; // Asignar la opción seleccionada
+                                opcionSeleccionada = HDDsata[opcionHDD - 1]; // Asignar la opcion seleccionada
                                 System.out.println();
                                 System.out.println("Ha seleccionado el " + opcionSeleccionada);
                                 System.out.println();
@@ -1430,10 +1430,10 @@ public class App {
                                     System.out.println((i + 1) + ". " + SSDsata[i] + " $" + preciosSSD[i]);
                                 }
                                 System.out.println();
-                                System.out.print("Ingrese su opción: ");
+                                System.out.print("Ingrese su opcion: ");
                                 int opcionSSD = scanner.nextInt();
                                 scanner.nextLine();
-                                opcionSeleccionada = SSDsata[opcionSSD - 1]; // Asignar la opción seleccionada
+                                opcionSeleccionada = SSDsata[opcionSSD - 1]; // Asignar la opcion seleccionada
                                 System.out.println();
                                 System.out.println("Ha seleccionado " + opcionSeleccionada);
                                 System.out.println();
@@ -1448,10 +1448,10 @@ public class App {
                                     System.out.println((i + 1) + ". " + NVMe[i] + " $" + preciosNVMe[i]);
                                 }
                                 System.out.println();
-                                System.out.print("Ingrese su opción: ");
+                                System.out.print("Ingrese su opcion: ");
                                 int opcionNVMe = scanner.nextInt();
                                 scanner.nextLine();
-                                opcionSeleccionada = NVMe[opcionNVMe - 1]; // Asignar la opción seleccionada
+                                opcionSeleccionada = NVMe[opcionNVMe - 1]; // Asignar la opcion seleccionada
                                 System.out.println();
                                 System.out.println("Ha seleccionado " + opcionSeleccionada);
                                 System.out.println();
@@ -1459,7 +1459,7 @@ public class App {
                                 System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                 break;
                             default:
-                                System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                System.out.println("Opcion inválida. Intentelo de nuevo.");
                                 break;
                         }
                         System.out.println();
@@ -1479,7 +1479,7 @@ public class App {
                             }
 
                             System.out.println();
-                            System.out.print("Ingrese su opción: ");
+                            System.out.print("Ingrese su opcion: ");
                             int opcionGabinete = scanner.nextInt();
                             scanner.nextLine();
                             String gabineteSeleccionado = (opcionMotherboard <= 2) ? catalogoPlacaMicroATX[opcionGabinete - 1] : catalogoPlacaATX[opcionGabinete - 1];
@@ -1501,7 +1501,7 @@ public class App {
                             System.out.println("2. AMD Radeon");
 
                             System.out.println();
-                            System.out.print("Ingrese su opción (1 para Nvidia, 2 para AMD): ");
+                            System.out.print("Ingrese su opcion (1 para Nvidia, 2 para AMD): ");
                             int opcionGPU = scanner.nextInt();
                             scanner.nextLine();
 
@@ -1514,7 +1514,7 @@ public class App {
                                         System.out.println((i + 1) + ". " + NvidiaGenGPU[i]);
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     int opcionGenNvidia = scanner.nextInt();
                                     scanner.nextLine();
                                     String genSeleccionada = NvidiaGenGPU[opcionGenNvidia - 1];
@@ -1542,7 +1542,7 @@ public class App {
                                             wattsNvidia = whattsRTX4000;
                                             break;
                                         default:
-                                            System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                            System.out.println("Opcion inválida. Intentelo de nuevo.");
                                             break;
                                     }
                                     if (opcionesNvidia != null) {
@@ -1550,7 +1550,7 @@ public class App {
                                             System.out.println((i + 1) + ". " + opcionesNvidia[i] + " $" + preciosNvidia[i]);
                                         }
                                         System.out.println();
-                                        System.out.print("Ingrese su opción: ");
+                                        System.out.print("Ingrese su opcion: ");
                                         opcionNvidia = scanner.nextInt();
                                         scanner.nextLine();
                                         String gpuNvidiaSeleccionada = opcionesNvidia[opcionNvidia - 1];
@@ -1571,7 +1571,7 @@ public class App {
                                         System.out.println((i + 1) + ". " + AMDGenGPU[i]);
                                     }
                                     System.out.println();
-                                    System.out.print("Ingrese su opción: ");
+                                    System.out.print("Ingrese su opcion: ");
                                     int opcionGenAMD = scanner.nextInt();
                                     scanner.nextLine();
                                     String genAMDSeleccionada = AMDGenGPU[opcionGenAMD - 1];
@@ -1600,7 +1600,7 @@ public class App {
                                             wattsAMD = whattsRX7000;
                                             break;
                                         default:
-                                            System.out.println("Opción inválida. Inténtelo de nuevo.");
+                                            System.out.println("Opcion inválida. Intentelo de nuevo.");
                                         break;
                                     }
                             if (opcionesAMD != null) {
@@ -1608,7 +1608,7 @@ public class App {
                                 System.out.println((i + 1) + ". " + opcionesAMD[i] + " $" + preciosAMD[i]);
                             }
                             System.out.println();
-                            System.out.print("Ingrese su opción: ");
+                            System.out.print("Ingrese su opcion: ");
                             opcionAMD = scanner.nextInt();
                             scanner.nextLine();
                             String gpuAMDSeleccionada = opcionesAMD[opcionAMD - 1];
@@ -1622,7 +1622,7 @@ public class App {
                         }
                         break;
                         default:
-                            System.out.println("Opción inválida. Inténtelo de nuevo.");
+                            System.out.println("Opcion inválida. Intentelo de nuevo.");
                         break;
                         }
 
@@ -1638,7 +1638,7 @@ public class App {
                             System.out.println((i + 1) + ". " + PSUs600[i] + " $" + preciosPSUs600[i]);
                         }
                     System.out.println();
-                    System.out.print("Ingrese su opción: ");
+                    System.out.print("Ingrese su opcion: ");
                     int opcionFuente = scanner.nextInt();
                     scanner.nextLine();
                     String fuenteSeleccionada = PSUs600[opcionFuente - 1];
@@ -1659,7 +1659,7 @@ public class App {
                             System.out.println((i + 1) + ". " + PSUs800[i] + " $" + preciosPSUs800[i]);
                         }
                     System.out.println();
-                    System.out.print("Ingrese su opción: ");
+                    System.out.print("Ingrese su opcion: ");
                     int opcionFuente = scanner.nextInt();
                     scanner.nextLine();
                     String fuenteSeleccionada = PSUs800[opcionFuente - 1];
@@ -1678,7 +1678,7 @@ public class App {
                             System.out.println((i + 1) + ". " + PSUs1200[i] + " $" + preciosPSUs1200[i]);
                         }
                     System.out.println();
-                    System.out.print("Ingrese su opción: ");
+                    System.out.print("Ingrese su opcion: ");
                     int opcionFuente = scanner.nextInt();
                     scanner.nextLine();
                     String fuenteSeleccionada = PSUs1200[opcionFuente - 1];
@@ -1698,7 +1698,7 @@ public class App {
                             System.out.println((i + 1) + ". " + PSUs1600[i] + " $" + preciosPSUs1600[i]);
                         }
                     System.out.println();
-                    System.out.print("Ingrese su opción: ");
+                    System.out.print("Ingrese su opcion: ");
                     int opcionFuente = scanner.nextInt();
                     scanner.nextLine();
                     String fuenteSeleccionada = PSUs1600[opcionFuente - 1];
@@ -1724,7 +1724,7 @@ public class App {
                     System.out.println();
                     System.out.println("Procesador: " + opcionSeleccionada);
                     System.out.println("Motherboard: " + opcionSeleccionada);
-                    System.out.println("Refrigeración: " + refrigeracionSeleccionada);
+                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
                     System.out.println("RAM: " + opcionSeleccionada);
                     System.out.println("Almacenamiento: " + opcionSeleccionada);
                     System.out.println("Gabinete: " + gabineteSeleccionado);
@@ -1738,12 +1738,12 @@ public class App {
                     System.out.println("Total: $" + String.format("%.2f", subtotal + iva));
 
                     System.out.println();
-                    System.out.println("Seleccione el método de pago:");
+                    System.out.println("Seleccione el metodo de pago:");
                     System.out.println("1. Efectivo");
                     System.out.println("2. Tarjeta");
-                    System.out.print("Ingrese su opción: ");
+                    System.out.print("Ingrese su opcion: ");
                     int metodoPago = scanner.nextInt();
-                    scanner.nextLine(); // Consumir el salto de línea pendiente
+                    scanner.nextLine(); // Consumir el salto de linea pendiente
                     if (metodoPago == 1) {
                     // Generar un número de recibo simple
                     long numeroRecibo = Math.abs((long) (Math.random() * 9000000000L) + 1000000000L);
@@ -1761,7 +1761,7 @@ public class App {
                     System.out.println();
                     System.out.println("Procesador: " + opcionSeleccionada);
                     System.out.println("Motherboard: " + opcionSeleccionada);
-                    System.out.println("Refrigeración: " + refrigeracionSeleccionada);
+                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
                     System.out.println("RAM: " + opcionSeleccionada);
                     System.out.println("Almacenamiento: " + opcionSeleccionada);
                     System.out.println("Gabinete: " + gabineteSeleccionado);
@@ -1773,7 +1773,7 @@ public class App {
                     System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
                     System.out.println("Total: $" + String.format("%.2f", subtotal + iva));
                     System.out.println("Presente este recibo para recoger su compra en una tienda de conveniencia (Oxxo, 7eleven, etc.).");
-                    System.out.println("Nota: el numero de recivo expira en 7 días.");
+                    System.out.println("Nota: el numero de recivo expira en 7 dias.");
                     System.out.println("Gracias por su compra.");
 
                     } else if (metodoPago == 2) {
@@ -1784,7 +1784,7 @@ public class App {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    System.out.print("Ingrese los 16 dígitos de la tarjeta: ");
+                    System.out.print("Ingrese los 16 digitos de la tarjeta: ");
                     String numeroTarjeta = scanner.nextLine();
                     try {
                         Thread.sleep(500); // 500 milisegundos = medio segundo
@@ -1793,7 +1793,7 @@ public class App {
                     }
                     if (numeroTarjeta.length() != 16) {
                         System.out.println();
-                        System.out.println("El número de tarjeta debe tener exactamente 16 dígitos.");
+                        System.out.println("El número de tarjeta debe tener exactamente 16 digitos.");
                         System.out.println();
                     break;
                     }
@@ -1813,7 +1813,7 @@ public class App {
                     break;
                     }
 
-                    // Verificar si la cadena contiene solo dígitos y la barra en la posición correcta
+                    // Verificar si la cadena contiene solo digitos y la barra en la posicion correcta
                     for (i = 0; i < fechaVencimiento.length(); i++) {
                         if (i == 2) {
                             if (fechaVencimiento.charAt(i) != '/') {
@@ -1849,18 +1849,18 @@ public class App {
                     break;
                     }
                     //-----------------------------------------------------------------validar codigo de seguridad
-                    System.out.print("Ingrese el código de seguridad (3 dígitos): ");
+                    System.out.print("Ingrese el codigo de seguridad (3 digitos): ");
                     String codigoSeguridad = scanner.nextLine();
                     if (codigoSeguridad.length() != 3) {
                         System.out.println();
-                        System.out.println("El codigo de seguridad debe tener exactamente 3 dígitos.");
+                        System.out.println("El codigo de seguridad debe tener exactamente 3 digitos.");
                         System.out.println();
                     break;
                     }
                                                 
                     System.out.println("Procesando el pago con tarjeta a nombre de " + titularTarjeta + "...");
                     System.out.println();
-                    System.out.println("Pago realizado con éxito.");
+                    System.out.println("Pago realizado con exito.");
                     System.out.println("Detalles del pago:");
                     System.out.println("--------------------------------------------------");
                     System.out.println("                PC COMPONENTES");
@@ -1868,7 +1868,7 @@ public class App {
                     System.out.println();
                     System.out.println("Procesador: " + opcionSeleccionada);
                     System.out.println("Motherboard: " + opcionSeleccionada);
-                    System.out.println("Refrigeración: " + refrigeracionSeleccionada);
+                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
                     System.out.println("RAM: " + opcionSeleccionada);
                     System.out.println("Almacenamiento: " + opcionSeleccionada);
                     System.out.println("Gabinete: " + gabineteSeleccionado);
@@ -1884,12 +1884,12 @@ public class App {
                     }
                     break;
                     default:
-                        System.out.println("Opción inválida. Inténtelo de nuevo.");
+                        System.out.println("Opcion inválida. Intentelo de nuevo.");
                     break;
                 }
             break;
             case 3:
-                repetir = false; // Salir del bucle después de procesar la opción 3
+                repetir = false; // Salir del bucle despues de procesar la opcion 3
                 System.out.print("Saliendo");
                     for (int i = 0; i < 3; i++) {// bucle para repetir 3 veces el . que colocamos para que se mire bien el salir y este no sea instantaneo
                         try {
@@ -1902,7 +1902,7 @@ public class App {
                 salir = true;
                 break;
                 default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
+                    System.out.println("Opcion no válida. Intente de nuevo.");
                 break;
                 }
             }
