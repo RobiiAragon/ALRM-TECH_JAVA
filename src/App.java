@@ -350,7 +350,7 @@ public class App {
                                                     break;
                                                 }
 
-                                                // Verificar si el año está en el rango válido (00 - 99)
+                                                // Verificar si el año está en el rango válido (25 - 99)
                                                 int año = Integer.parseInt(fechaVencimiento.substring(3));
                                                 if (año < 25 || año > 99) {
                                                     System.out.println();
