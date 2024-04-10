@@ -7,8 +7,8 @@ public class App {
         boolean repetir = true;
         int MenuPrincipal;
         int opcion;
-        String[] carrito = new String[100];
-        double[] preciosCarrito = new double[100];
+        String[] carrito = new String[1000];
+        double[] preciosCarrito = new double[1000];
         int indiceCarrito = 0;
         double subtotal = 0.0;
         
@@ -76,7 +76,7 @@ public class App {
                 //--------Headsets
                 {"Razer Auriculares Gaming Kraken Ultimate USB, THX Spatial Audio, RGB", "HyperX Auriculares Gaming Cloud Alpha S 7.1, Cableado, Surround Sound, Negro", "Logitech Auriculares Gaming G PRO X, Sonido Envolvente 7.1, Negro"},
                 //--------Alfombrillas para raton
-                {"Razer Alfombrilla de Raton Goliathus Extended Chroma RGB, Suave, Negro", "HyperX Alfombrilla de Raton FURY S Pro Gaming, Tela, Tamaño M, Negro", "Corsair Alfombrilla de Raton MM300 Anti-Fray Cloth Gaming, Tamaño Extendido, Negro"},
+                {"Razer Alfombrilla de Raton Goliathus Extended Chroma RGB, Suave, Negro", "HyperX Alfombrilla de Raton FURY S Pro Gaming, Tela, Negro", "Corsair Alfombrilla de Raton MM300 Anti-Fray Cloth Gaming, Negro"},
                 //--------Material de Conductividad termica
                 {"Geltermico termico GD900 para CPU GPU, Pasta de Grasa Termica, 30g", "Pasta Termica Arctic MX-4, Alto Rendimiento, 4g", "Pasta Termica Noctua NT-H2, 3.5g"},
                 //--------Refrigeraciones
@@ -467,7 +467,7 @@ public class App {
                                                 int año = Integer.parseInt(fechaVencimiento.substring(3));
                                                 if (año < 25 || año > 99) {
                                                     System.out.println();
-                                                    System.out.println("El año debe estar entre 00 y 99");
+                                                    System.out.println("El año debe estar entre 25 y 99");
                                                     System.out.println();
                                                     break;
                                                 }
@@ -1166,7 +1166,7 @@ public class App {
                             int año = Integer.parseInt(fechaVencimiento.substring(3));
                             if (año < 25 || año > 99) {
                                 System.out.println();
-                                System.out.println("El año debe estar entre 00 y 99");
+                                System.out.println("El año debe estar entre 25 y 99");
                                 System.out.println();
                             break;
                             }
@@ -1844,7 +1844,7 @@ public class App {
                     int año = Integer.parseInt(fechaVencimiento.substring(3));
                     if (año < 25 || año > 99) {
                         System.out.println();
-                        System.out.println("El año debe estar entre 00 y 99");
+                        System.out.println("El año debe estar entre 25 y 99");
                         System.out.println();
                     break;
                     }
