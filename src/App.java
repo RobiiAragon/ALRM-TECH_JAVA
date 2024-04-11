@@ -9,6 +9,7 @@ public class App {
         boolean salir = false;
         String[] carrito = new String[1000];
         double[] preciosCarrito = new double[1000];
+        double precioSeleccionado;
         indiceCarrito = 0;
         double subtotal = 0.0;
         // --------------------------------------------------Comienzan declaraciones del apartado de piezas
@@ -612,6 +613,7 @@ public class App {
                                             System.out.println((i + 1) + ". " + intel12thCPU[i] + " $" + preciosintel12th[i]);
                                         }
                                         System.out.print("Ingrese su opcion: \n");
+                                        precioSeleccionado = preciosintel12th[opcionCPU - 1];
                                         opcionCPU = scanner.nextInt();
                                         scanner.nextLine();
                                     } while (opcionCPU < 1 || opcionCPU > intel12thCPU.length);
@@ -621,6 +623,7 @@ public class App {
                                     System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                         break;
                                     case 2:
+                                    opcionCPU = 0;
                                     do {
                                         System.out.println("Ha seleccionado " + intelGenCPU[opcionIntel - 1]);
                                         System.out.println("Seleccione la gama del procesador:");
@@ -628,6 +631,7 @@ public class App {
                                             System.out.println((i + 1) + ". " + intel13thCPU[i] + " $" + preciosintel13th[i]);
                                         }
                                         System.out.print("Ingrese su opcion: \n");
+                                        precioSeleccionado = preciosintel13th[opcionCPU - 1];
                                         opcionCPU = scanner.nextInt();
                                         scanner.nextLine();
                                     } while (opcionCPU < 1 || opcionCPU > intel13thCPU.length);
@@ -638,6 +642,7 @@ public class App {
                                         System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                         break;
                                         case 3:
+                                        opcionCPU = 0;
                                         System.out.println("Ha seleccionado " + intelGenCPU[opcionIntel - 1]);
                                         opcionCPU = 0;
                                         do {
@@ -646,6 +651,7 @@ public class App {
                                                 System.out.println((i + 1) + ". " + intel14thCPU[i] + " $" + preciosintel14th[i]);
                                             }
                                             System.out.print("Ingrese su opcion: ");
+                                            precioSeleccionado = preciosintel14th[opcionCPU - 1];
                                             opcionCPU = scanner.nextInt();
                                             scanner.nextLine();
                                         } while (opcionCPU < 1 || opcionCPU > intel14thCPU.length);
@@ -1040,8 +1046,7 @@ public class App {
                                     System.out.println("Almacenamiento: " + opcionSeleccionada);
                                     System.out.println("Gabinete: " + gabineteSeleccionado);
                                     System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
-                                    System.out.println(
-                                            "Fuente de poder: " + fuenteSeleccionada + " $" + preciosPSUs1600[i]);
+                                    System.out.println("Fuente de poder: " + fuenteSeleccionada);
                                     System.out.println("--------------------------------------------------\n");
                                     System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                     System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
@@ -1076,14 +1081,14 @@ public class App {
                                         System.out.println("                PC COMPONENTES");
                                         System.out.println("--------------------------------------------------\n");
 
-                                        System.out.println("Procesador: " + opcionSeleccionada);
-                                        System.out.println("Motherboard: " + opcionSeleccionada);
-                                        System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
-                                        System.out.println("RAM: " + opcionSeleccionada);
-                                        System.out.println("Almacenamiento: " + opcionSeleccionada);
-                                        System.out.println("Gabinete: " + gabineteSeleccionado);
-                                        System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
-                                        System.out.println("Fuente de poder: " + fuenteSeleccionada + " $" + preciosPSUs1600[i]);
+                                        System.out.println("Procesador: " + opcionSeleccionada + " $");
+                                        System.out.println("Motherboard: " + opcionSeleccionada + " $");
+                                        System.out.println("Refrigeracion: " + refrigeracionSeleccionada + " $");
+                                        System.out.println("RAM: " + opcionSeleccionada + " $");
+                                        System.out.println("Almacenamiento: " + opcionSeleccionada + " $");
+                                        System.out.println("Gabinete: " + gabineteSeleccionado + " $");
+                                        System.out.println("Tarjeta Gráfica: " + opcionSeleccionada + " $");
+                                        System.out.println("Fuente de poder: " + fuenteSeleccionada + " $");
                                         System.out.println("--------------------------------------------------");
                                         System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                         System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
@@ -1169,13 +1174,13 @@ public class App {
                                         System.out.println("                PC COMPONENTES");
                                         System.out.println("--------------------------------------------------\n");
                                         System.out.println("Procesador: " + opcionSeleccionada);
-                                        System.out.println("Motherboard: " + opcionSeleccionada);
-                                        System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
-                                        System.out.println("RAM: " + opcionSeleccionada);
-                                        System.out.println("Almacenamiento: " + opcionSeleccionada);
-                                        System.out.println("Gabinete: " + gabineteSeleccionado);
-                                        System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
-                                        System.out.println("Fuente de poder: " + fuenteSeleccionada + " $" + preciosPSUs1600[i]);
+                                    System.out.println("Motherboard: " + opcionSeleccionada);
+                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
+                                    System.out.println("RAM: " + opcionSeleccionada);
+                                    System.out.println("Almacenamiento: " + opcionSeleccionada);
+                                    System.out.println("Gabinete: " + gabineteSeleccionado);
+                                    System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
+                                    System.out.println("Fuente de poder: " + fuenteSeleccionada);
                                         System.out.println("--------------------------------------------------\n");
                                         System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                         System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
@@ -1670,13 +1675,13 @@ public class App {
                                 String fuenteSeleccionada = "";
                                 int i = 0;
                                 System.out.println("Procesador: " + opcionSeleccionada);
-                                System.out.println("Motherboard: " + opcionSeleccionada);
-                                System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
-                                System.out.println("RAM: " + opcionSeleccionada);
-                                System.out.println("Almacenamiento: " + opcionSeleccionada);
-                                System.out.println("Gabinete: " + gabineteSeleccionado);
-                                System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
-                                System.out.println("Fuente de poder: " + fuenteSeleccionada + " $" + preciosPSUs1600[i]);
+                                    System.out.println("Motherboard: " + opcionSeleccionada);
+                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
+                                    System.out.println("RAM: " + opcionSeleccionada);
+                                    System.out.println("Almacenamiento: " + opcionSeleccionada);
+                                    System.out.println("Gabinete: " + gabineteSeleccionado);
+                                    System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
+                                    System.out.println("Fuente de poder: " + fuenteSeleccionada);
                                 System.out.println("--------------------------------------------------");
                                 System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                 System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
@@ -1716,7 +1721,7 @@ public class App {
                                     System.out.println("Almacenamiento: " + opcionSeleccionada);
                                     System.out.println("Gabinete: " + gabineteSeleccionado);
                                     System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
-                                    System.out.println("Fuente de poder: " + fuenteSeleccionada + " $" + preciosPSUs1600[i]);
+                                    System.out.println("Fuente de poder: " + fuenteSeleccionada);
                                     System.out.println("--------------------------------------------------");
                                     System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                     System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
@@ -1812,7 +1817,7 @@ public class App {
                                     System.out.println("Almacenamiento: " + opcionSeleccionada);
                                     System.out.println("Gabinete: " + gabineteSeleccionado);
                                     System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
-                                    System.out.println("Fuente de poder: " + fuenteSeleccionada + " $" + preciosPSUs1600[i]);
+                                    System.out.println("Fuente de poder: " + fuenteSeleccionada);
                                     System.out.println("--------------------------------------------------");
                                     System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                     System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
