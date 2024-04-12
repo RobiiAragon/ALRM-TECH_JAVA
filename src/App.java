@@ -4,14 +4,26 @@ public class App {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int MenuPrincipal, opcion, indiceCarrito;
-        boolean repetir = true;
-        boolean salir = false;
+        String genAMDSeleccionada, AlmacenamientoSeleccionado, gpuSeleccionada, genSeleccionada, codigoSeguridad, fechaVencimiento, numeroTarjeta, titularTarjeta, compraProducto, gabineteSeleccionado, fuenteSeleccionada, refrigeracionSeleccionada, opcionRAMSeleccionada;
+        int MenuPrincipal, opcion, opcionAMD, opcionNvidia, opcionCarrito, categoriaSeleccionada, opcionFuente, opcionCPU, opcionGenAMD, opcionIntel, SeleccionGPU, opcionMotherboard, opcionHDD, opcionSSD, opcionNVMe, opcionGabinete, DDR, indiceCarrito, i, indice, año, mes, metodoPago, opcionAlmacenamiento, opcionRAM, opcionGPU, opcionGenNvidia, opcionRefrigeracion;
+        boolean repetir, salir, productoEncontrado;
+        double whatts, iva, subtotal, total, precioGabinete, precioRAM, precioRefrigeracion, precioFuente, precioSeleccionado, precioINTELSeleccionado, PreciosAlmacenamiento, preciosRAM;
+        Long numeroRecibo;
+        precioINTELSeleccionado = 0.0;
+        PreciosAlmacenamiento = 0.0;
+        preciosRAM = 0.0;
+        indiceCarrito = 0;
+        subtotal = 0.0;
+        SeleccionGPU = 0;
+        opcionCPU = 0;
+        repetir = true;
+        salir = false;
+        gpuSeleccionada = null;
+        String[] opcionesGPU = { "No se seleccionó GPU" };
         String[] carrito = new String[1000];
         double[] preciosCarrito = new double[1000];
-        double precioSeleccionado;
-        indiceCarrito = 0;
-        double subtotal = 0.0;
+        double[] preciosGPU = null;
+        double[] wattsGPU = null;
         // --------------------------------------------------Comienzan declaraciones del apartado de piezas
         String[] categorias = { "Procesadores", "Tarjetas gráficas", "Monitores", "Motherboards", "Memorias RAM",
                 "Almacenamientos", "Fuentes de poder PSUs", "Gabinetes", "Teclados", "Ratones", "Headsets",
@@ -173,16 +185,12 @@ public class App {
         double[] preciosAmd7000 = { 2259, 5013, 4904, 12059 };
         // ---------------------------------------------------------------------------------------Motherboards AMD
         // -------------------------------------------------------------------------------AMD AM4
-        String[] amd3000 = { "MSI Micro-ATX PRO H610M-G DDR4, S-1700, Intel H610, 64GB DDR4",
-                "MSI Micro-ATX PRO B760M-A WIFI, S-1700, Intel B760, 192GB DDR5",
-                "ASUS GAMING ATX ROG Strix Z790-F WIFI, S-1700, Intel Z790, 128GB DDR5" };
-        double[] preciosMotheramd3000 = { 1269, 2778, 6255 };
-        double[] whattsMotheramd3000 = { 100, 100, 100 };
+        String[] amd3000 = { "Gigabyte Micro ATX B450M H, S-AM4, AMD B450, HDMI, MAX 32GB DDR4", "Biostar micro ATX A520MH, S-AM4, AMD A520, HDMI, MAX 64GB DDR4",  "MSI B550M ATX PRO-VDH, S-AM4, AMD B550, HDMI, MAX 128GB DDR4", "ASUS ATX Prime B550-Plus, S-AM4, AMD B550, HDMI, MAX 128GB DDR4", };
+        double[] preciosMotheramd3000 = { 829, 1269, 2778, 2459};
+        double[] whattsMotheramd3000 = { 100, 100, 100, 100 };
         // -------------------------------------------------------------------------------AMD AM5
-        String[] amd5000 = { "MSI Micro-ATX PRO H610M-G DDR4, S-1700, Intel H610, 64GB DDR4",
-                "MSI Micro-ATX PRO B760M-A WIFI, S-1700, Intel B760, 192GB DDR5",
-                "ASUS GAMING ATX ROG Strix Z790-F WIFI, S-1700, Intel Z790, 128GB DDR5" };
-        double[] preciosMotheramd5000 = { 1269, 2778, 6255 };
+        String[] amd5000 = { "MSI Micro-ATX PRO A620M-E, S-AM5, AMD A620, HDMI, MAX 96GB DDR5", "Gigabyte Micro-ATX A620M, S-AM5, AMD A620, HDMI, MAX 192GB DDR5", "Acer ATX 620M-H, S-AM5, AMD 620, HDMI, MAX 256GB DDR5" };
+        double[] preciosMotheramd5000 = { 1079, 2339, 6699 };
         double[] whattsMotheramd5000 = { 100, 100, 100 };
         // -------------------------------------------------------------------------------Refrigeraciones
         String[] refrigeracion = {
@@ -271,8 +279,6 @@ public class App {
         double[] preciosPSUs1200 = { 2500, 3000, 3000, 3500 };
         String[] PSUs1600 = { "Fuente de Poder EVGA 80 PLUS Gold, Modular, 1600W", "Fuente de Poder Cybercore 80 PLUS Platinum, 1600W" };
         double[] preciosPSUs1600 = { 3000, 3500 };
-        int opcionIntel, opcionAMD, opcionNvidia, opcionMotherboard, DDR;
-        String opcionSeleccionada; // Variable para almacenar la opcion seleccionada por el usuario
         // ----------------------------------------------------------------termina declaraciones del apartado de Preensamblado
         while (!salir) {
             while (repetir) {
@@ -298,7 +304,7 @@ public class App {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                            for (int i = 0; i < categorias.length; i++) {
+                            for (i = 0; i < categorias.length; i++) {
                                 System.out.println((i + 1) + ". " + categorias[i]);
                             }
                             System.out.println((categorias.length + 1) + ". Ver carrito");
@@ -327,7 +333,7 @@ public class App {
                                 case 13:
                                 case 14:
                                 case 15:
-                                    int categoriaSeleccionada = opcion - 1;
+                                    categoriaSeleccionada = opcion - 1;
                                     System.out.println("Productos disponibles en la categoria \""
                                             + categorias[categoriaSeleccionada] + "\":\n");
                                     try {
@@ -335,14 +341,14 @@ public class App {
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
-                                    for (int i = 0; i < productos[categoriaSeleccionada].length; i++) {
+                                    for (i = 0; i < productos[categoriaSeleccionada].length; i++) {
                                         System.out.println(productos[categoriaSeleccionada][i] + " - $"
                                                 + precios[categoriaSeleccionada][i]);
                                     }
                                     System.out.print("Ingrese el nombre del producto que desea comprar: \n");
-                                    String compraProducto = scanner.nextLine();
-                                    boolean productoEncontrado = false;
-                                    for (int i = 0; i < productos[categoriaSeleccionada].length; i++) {
+                                    compraProducto = scanner.nextLine();
+                                    productoEncontrado = false;
+                                    for (i = 0; i < productos[categoriaSeleccionada].length; i++) {
                                         if (productos[categoriaSeleccionada][i].equalsIgnoreCase(compraProducto)) {
                                             carrito[indiceCarrito] = productos[categoriaSeleccionada][i];
                                             preciosCarrito[indiceCarrito] = precios[categoriaSeleccionada][i];
@@ -374,13 +380,13 @@ public class App {
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
                                         }
-                                        for (int i = 0; i < indiceCarrito; i++) {
+                                        for (i = 0; i < indiceCarrito; i++) {
                                             System.out
                                                     .println((i + 1) + ". " + carrito[i] + " - $" + preciosCarrito[i]);
                                             subtotal += preciosCarrito[i];
                                         }
-                                        double iva = subtotal * 0.16; // IVA
-                                        double total = subtotal + iva; // Subtotal + 16% de impuestos
+                                        iva = subtotal * 0.16; // IVA
+                                        total = subtotal + iva; // Subtotal + 16% de impuestos
 
                                         System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                         System.out.println("IVA: $" + String.format("%.2f", iva));
@@ -395,16 +401,16 @@ public class App {
                                         System.out.println("2. Pagar");
                                         System.out.println("3. Regresar al menú principal");
                                         System.out.print("Ingrese su opcion: ");
-                                        int opcionCarrito = scanner.nextInt();
+                                        opcionCarrito = scanner.nextInt();
                                         scanner.nextLine(); // Consumir el salto de linea
                                         switch (opcionCarrito) {
                                             case 1:
                                                 System.out
                                                         .print("Ingrese el número del producto que desea eliminar: \n");
-                                                int indice = scanner.nextInt() - 1;
+                                                indice = scanner.nextInt() - 1;
                                                 scanner.nextLine();
                                                 if (indice >= 0 && indice < indiceCarrito) {
-                                                    for (int i = indice; i < indiceCarrito - 1; i++) {
+                                                    for (i = indice; i < indiceCarrito - 1; i++) {
                                                         carrito[i] = carrito[i + 1];
                                                         preciosCarrito[i] = preciosCarrito[i + 1];
                                                     }
@@ -427,11 +433,11 @@ public class App {
                                                 System.out.println("1. Efectivo");
                                                 System.out.println("2. Tarjeta");
                                                 System.out.print("Ingrese su opcion: ");
-                                                int metodoPago = scanner.nextInt();
+                                                metodoPago = scanner.nextInt();
                                                 scanner.nextLine(); // Consumir el salto de linea pendiente
                                                 if (metodoPago == 1) {
                                                     // Generar un número de recibo simple
-                                                    long numeroRecibo = Math
+                                                    numeroRecibo = Math
                                                             .abs((long) (Math.random() * 9000000000L) + 1000000000L);
                                                     try {
                                                         Thread.sleep(500); // 500 milisegundos = medio segundo
@@ -441,7 +447,7 @@ public class App {
                                                     System.out.println("Recibo de pago en efectivo:");
                                                     System.out.println("Número de recibo: " + numeroRecibo);
                                                     System.out.println("Detalles del pago:");
-                                                    for (int i = 0; i < indiceCarrito; i++) {
+                                                    for (i = 0; i < indiceCarrito; i++) {
                                                         System.out.println((i + 1) + ". " + carrito[i] + " - $"
                                                                 + preciosCarrito[i]);
                                                     }
@@ -454,14 +460,14 @@ public class App {
                                                     salir = true;
                                                 } else if (metodoPago == 2) {
                                                     System.out.print("Ingrese el nombre del titular de la tarjeta: ");
-                                                    String titularTarjeta = scanner.nextLine();
+                                                    titularTarjeta = scanner.nextLine();
                                                     try {
                                                         Thread.sleep(500); // 500 milisegundos = medio segundo
                                                     } catch (InterruptedException e) {
                                                         e.printStackTrace();
                                                     }
                                                     System.out.print("Ingrese los 16 digitos de la tarjeta: \n");
-                                                    String numeroTarjeta = scanner.nextLine();
+                                                    numeroTarjeta = scanner.nextLine();
                                                     try {
                                                         Thread.sleep(500); // 500 milisegundos = medio segundo
                                                     } catch (InterruptedException e) {
@@ -473,7 +479,7 @@ public class App {
                                                         break;
                                                     }
                                                     System.out.print("Ingrese la fecha de vencimiento (MM/AA): \n");
-                                                    String fechaVencimiento = scanner.nextLine();
+                                                    fechaVencimiento = scanner.nextLine();
                                                     try {
                                                         Thread.sleep(500); // 500 milisegundos = medio segundo
                                                     } catch (InterruptedException e) {
@@ -486,7 +492,7 @@ public class App {
                                                         break;
                                                     }
                                                     // Verificar si la cadena contiene solo digitos y la barra en la posicion correcta
-                                                    for (int i = 0; i < fechaVencimiento.length(); i++) {
+                                                    for (i = 0; i < fechaVencimiento.length(); i++) {
                                                         if (i == 2) {
                                                             if (fechaVencimiento.charAt(i) != '/') {
                                                                 System.out.println(
@@ -502,20 +508,20 @@ public class App {
                                                         }
                                                     }
                                                     // Verificar si el mes está en el rango válido (01 - 12)
-                                                    int mes = Integer.parseInt(fechaVencimiento.substring(0, 2));
+                                                    mes = Integer.parseInt(fechaVencimiento.substring(0, 2));
                                                     if (mes < 1 || mes > 12) {
                                                         System.out.println("El mes debe estar entre 01 y 12\n");
                                                         break;
                                                     }
                                                     // Verificar si el año está en el rango válido (25 - 99)
-                                                    int año = Integer.parseInt(fechaVencimiento.substring(3));
+                                                    año = Integer.parseInt(fechaVencimiento.substring(3));
                                                     if (año < 25 || año > 99) {
                                                         System.out.println("El año debe estar entre 25 y 99\n");
                                                         break;
                                                     }
                                                     // -----------------------------------------------------------------validar codigo de seguridad
                                                     System.out.print("Ingrese el codigo de seguridad (3 digitos): ");
-                                                    String codigoSeguridad = scanner.nextLine();
+                                                    codigoSeguridad = scanner.nextLine();
                                                     if (codigoSeguridad.length() != 3) {
                                                         System.out.println(
                                                                 "El codigo de seguridad debe tener exactamente 3 digitos.\n");
@@ -525,7 +531,7 @@ public class App {
                                                             + titularTarjeta + "...");
                                                     System.out.println("Pago realizado con exito.");
                                                     System.out.println("Detalles del pago:");
-                                                    for (int i = 0; i < indiceCarrito; i++) {
+                                                    for (i = 0; i < indiceCarrito; i++) {
                                                         System.out.println((i + 1) + ". " + carrito[i] + " - $"
                                                                 + preciosCarrito[i]);
                                                     }
@@ -550,7 +556,7 @@ public class App {
                                 case 17:
                                     repetir = false; // Salir del bucle despues de procesar la opcion 17
                                     System.out.print("Saliendo");
-                                    for (int i = 0; i < 3; i++) {// bucle para repetir 3 veces el . que colocamos para
+                                    for (i = 0; i < 3; i++) {// bucle para repetir 3 veces el . que colocamos para
                                                                  // que se mire bien el salir y este no sea instantaneo
                                         try {
                                             Thread.sleep(500); // 500 milisegundos = medio segundo
@@ -571,12 +577,12 @@ public class App {
                     case 2:
                     while (!salir) {
                         subtotal = 0;
-                        double whatts = 0;
+                        whatts = 0;
                         opcionAMD = 0;
                         opcionNvidia = 0;
                         System.out.println("Bienvenido a sistema de armado guiado de PC de ALRM-TECH\n");
                         System.out.println("Empezemos con el Procesador\n");
-                        for (int i = 0; i < marcaCPU.length; i++) {
+                        for (i = 0; i < marcaCPU.length; i++) {
                             System.out.println((i + 1) + ". " + marcaCPU[i]);
                         }
                         System.out.print("Ingrese su opcion: ");
@@ -594,7 +600,7 @@ public class App {
                                 System.out.println("Ha seleccionado " + marcaCPU[opcion - 1]);
                                 do {
                                     System.out.println("Seleccione la generacion de su procesador:\n");
-                                    for (int i = 0; i < intelGenCPU.length; i++) {
+                                    for (i = 0; i < intelGenCPU.length; i++) {
                                         System.out.println((i + 1) + ". " + intelGenCPU[i]);
                                     }
                                     System.out.print("Ingrese su opcion: ");
@@ -605,15 +611,15 @@ public class App {
                                 System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                 switch (opcionIntel) {
                                     case 1:// --------------------------------------------------------------------------------------------INTEL
-                                    int opcionCPU = 0;
+                                    opcionCPU = 1;
                                     do {
                                         System.out.println("Ha seleccionado " + intelGenCPU[opcionIntel - 1]);
                                         System.out.println("Seleccione la gama del procesador:\n");
-                                        for (int i = 0; i < intel12thCPU.length; i++) {
+                                        for (i = 0; i < intel12thCPU.length; i++) {
                                             System.out.println((i + 1) + ". " + intel12thCPU[i] + " $" + preciosintel12th[i]);
                                         }
                                         System.out.print("Ingrese su opcion: \n");
-                                        precioSeleccionado = preciosintel12th[opcionCPU - 1];
+                                        precioINTELSeleccionado = preciosintel12th[opcionCPU - 1];
                                         opcionCPU = scanner.nextInt();
                                         scanner.nextLine();
                                     } while (opcionCPU < 1 || opcionCPU > intel12thCPU.length);
@@ -627,11 +633,11 @@ public class App {
                                     do {
                                         System.out.println("Ha seleccionado " + intelGenCPU[opcionIntel - 1]);
                                         System.out.println("Seleccione la gama del procesador:");
-                                        for (int i = 0; i < intel13thCPU.length; i++) {
+                                        for (i = 0; i < intel13thCPU.length; i++) {
                                             System.out.println((i + 1) + ". " + intel13thCPU[i] + " $" + preciosintel13th[i]);
                                         }
                                         System.out.print("Ingrese su opcion: \n");
-                                        precioSeleccionado = preciosintel13th[opcionCPU - 1];
+                                        precioINTELSeleccionado = preciosintel13th[opcionCPU - 1];
                                         opcionCPU = scanner.nextInt();
                                         scanner.nextLine();
                                     } while (opcionCPU < 1 || opcionCPU > intel13thCPU.length);
@@ -647,11 +653,11 @@ public class App {
                                         opcionCPU = 0;
                                         do {
                                             System.out.println("Seleccione la gama del procesador:");
-                                            for (int i = 0; i < intel14thCPU.length; i++) {
+                                            for (i = 0; i < intel14thCPU.length; i++) {
                                                 System.out.println((i + 1) + ". " + intel14thCPU[i] + " $" + preciosintel14th[i]);
                                             }
                                             System.out.print("Ingrese su opcion: ");
-                                            precioSeleccionado = preciosintel14th[opcionCPU - 1];
+                                            precioINTELSeleccionado = preciosintel14th[opcionCPU - 1];
                                             opcionCPU = scanner.nextInt();
                                             scanner.nextLine();
                                         } while (opcionCPU < 1 || opcionCPU > intel14thCPU.length);
@@ -669,7 +675,7 @@ public class App {
                                 System.out.println("Estas son las Motherboards compatibles con tu CPU\n");
                                 opcionMotherboard = 0;
                                 do {
-                                    for (int i = 0; i < lga1700.length; i++) {
+                                    for (i = 0; i < lga1700.length; i++) {
                                         System.out.println((i + 1) + ". " + lga1700[i] + " $" + precioslga1700[i]);
                                     }
                                     System.out.print("Ingrese su opcion: ");
@@ -685,119 +691,125 @@ public class App {
                                     System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                     // ---------------------------------------------------------------------------------------------------------------------Refrigeracion
                                     System.out.println("Es hora de seleccionar un sistema de refrigeracion\n");
-                                    int opcionRefrigeracion = 0;
+                                    opcionRefrigeracion = 0;
                                     do {
-                                        for (int i = 0; i < refrigeracion.length; i++) {
+                                        for (i = 0; i < refrigeracion.length; i++) {
                                             System.out.println((i + 1) + ". " + refrigeracion[i] + " $" + preciosRefrigeracion[i]);
                                         }
                                         System.out.print("Ingrese su opcion: ");
                                         opcionRefrigeracion = scanner.nextInt();
                                         scanner.nextLine();
                                     } while (opcionRefrigeracion < 1 || opcionRefrigeracion > refrigeracion.length);
-                                    String refrigeracionSeleccionada = refrigeracion[opcionRefrigeracion - 1];
-                                    double precioRefrigeracion = preciosRefrigeracion[opcionRefrigeracion - 1];
+                                    refrigeracionSeleccionada = refrigeracion[opcionRefrigeracion - 1];
+                                    precioRefrigeracion = preciosRefrigeracion[opcionRefrigeracion - 1];
                                     System.out.println("Ha seleccionado " + refrigeracionSeleccionada);
                                     subtotal += precioRefrigeracion;
                                     System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                     // -----------------------------------------------------------------------------------------------------------------------------RAM
                                     System.out.println("Ahora toca seleccionar la memoria RAM");
-                                    System.out.println("Debido a que tu Motherboard es DDR" + DDR + ", estos son el catálogo de RAMs disponibles para tu Motherboard\n");
-                                    int opcionRAM = 0;
-                                    if (DDR == 4) {
-                                        do {
-                                            for (int i = 0; i < DDR4.length; i++) {
-                                                System.out.println((i + 1) + ". " + DDR4[i] + " $" + preciosDDR4[i]);
-                                            }
-                                            System.out.print("Ingrese su opcion: ");
-                                            opcionRAM = scanner.nextInt();
-                                            scanner.nextLine();
-                                        } while (opcionRAM < 1 || opcionRAM > DDR4.length);
-                                    } else if (DDR == 5) {
-                                        do {
-                                            for (int i = 0; i < DDR5.length; i++) {
-                                                System.out.println((i + 1) + ". " + DDR5[i] + " $" + preciosDDR5[i]);
-                                            }
-                                            System.out.print("Ingrese su opcion: ");
-                                            opcionRAM = scanner.nextInt();
-                                            scanner.nextLine();
-                                        } while (opcionRAM < 1 || opcionRAM > DDR5.length);
-                                    } else {
-                                        System.out.println("No hay catálogo de RAM disponible para este tipo de placa base.\n");
-                                    }
-                                    double precioRAM = 0;
-                                    if (DDR == 4 && opcionRAM >= 1 && opcionRAM <= DDR4.length) {
-                                        precioRAM = preciosDDR4[opcionRAM - 1];
-                                    } else if (DDR == 5 && opcionRAM >= 1 && opcionRAM <= DDR5.length) {
-                                        precioRAM = preciosDDR5[opcionRAM - 1];
-                                    } else {
-                                        System.out.println("Opcion inválida. No se ha seleccionado RAM.");
-                                    }
-                                    subtotal += precioRAM;
-                                    opcionSeleccionada = (DDR == 4) ? DDR4[opcionRAM - 1] : DDR5[opcionRAM - 1];
-                                    System.out.println("Ha seleccionado " + opcionSeleccionada);
-                                    System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
-                                    System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
+                                DDR = (opcionMotherboard <= 2) ? 4 : 5;
+                                System.out.println("Ahora toca seleccionar la memoria RAM");
+                                System.out.println("Debido a que tu Motherboard es DDR" + DDR + ", estos son el catálogo de RAMs disponibles para tu Motherboard\n");
+                                opcionRAM = 0;
+                                if (DDR == 4) {
+                                    do {
+                                        for (i = 0; i < DDR4.length; i++) {
+                                            System.out.println((i + 1) + ". " + DDR4[i] + " $" + preciosDDR4[i]);
+                                        }
+                                        System.out.print("Ingrese su opcion: ");
+                                        opcionRAM = scanner.nextInt();
+                                        scanner.nextLine();
+                                    } while (opcionRAM < 1 || opcionRAM > DDR4.length);
+                                } else if (DDR == 5) {
+                                    do {
+                                        for (i = 0; i < DDR5.length; i++) {
+                                            System.out.println((i + 1) + ". " + DDR5[i] + " $" + preciosDDR5[i]);
+                                        }
+                                        System.out.print("Ingrese su opcion: ");
+                                        opcionRAM = scanner.nextInt();
+                                        scanner.nextLine();
+                                    } while (opcionRAM < 1 || opcionRAM > DDR5.length);
+                                } else {
+                                    System.out.println("No hay catálogo de RAM disponible para este tipo de placa base.\n");
+                                }
+                                precioRAM = 0;
+                                if (DDR == 4 && opcionRAM >= 1 && opcionRAM <= DDR4.length) {
+                                    precioRAM = preciosDDR4[opcionRAM - 1];
+                                } else if (DDR == 5 && opcionRAM >= 1 && opcionRAM <= DDR5.length) {
+                                    precioRAM = preciosDDR5[opcionRAM - 1];
+                                } else {
+                                    System.out.println("Opcion inválida. No se ha seleccionado RAM.");
+                                }
+                                subtotal += precioRAM;
+                                opcionRAMSeleccionada = (DDR == 4) ? DDR4[opcionRAM - 1] : DDR5[opcionRAM - 1];
+                                preciosRAM = (DDR == 4) ? preciosDDR4[opcionRAM - 1] : preciosDDR5[opcionRAM - 1];
+                                System.out.println("Ha seleccionado " + opcionRAMSeleccionada);
+                                System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                     // -------------------------------------------------------------------------------------------------------------------------Almacenamiento
                                     System.out.println("Es turno de que selecciones un tipo de almacenamiento\n");
-                                    int opcionAlmacenamiento = 0;
+                                    opcionAlmacenamiento = 0;
                                     do {
-                                        for (int i = 0; i < TipoAlmacenamiento.length; i++) {
+                                        for (i = 0; i < TipoAlmacenamiento.length; i++) {
                                             System.out.println((i + 1) + ". " + TipoAlmacenamiento[i]);
                                         }
                                         System.out.print("Ingrese su opcion: ");
                                         opcionAlmacenamiento = scanner.nextInt();
                                         scanner.nextLine();
                                     } while (opcionAlmacenamiento < 1 || opcionAlmacenamiento > TipoAlmacenamiento.length);
-                                    opcionSeleccionada = TipoAlmacenamiento[opcionAlmacenamiento - 1];
+                                    AlmacenamientoSeleccionado = TipoAlmacenamiento[opcionAlmacenamiento - 1];
                                     switch (opcionAlmacenamiento) {
                                         case 1:
                                             System.out.println("Has seleccionado HDD");
                                             System.out.println("Estas son las opciones de HDD disponibles:\n");
-                                            int opcionHDD = 0;
+                                            opcionHDD = 0;
                                             do {
-                                                for (int i = 0; i < HDDsata.length; i++) {
+                                                for (i = 0; i < HDDsata.length; i++) {
                                                     System.out.println((i + 1) + ". " + HDDsata[i] + " $" + preciosHDD[i]);
                                                 }
                                                 System.out.print("Ingrese su opcion: ");
                                                 opcionHDD = scanner.nextInt();
                                                 scanner.nextLine();
                                             } while (opcionHDD < 1 || opcionHDD > HDDsata.length);
-                                            opcionSeleccionada = HDDsata[opcionHDD - 1];
-                                            System.out.println("Ha seleccionado el " + opcionSeleccionada);
+                                            AlmacenamientoSeleccionado = HDDsata[opcionHDD - 1];
+                                            PreciosAlmacenamiento = preciosHDD[opcionHDD - 1];
+                                            System.out.println("Ha seleccionado el " + AlmacenamientoSeleccionado);
                                             subtotal += preciosHDD[opcionHDD - 1];
                                             System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                             break;
                                         case 2:
                                             System.out.println("Has seleccionado SSD");
                                             System.out.println("Estas son las opciones de SSD disponibles:");
-                                            int opcionSSD = 0;
+                                            opcionSSD = 0;
                                             do {
-                                                for (int i = 0; i < SSDsata.length; i++) {
+                                                for (i = 0; i < SSDsata.length; i++) {
                                                     System.out.println((i + 1) + ". " + SSDsata[i] + " $" + preciosSSD[i]);
                                                 }
                                                 System.out.print("Ingrese su opcion: ");
                                                 opcionSSD = scanner.nextInt();
                                                 scanner.nextLine();
                                             } while (opcionSSD < 1 || opcionSSD > SSDsata.length);
-                                            opcionSeleccionada = SSDsata[opcionSSD - 1];
-                                            System.out.println("Ha seleccionado " + opcionSeleccionada);
+                                            AlmacenamientoSeleccionado = SSDsata[opcionSSD - 1];
+                                            PreciosAlmacenamiento = preciosSSD[opcionSSD - 1];
+                                            System.out.println("Ha seleccionado " + AlmacenamientoSeleccionado);
                                             subtotal += preciosSSD[opcionSSD - 1];
                                             System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                             break;
                                         case 3:
                                             System.out.println("Has seleccionado NVMe");
                                             System.out.println("Estas son las opciones de NVMe disponibles:\n");
-                                            int opcionNVMe = 0;
+                                            opcionNVMe = 0;
                                             do {
-                                                for (int i = 0; i < NVMe.length; i++) {
+                                                for (i = 0; i < NVMe.length; i++) {
                                                     System.out.println((i + 1) + ". " + NVMe[i] + " $" + preciosNVMe[i]);
                                                 }
                                                 System.out.print("Ingrese su opcion: ");
                                                 opcionNVMe = scanner.nextInt();
                                                 scanner.nextLine();
                                             } while (opcionNVMe < 1 || opcionNVMe > NVMe.length);
-                                            opcionSeleccionada = NVMe[opcionNVMe - 1];
-                                            System.out.println("Ha seleccionado " + opcionSeleccionada);
+                                            AlmacenamientoSeleccionado = NVMe[opcionNVMe - 1];
+                                            PreciosAlmacenamiento = preciosNVMe[opcionNVMe - 1];
+                                            System.out.println("Ha seleccionado " + AlmacenamientoSeleccionado);
                                             subtotal += preciosNVMe[opcionNVMe - 1];
                                             System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                             break;
@@ -808,10 +820,10 @@ public class App {
                                     // ----------------------------------------------------------------------------------------------------------------- Gabinetes
                                     System.out.println("Es hora de seleccionar un Gabinete\n");
                                     System.out.println("Este es el catálogo de gabinetes disponibles compatibles con tu placa madre\n");
-                                    int opcionGabinete = 0;
+                                    opcionGabinete = 0;
                                     if (opcionMotherboard <= 2) { // Si es una placa MicroATX
                                         do {
-                                            for (int i = 0; i < catalogoPlacaMicroATX.length; i++) {
+                                            for (i = 0; i < catalogoPlacaMicroATX.length; i++) {
                                                 System.out.println((i + 1) + ". " + catalogoPlacaMicroATX[i] + " $" + precioMicroATX[i]);
                                             }
                                             System.out.print("Ingrese su opcion: ");
@@ -820,7 +832,7 @@ public class App {
                                         } while (opcionGabinete < 1 || opcionGabinete > catalogoPlacaMicroATX.length);
                                     } else { // Si es una placa ATX
                                         do {
-                                            for (int i = 0; i < catalogoPlacaATX.length; i++) {
+                                            for (i = 0; i < catalogoPlacaATX.length; i++) {
                                                 System.out.println((i + 1) + ". " + catalogoPlacaATX[i] + " $" + precioATX[i]);
                                             }
                                             System.out.print("Ingrese su opcion: ");
@@ -828,10 +840,10 @@ public class App {
                                             scanner.nextLine();
                                         } while (opcionGabinete < 1 || opcionGabinete > catalogoPlacaATX.length);
                                     }
-                                    String gabineteSeleccionado = (opcionMotherboard <= 2)
+                                    gabineteSeleccionado = (opcionMotherboard <= 2)
                                             ? catalogoPlacaMicroATX[opcionGabinete - 1]
                                             : catalogoPlacaATX[opcionGabinete - 1];
-                                    double precioGabinete = (opcionMotherboard <= 2)
+                                    precioGabinete = (opcionMotherboard <= 2)
                                             ? precioMicroATX[opcionGabinete - 1]
                                             : precioATX[opcionGabinete - 1];
                                     System.out.println("Ha seleccionado " + gabineteSeleccionado);
@@ -842,7 +854,6 @@ public class App {
                                     System.out.println("Este es el catálogo de Tarjetas Gráficas disponibles:\n");
                                     System.out.println("1. Nvidia Geforce");
                                     System.out.println("2. AMD Radeon");
-                                    int opcionGPU = 0;
                                     do {
                                         System.out.print("Ingrese su opcion (1 para Nvidia, 2 para AMD): \n");
                                         opcionGPU = scanner.nextInt();
@@ -852,56 +863,53 @@ public class App {
                                         case 1: // Nvidia
                                             System.out.println("Has seleccionado Nvidia Geforce");
                                             System.out.println("Estas son las generaciones de Nvidia Geforce disponibles:");
-                                            int opcionGenNvidia = 0;
+                                            opcionGenNvidia = 0;
                                             do {
-                                                for (int i = 0; i < NvidiaGenGPU.length; i++) {
+                                                for (i = 0; i < NvidiaGenGPU.length; i++) {
                                                     System.out.println((i + 1) + ". " + NvidiaGenGPU[i]);
                                                 }
                                                 System.out.print("Ingrese su opcion: ");
                                                 opcionGenNvidia = scanner.nextInt();
                                                 scanner.nextLine();
                                             } while (opcionGenNvidia < 1 || opcionGenNvidia > NvidiaGenGPU.length);
-                                            String genSeleccionada = NvidiaGenGPU[opcionGenNvidia - 1];
+                                            genSeleccionada = NvidiaGenGPU[opcionGenNvidia - 1];
                                             whatts += whattsNvidia[opcionGenNvidia - 1];
                                             System.out.println("Has seleccionado " + genSeleccionada);
                                             System.out.println("Estas son las opciones disponibles para " + genSeleccionada + ":");
-                                            String[] opcionesNvidia = null;
-                                            double[] preciosNvidia = null;
-                                            double[] wattsNvidia = null;
                                             switch (genSeleccionada) {
                                                 case "RTX 2000":
-                                                    opcionesNvidia = NvidiaRTX2000;
-                                                    preciosNvidia = PreciosRTX2000;
-                                                    wattsNvidia = whattsRTX2000;
+                                                    opcionesGPU = NvidiaRTX2000;
+                                                    preciosGPU = PreciosRTX2000;
+                                                    wattsGPU = whattsRTX2000;
                                                     break;
                                                 case "RTX 3000":
-                                                    opcionesNvidia = NvidiaRTX3000;
-                                                    preciosNvidia = PreciosRTX3000;
-                                                    wattsNvidia = whattsRTX3000;
+                                                    opcionesGPU = NvidiaRTX3000;
+                                                    preciosGPU = PreciosRTX3000;
+                                                    wattsGPU = whattsRTX3000;
                                                     break;
                                                 case "RTX 4000":
-                                                    opcionesNvidia = NvidiaRTX4000;
-                                                    preciosNvidia = PreciosRTX4000;
-                                                    wattsNvidia = whattsRTX4000;
+                                                    opcionesGPU = NvidiaRTX4000;
+                                                    preciosGPU = PreciosRTX4000;
+                                                    wattsGPU = whattsRTX4000;
                                                     break;
                                                 default:
                                                     System.out.println("Opcion inválida. Intentelo de nuevo.\n");
                                                     break;
                                             }
-                                            if (opcionesNvidia != null) {
-                                                opcionNvidia = 0;
+                                            if (opcionesGPU != null) {
+                                                SeleccionGPU = 0;
                                                 do {
-                                                    for (int i = 0; i < opcionesNvidia.length; i++) {
-                                                        System.out.println((i + 1) + ". " + opcionesNvidia[i] + " $" + preciosNvidia[i]);
+                                                    for (i = 0; i < opcionesGPU.length; i++) {
+                                                        System.out.println((i + 1) + ". " + opcionesGPU[i] + " $" + preciosGPU[i]);
                                                     }
                                                     System.out.print("Ingrese su opcion: ");
-                                                    opcionNvidia = scanner.nextInt();
+                                                    SeleccionGPU = scanner.nextInt();
                                                     scanner.nextLine();
-                                                } while (opcionNvidia < 1 || opcionNvidia > opcionesNvidia.length);
-                                                String gpuNvidiaSeleccionada = opcionesNvidia[opcionNvidia - 1];
-                                                whatts += wattsNvidia[opcionNvidia - 1];
-                                                subtotal += preciosNvidia[opcionNvidia - 1];
-                                                System.out.println("Ha seleccionado " + gpuNvidiaSeleccionada);
+                                                } while (SeleccionGPU < 1 || SeleccionGPU > opcionesGPU.length);
+                                                gpuSeleccionada = opcionesGPU[SeleccionGPU - 1];
+                                                whatts += wattsGPU[SeleccionGPU - 1];
+                                                subtotal += preciosGPU[SeleccionGPU - 1];
+                                                System.out.println("Ha seleccionado " + gpuSeleccionada);
                                                 System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                                 System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                             }
@@ -909,57 +917,54 @@ public class App {
                                         case 2: // AMD
                                             System.out.println("Has seleccionado AMD Radeon");
                                             System.out.println("Estas son las generaciones de AMD Radeon disponibles:");
-                                            int opcionGenAMD = 0;
+                                            opcionGenAMD = 0;
                                             do {
-                                                for (int i = 0; i < AMDGenGPU.length; i++) {
+                                                for (i = 0; i < AMDGenGPU.length; i++) {
                                                     System.out.println((i + 1) + ". " + AMDGenGPU[i]);
                                                 }
                                                 System.out.print("Ingrese su opcion: ");
                                                 opcionGenAMD = scanner.nextInt();
                                                 scanner.nextLine();
                                             } while (opcionGenAMD < 1 || opcionGenAMD > AMDGenGPU.length);
-                                            String genAMDSeleccionada = AMDGenGPU[opcionGenAMD - 1];
+                                            genAMDSeleccionada = AMDGenGPU[opcionGenAMD - 1];
                                             whatts += whattsAMD[opcionGenAMD - 1];
                                             System.out.println("Has seleccionado " + genAMDSeleccionada);
                                             System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                             System.out.println("Estas son las opciones disponibles para " + genAMDSeleccionada + ":");
-                                            String[] opcionesAMD = null;
-                                            double[] preciosAMD = null;
-                                            double[] wattsAMD = null;
                                             switch (genAMDSeleccionada) {
                                                 case "RX 5000":
-                                                    opcionesAMD = AMDRX5000;
-                                                    preciosAMD = PreciosRX5000;
-                                                    wattsAMD = whattsRX5000;
+                                                    opcionesGPU = AMDRX5000;
+                                                    preciosGPU = PreciosRX5000;
+                                                    wattsGPU = whattsRX5000;
                                                     break;
                                                 case "RX 6000":
-                                                    opcionesAMD = AMDRX6000;
-                                                    preciosAMD = PreciosRX6000;
-                                                    wattsAMD = whattsRX6000;
+                                                    opcionesGPU = AMDRX6000;
+                                                    preciosGPU = PreciosRX6000;
+                                                    wattsGPU = whattsRX6000;
                                                     break;
                                                 case "RX 7000":
-                                                    opcionesAMD = AMDRX7000;
-                                                    preciosAMD = PreciosRX7000;
-                                                    wattsAMD = whattsRX7000;
+                                                    opcionesGPU = AMDRX7000;
+                                                    preciosGPU = PreciosRX7000;
+                                                    wattsGPU = whattsRX7000;
                                                     break;
                                                 default:
                                                     System.out.println("Opcion inválida. Intentelo de nuevo.\n");
                                                     break;
                                             }
-                                            if (opcionesAMD != null) {
-                                                opcionAMD = 0;
+                                            if (opcionesGPU != null) {
+                                                SeleccionGPU = 0;
                                                 do {
-                                                    for (int i = 0; i < opcionesAMD.length; i++) {
-                                                        System.out.println((i + 1) + ". " + opcionesAMD[i] + " $" + preciosAMD[i]);
+                                                    for (i = 0; i < opcionesGPU.length; i++) {
+                                                        System.out.println((i + 1) + ". " + opcionesGPU[i] + " $" + preciosGPU[i]);
                                                     }
                                                     System.out.print("Ingrese su opcion: ");
-                                                    opcionAMD = scanner.nextInt();
+                                                    SeleccionGPU = scanner.nextInt();
                                                     scanner.nextLine();
-                                                } while (opcionAMD < 1 || opcionAMD > opcionesAMD.length);
-                                                String gpuAMDSeleccionada = opcionesAMD[opcionAMD - 1];
-                                                whatts += wattsAMD[opcionAMD - 1];
-                                                subtotal += preciosAMD[opcionAMD - 1];
-                                                System.out.println("Ha seleccionado " + gpuAMDSeleccionada);
+                                                } while (SeleccionGPU < 1 || SeleccionGPU > opcionesGPU.length);
+                                                gpuSeleccionada = opcionesGPU[SeleccionGPU - 1];
+                                                whatts += wattsGPU[SeleccionGPU - 1];
+                                                subtotal += preciosGPU[opcionGPU - 1];
+                                                System.out.println("Ha seleccionado " + gpuSeleccionada);
                                                 System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                                 System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                             }
@@ -969,64 +974,64 @@ public class App {
                                             break;
                                     }
                                     //----------------------------------------------------------------------------------------fuentes de poder
-                                    int opcionFuente = 0;
+                                    opcionFuente = 0;
                                     if (whatts <= 600) {// si el consumo es menor o igual a 600 watts
                                         System.out.println("tu ensamble es compatible con las siguientes fuentes de poder:");
                                         do {
-                                            for (int i = 0; i < PSUs600.length; i++) {
+                                            for (i = 0; i < PSUs600.length; i++) {
                                                 System.out.println((i + 1) + ". " + PSUs600[i] + " $" + preciosPSUs600[i]);
                                             }
                                             System.out.print("Ingrese su opcion: ");
                                             opcionFuente = scanner.nextInt();
                                             scanner.nextLine();
                                         } while (opcionFuente < 1 || opcionFuente > PSUs600.length);
-                                        String fuenteSeleccionada = PSUs600[opcionFuente - 1];
-                                        double precioFuente = preciosPSUs600[opcionFuente - 1];
+                                        fuenteSeleccionada = PSUs600[opcionFuente - 1];
+                                        precioFuente = preciosPSUs600[opcionFuente - 1];
                                         System.out.println("Ha seleccionado " + fuenteSeleccionada);
                                         subtotal += precioFuente; // Sumar el precio de la fuente al subtotal
                                         System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                     } else if (whatts <= 800) {// si el consumo es menor o igual a 800 watts
                                         System.out.println("tu ensamble es compatible con las siguientes fuentes de poder:");
                                         do {
-                                            for (int i = 0; i < PSUs800.length; i++) {
+                                            for (i = 0; i < PSUs800.length; i++) {
                                                 System.out.println((i + 1) + ". " + PSUs800[i] + " $" + preciosPSUs800[i]);
                                             }
                                             System.out.print("Ingrese su opcion: ");
                                             opcionFuente = scanner.nextInt();
                                             scanner.nextLine();
                                         } while (opcionFuente < 1 || opcionFuente > PSUs800.length);
-                                        String fuenteSeleccionada = PSUs800[opcionFuente - 1];
-                                        double precioFuente = preciosPSUs800[opcionFuente - 1];
+                                        fuenteSeleccionada = PSUs800[opcionFuente - 1];
+                                        precioFuente = preciosPSUs800[opcionFuente - 1];
                                         System.out.println("Ha seleccionado " + fuenteSeleccionada);
                                         subtotal += precioFuente; // Sumar el precio de la fuente al subtotal
                                         System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                     } else if (whatts <= 1200) {// si el consumo es menor o igual a 1200 watts
                                         System.out.println("tu ensamble es compatible con las siguientes fuentes de poder:");
                                         do {
-                                            for (int i = 0; i < PSUs1200.length; i++) {
+                                            for (i = 0; i < PSUs1200.length; i++) {
                                                 System.out.println((i + 1) + ". " + PSUs1200[i] + " $" + preciosPSUs1200[i]);
                                             }
                                             System.out.print("Ingrese su opcion: ");
                                             opcionFuente = scanner.nextInt();
                                             scanner.nextLine();
                                         } while (opcionFuente < 1 || opcionFuente > PSUs1200.length);
-                                        String fuenteSeleccionada = PSUs1200[opcionFuente - 1];
-                                        double precioFuente = preciosPSUs1200[opcionFuente - 1];
+                                        fuenteSeleccionada = PSUs1200[opcionFuente - 1];
+                                        precioFuente = preciosPSUs1200[opcionFuente - 1];
                                         System.out.println("Ha seleccionado " + fuenteSeleccionada);
                                         subtotal += precioFuente; // Sumar el precio de la fuente al subtotal
                                         System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                     } else {// si el consumo es mayor a 1200 watts
                                         System.out.println("tu ensamble es compatible con las siguientes fuentes de poder:\n");
                                         do {
-                                            for (int i = 0; i < PSUs1600.length; i++) {
+                                            for (i = 0; i < PSUs1600.length; i++) {
                                                 System.out.println((i + 1) + ". " + PSUs1600[i] + " $" + preciosPSUs1600[i]);
                                             }
                                             System.out.print("Ingrese su opcion: ");
                                             opcionFuente = scanner.nextInt();
                                             scanner.nextLine();
                                         } while (opcionFuente < 1 || opcionFuente > PSUs1600.length);
-                                        String fuenteSeleccionada = PSUs1600[opcionFuente - 1];
-                                        double precioFuente = preciosPSUs1600[opcionFuente - 1];
+                                        fuenteSeleccionada = PSUs1600[opcionFuente - 1];
+                                        precioFuente = preciosPSUs1600[opcionFuente - 1];
                                         System.out.println("Ha seleccionado " + fuenteSeleccionada);
                                         subtotal += precioFuente; // Sumar el precio de la fuente al subtotal
                                         System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
@@ -1037,22 +1042,22 @@ public class App {
                                     System.out.println("--------------------------------------------------");
                                     System.out.println("                PC COMPONENTES");
                                     System.out.println("--------------------------------------------------\n");
-                                    String fuenteSeleccionada = "";
-                                    int i = 0;
-                                    System.out.println("Procesador: " + opcionSeleccionada);
-                                    System.out.println("Motherboard: " + opcionSeleccionada);
-                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
-                                    System.out.println("RAM: " + opcionSeleccionada);
-                                    System.out.println("Almacenamiento: " + opcionSeleccionada);
-                                    System.out.println("Gabinete: " + gabineteSeleccionado);
-                                    System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
-                                    System.out.println("Fuente de poder: " + fuenteSeleccionada);
+                                    i = 0;
+                                    System.out.print("Procesador: " + ((opcionIntel == 1) ? intel12thCPU[opcionCPU - 1] : (opcionIntel == 2) ? intel13thCPU[opcionCPU - 1] : intel14thCPU[opcionCPU - 1]));
+                                    System.out.print(" $" + String.format("%.2f", precioINTELSeleccionado) + "\n");
+                                    System.out.println("Motherboard: " + lga1700[opcionMotherboard - 1] + " $" + precioslga1700[opcionMotherboard - 1]);
+                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada + " $" + precioRefrigeracion);
+                                    System.out.println("RAM: " + opcionRAMSeleccionada + " $" + preciosRAM);
+                                    System.out.println("Almacenamiento: " + AlmacenamientoSeleccionado + " $" + PreciosAlmacenamiento);
+                                    System.out.println("Gabinete: " + gabineteSeleccionado + " $" + precioGabinete);
+                                    System.out.println("Tarjeta de video: " + gpuSeleccionada + " $" + preciosGPU[SeleccionGPU - 1]);
+                                    System.out.println("Fuente de poder: " + fuenteSeleccionada + " $" + precioFuente);
                                     System.out.println("--------------------------------------------------\n");
                                     System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                     System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
-                                    double iva = subtotal * 0.16; // IVA
+                                    iva = subtotal * 0.16; // IVA
                                     System.out.println("Total: $" + String.format("%.2f", subtotal + iva));
-                                    int metodoPago = 0;
+                                    metodoPago = 0;
                                     do {
                                         System.out.println("Seleccione el metodo de pago:");
                                         System.out.println("1. Efectivo");
@@ -1067,7 +1072,7 @@ public class App {
 
                                     if (metodoPago == 1) {
                                         // Generar un número de recibo simple
-                                        long numeroRecibo = Math
+                                        numeroRecibo = Math
                                                 .abs((long) (Math.random() * 9000000000L) + 1000000000L);
                                         try {
                                             Thread.sleep(500); // 500 milisegundos = medio segundo
@@ -1078,18 +1083,19 @@ public class App {
                                         System.out.println("Número de recibo: " + numeroRecibo);
                                         System.out.println("Detalles del pago:");
                                         System.out.println("--------------------------------------------------");
-                                        System.out.println("                PC COMPONENTES");
-                                        System.out.println("--------------------------------------------------\n");
-
-                                        System.out.println("Procesador: " + opcionSeleccionada + " $");
-                                        System.out.println("Motherboard: " + opcionSeleccionada + " $");
-                                        System.out.println("Refrigeracion: " + refrigeracionSeleccionada + " $");
-                                        System.out.println("RAM: " + opcionSeleccionada + " $");
-                                        System.out.println("Almacenamiento: " + opcionSeleccionada + " $");
-                                        System.out.println("Gabinete: " + gabineteSeleccionado + " $");
-                                        System.out.println("Tarjeta Gráfica: " + opcionSeleccionada + " $");
-                                        System.out.println("Fuente de poder: " + fuenteSeleccionada + " $");
-                                        System.out.println("--------------------------------------------------");
+                                    System.out.println("                PC COMPONENTES");
+                                    System.out.println("--------------------------------------------------\n");
+                                    i = 0;
+                                    System.out.print("Procesador: " + ((opcionIntel == 1) ? intel12thCPU[opcionCPU - 1] : (opcionIntel == 2) ? intel13thCPU[opcionCPU - 1] : intel14thCPU[opcionCPU - 1]));
+                                    System.out.print(" $" + String.format("%.2f", precioINTELSeleccionado) + "\n");
+                                    System.out.println("Motherboard: " + lga1700[opcionMotherboard - 1] + " $" + precioslga1700[opcionMotherboard - 1]);
+                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada + " $" + precioRefrigeracion);
+                                    System.out.println("RAM: " + opcionRAMSeleccionada + " $" + preciosRAM);
+                                    System.out.println("Almacenamiento: " + AlmacenamientoSeleccionado + " $" + PreciosAlmacenamiento);
+                                    System.out.println("Gabinete: " + gabineteSeleccionado + " $" + precioGabinete);
+                                    System.out.println("Tarjeta de video: " + gpuSeleccionada + " $" + preciosGPU[SeleccionGPU - 1]);
+                                    System.out.println("Fuente de poder: " + fuenteSeleccionada + " $" + precioFuente);
+                                    System.out.println("--------------------------------------------------\n");
                                         System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                         System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
                                         System.out.println("Total: $" + String.format("%.2f", subtotal + iva));
@@ -1098,14 +1104,14 @@ public class App {
                                         System.out.println("Gracias por su compra.\n");
                                     } else if (metodoPago == 2) {
                                         System.out.print("Ingrese el nombre del titular de la tarjeta: \n");
-                                        String titularTarjeta = scanner.nextLine();
+                                        titularTarjeta = scanner.nextLine();
                                         try {
                                             Thread.sleep(500); // 500 milisegundos = medio segundo
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
                                         }
                                         System.out.print("Ingrese los 16 digitos de la tarjeta: \n");
-                                        String numeroTarjeta = scanner.nextLine();
+                                        numeroTarjeta = scanner.nextLine();
                                         try {
                                             Thread.sleep(500); // 500 milisegundos = medio segundo
                                         } catch (InterruptedException e) {
@@ -1118,7 +1124,7 @@ public class App {
                                             break;
                                         }
                                         System.out.print("Ingrese la fecha de vencimiento (MM/AA): ");
-                                        String fechaVencimiento = scanner.nextLine();
+                                        fechaVencimiento = scanner.nextLine();
                                         try {
                                             Thread.sleep(500); // 500 milisegundos = medio segundo
                                         } catch (InterruptedException e) {
@@ -1147,13 +1153,13 @@ public class App {
                                             }
                                         }
                                         // Verificar si el mes está en el rango válido (01 - 12)
-                                        int mes = Integer.parseInt(fechaVencimiento.substring(0, 2));
+                                        mes = Integer.parseInt(fechaVencimiento.substring(0, 2));
                                         if (mes < 1 || mes > 12) {
                                             System.out.println("El mes debe estar entre 01 y 12\n");
                                             break;
                                         }
                                         // Verificar si el año está en el rango válido (25 - 99)
-                                        int año = Integer.parseInt(fechaVencimiento.substring(3));
+                                        año = Integer.parseInt(fechaVencimiento.substring(3));
                                         if (año < 25 || año > 99) {
                                             System.out.println("El año debe estar entre 25 y 99\n");
                                             break;
@@ -1161,7 +1167,7 @@ public class App {
                                         // -----------------------------------------------------------------validar
                                         // codigo de seguridad
                                         System.out.print("Ingrese el codigo de seguridad (3 digitos): \n");
-                                        String codigoSeguridad = scanner.nextLine();
+                                        codigoSeguridad = scanner.nextLine();
                                         if (codigoSeguridad.length() != 3) {
                                             System.out.println(
                                                     "El codigo de seguridad debe tener exactamente 3 digitos.\n");
@@ -1171,17 +1177,19 @@ public class App {
                                         System.out.println("Pago realizado con exito.");
                                         System.out.println("Detalles del pago:\n");
                                         System.out.println("--------------------------------------------------");
-                                        System.out.println("                PC COMPONENTES");
-                                        System.out.println("--------------------------------------------------\n");
-                                        System.out.println("Procesador: " + opcionSeleccionada);
-                                    System.out.println("Motherboard: " + opcionSeleccionada);
-                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
-                                    System.out.println("RAM: " + opcionSeleccionada);
-                                    System.out.println("Almacenamiento: " + opcionSeleccionada);
-                                    System.out.println("Gabinete: " + gabineteSeleccionado);
-                                    System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
-                                    System.out.println("Fuente de poder: " + fuenteSeleccionada);
-                                        System.out.println("--------------------------------------------------\n");
+                                    System.out.println("                PC COMPONENTES");
+                                    System.out.println("--------------------------------------------------\n");
+                                    i = 0;
+                                    System.out.print("Procesador: " + ((opcionIntel == 1) ? intel12thCPU[opcionCPU - 1] : (opcionIntel == 2) ? intel13thCPU[opcionCPU - 1] : intel14thCPU[opcionCPU - 1]));
+                                    System.out.print(" $" + String.format("%.2f", precioINTELSeleccionado) + "\n");
+                                    System.out.println("Motherboard: " + lga1700[opcionMotherboard - 1] + " $" + precioslga1700[opcionMotherboard - 1]);
+                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada + " $" + precioRefrigeracion);
+                                    System.out.println("RAM: " + opcionRAMSeleccionada + " $" + preciosRAM);
+                                    System.out.println("Almacenamiento: " + AlmacenamientoSeleccionado + " $" + PreciosAlmacenamiento);
+                                    System.out.println("Gabinete: " + gabineteSeleccionado + " $" + precioGabinete);
+                                    System.out.println("Tarjeta de video: " + gpuSeleccionada + " $" + preciosGPU[SeleccionGPU - 1]);
+                                    System.out.println("Fuente de poder: " + fuenteSeleccionada + " $" + precioFuente);
+                                    System.out.println("--------------------------------------------------\n");
                                         System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                         System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
                                         System.out.println("Total: $" + String.format("%.2f", subtotal + iva));
@@ -1194,7 +1202,7 @@ public class App {
                             opcionAMD = 0;
                             do {
                                 System.out.println("Seleccione la generacion de su procesador:\n");
-                                for (int i = 0; i < amdGenCPU.length; i++) {
+                                for (i = 0; i < amdGenCPU.length; i++) {
                                     System.out.println((i + 1) + ". " + amdGenCPU[i]);
                                 }
                                 System.out.print("Ingrese su opcion: ");
@@ -1207,11 +1215,11 @@ public class App {
                                     System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                     switch (opcionAMD) {
                                         case 1:
-                                            int opcionCPU;
+                                        opcionCPU = 0;
                                             do {
                                                 System.out.println("Ha seleccionado " + amdGenCPU[opcionAMD - 1]);
                                                 System.out.println("Seleccione el procesador:");
-                                                for (int i = 0; i < amd3000CPU.length; i++) {
+                                                for (i = 0; i < amd3000CPU.length; i++) {
                                                     System.out.println((i + 1) + ". " + amd3000CPU[i] + " $" + preciosAmd3000[i]);
                                                 }
                                                 System.out.print("Ingrese su opcion: ");
@@ -1232,7 +1240,7 @@ public class App {
                                             do {
                                                 System.out.println("Ha seleccionado " + amdGenCPU[opcionAMD - 1]);
                                                 System.out.println("Seleccione el procesador:\n");
-                                                for (int i = 0; i < amd5000CPU.length; i++) {
+                                                for (i = 0; i < amd5000CPU.length; i++) {
                                                     System.out.println((i + 1) + ". " + amd5000CPU[i] + " $" + preciosAmd5000[i]);
                                                 }
                                                 System.out.print("Ingrese su opcion: ");
@@ -1252,7 +1260,7 @@ public class App {
                                             do {
                                                 System.out.println("Ha seleccionado " + amdGenCPU[opcionAMD - 1]);
                                                 System.out.println("Seleccione el procesador:");
-                                                for (int i = 0; i < amd7000CPU.length; i++) {
+                                                for (i = 0; i < amd7000CPU.length; i++) {
                                                     System.out.println((i + 1) + ". " + amd7000CPU[i] + " $" + preciosAmd7000[i]);
                                                 }
                                                 System.out.print("Ingrese su opcion: ");
@@ -1281,7 +1289,7 @@ public class App {
                             opcionMotherboard = 0;
                             if (opcionAMD == 1) { // AMD Ryzen 3000
                                 do {
-                                    for (int i = 0; i < amd3000.length; i++) {
+                                    for (i = 0; i < amd3000.length; i++) {
                                         System.out.println((i + 1) + ". " + amd3000[i] + " $" + preciosMotheramd3000[i]);
                                     }
                                     System.out.print("Ingrese su opcion: ");
@@ -1300,7 +1308,7 @@ public class App {
                                 } while (opcionMotherboard < 1 || opcionMotherboard > amd3000.length);
                             } else { // AMD Ryzen 5000 o 7000
                                 do {
-                                    for (int i = 0; i < amd5000.length; i++) {
+                                    for (i = 0; i < amd5000.length; i++) {
                                         System.out.println((i + 1) + ". " + amd5000[i] + " $" + preciosMotheramd5000[i]);
                                     }
                                     System.out.print("Ingrese su opcion: ");
@@ -1320,28 +1328,29 @@ public class App {
                             }
                                 // ---------------------------------------------------------------------------------------------------------------------Refrigeracion
                                 System.out.println("Es hora de seleccionar un sistema de refrigeracion\n");
-                                int opcionRefrigeracion = 0;
+                                opcionRefrigeracion = 0;
                                 do {
-                                    for (int i = 0; i < refrigeracion.length; i++) {
+                                    for (i = 0; i < refrigeracion.length; i++) {
                                         System.out.println((i + 1) + ". " + refrigeracion[i] + " $" + preciosRefrigeracion[i]);
                                     }
                                     System.out.print("Ingrese su opcion: ");
                                     opcionRefrigeracion = scanner.nextInt();
                                     scanner.nextLine();
                                 } while (opcionRefrigeracion < 1 || opcionRefrigeracion > refrigeracion.length);
-                                String refrigeracionSeleccionada = refrigeracion[opcionRefrigeracion - 1];
-                                double precioRefrigeracion = preciosRefrigeracion[opcionRefrigeracion - 1];
+                                refrigeracionSeleccionada = refrigeracion[opcionRefrigeracion - 1];
+                                precioRefrigeracion = preciosRefrigeracion[opcionRefrigeracion - 1];
                                 System.out.println("Ha seleccionado " + refrigeracionSeleccionada);
                                 subtotal += precioRefrigeracion;
                                 System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                 // -----------------------------------------------------------------------------------------------------------------------------RAM
                                 System.out.println("Ahora toca seleccionar la memoria RAM");
                                 DDR = (opcionMotherboard <= 2) ? 4 : 5;
+                                System.out.println("Ahora toca seleccionar la memoria RAM");
                                 System.out.println("Debido a que tu Motherboard es DDR" + DDR + ", estos son el catálogo de RAMs disponibles para tu Motherboard\n");
-                                int opcionRAM = 0;
+                                opcionRAM = 0;
                                 if (DDR == 4) {
                                     do {
-                                        for (int i = 0; i < DDR4.length; i++) {
+                                        for (i = 0; i < DDR4.length; i++) {
                                             System.out.println((i + 1) + ". " + DDR4[i] + " $" + preciosDDR4[i]);
                                         }
                                         System.out.print("Ingrese su opcion: ");
@@ -1350,7 +1359,7 @@ public class App {
                                     } while (opcionRAM < 1 || opcionRAM > DDR4.length);
                                 } else if (DDR == 5) {
                                     do {
-                                        for (int i = 0; i < DDR5.length; i++) {
+                                        for (i = 0; i < DDR5.length; i++) {
                                             System.out.println((i + 1) + ". " + DDR5[i] + " $" + preciosDDR5[i]);
                                         }
                                         System.out.print("Ingrese su opcion: ");
@@ -1360,7 +1369,7 @@ public class App {
                                 } else {
                                     System.out.println("No hay catálogo de RAM disponible para este tipo de placa base.\n");
                                 }
-                                double precioRAM = 0;
+                                precioRAM = 0;
                                 if (DDR == 4 && opcionRAM >= 1 && opcionRAM <= DDR4.length) {
                                     precioRAM = preciosDDR4[opcionRAM - 1];
                                 } else if (DDR == 5 && opcionRAM >= 1 && opcionRAM <= DDR5.length) {
@@ -1369,85 +1378,89 @@ public class App {
                                     System.out.println("Opcion inválida. No se ha seleccionado RAM.");
                                 }
                                 subtotal += precioRAM;
-                                opcionSeleccionada = (DDR == 4) ? DDR4[opcionRAM - 1] : DDR5[opcionRAM - 1];
-                                System.out.println("Ha seleccionado " + opcionSeleccionada);
+                                opcionRAMSeleccionada = (DDR == 4) ? DDR4[opcionRAM - 1] : DDR5[opcionRAM - 1];
+                                preciosRAM = (DDR == 4) ? preciosDDR4[opcionRAM - 1] : preciosDDR5[opcionRAM - 1];
+                                System.out.println("Ha seleccionado " + opcionRAMSeleccionada);
                                 System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                 System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                 // -------------------------------------------------------------------------------------------------------------------------Almacenamiento
                                 System.out.println("Es turno de que selecciones un tipo de almacenamiento\n");
-                                int opcionAlmacenamiento = 0;
-                                do {
-                                    for (int i = 0; i < TipoAlmacenamiento.length; i++) {
-                                        System.out.println((i + 1) + ". " + TipoAlmacenamiento[i]);
+                                    opcionAlmacenamiento = 0;
+                                    do {
+                                        for (i = 0; i < TipoAlmacenamiento.length; i++) {
+                                            System.out.println((i + 1) + ". " + TipoAlmacenamiento[i]);
+                                        }
+                                        System.out.print("Ingrese su opcion: ");
+                                        opcionAlmacenamiento = scanner.nextInt();
+                                        scanner.nextLine();
+                                    } while (opcionAlmacenamiento < 1 || opcionAlmacenamiento > TipoAlmacenamiento.length);
+                                    AlmacenamientoSeleccionado = TipoAlmacenamiento[opcionAlmacenamiento - 1];
+                                    switch (opcionAlmacenamiento) {
+                                        case 1:
+                                            System.out.println("Has seleccionado HDD");
+                                            System.out.println("Estas son las opciones de HDD disponibles:\n");
+                                            opcionHDD = 0;
+                                            do {
+                                                for (i = 0; i < HDDsata.length; i++) {
+                                                    System.out.println((i + 1) + ". " + HDDsata[i] + " $" + preciosHDD[i]);
+                                                }
+                                                System.out.print("Ingrese su opcion: ");
+                                                opcionHDD = scanner.nextInt();
+                                                scanner.nextLine();
+                                            } while (opcionHDD < 1 || opcionHDD > HDDsata.length);
+                                            AlmacenamientoSeleccionado = HDDsata[opcionHDD - 1];
+                                            PreciosAlmacenamiento = preciosHDD[opcionHDD - 1];
+                                            System.out.println("Ha seleccionado el " + AlmacenamientoSeleccionado);
+                                            subtotal += preciosHDD[opcionHDD - 1];
+                                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                            break;
+                                        case 2:
+                                            System.out.println("Has seleccionado SSD");
+                                            System.out.println("Estas son las opciones de SSD disponibles:");
+                                            opcionSSD = 0;
+                                            do {
+                                                for (i = 0; i < SSDsata.length; i++) {
+                                                    System.out.println((i + 1) + ". " + SSDsata[i] + " $" + preciosSSD[i]);
+                                                }
+                                                System.out.print("Ingrese su opcion: ");
+                                                opcionSSD = scanner.nextInt();
+                                                scanner.nextLine();
+                                            } while (opcionSSD < 1 || opcionSSD > SSDsata.length);
+                                            AlmacenamientoSeleccionado = SSDsata[opcionSSD - 1];
+                                            PreciosAlmacenamiento = preciosSSD[opcionSSD - 1];
+                                            System.out.println("Ha seleccionado " + AlmacenamientoSeleccionado);
+                                            subtotal += preciosSSD[opcionSSD - 1];
+                                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                            break;
+                                        case 3:
+                                            System.out.println("Has seleccionado NVMe");
+                                            System.out.println("Estas son las opciones de NVMe disponibles:\n");
+                                            opcionNVMe = 0;
+                                            do {
+                                                for (i = 0; i < NVMe.length; i++) {
+                                                    System.out.println((i + 1) + ". " + NVMe[i] + " $" + preciosNVMe[i]);
+                                                }
+                                                System.out.print("Ingrese su opcion: ");
+                                                opcionNVMe = scanner.nextInt();
+                                                scanner.nextLine();
+                                            } while (opcionNVMe < 1 || opcionNVMe > NVMe.length);
+                                            AlmacenamientoSeleccionado = NVMe[opcionNVMe - 1];
+                                            PreciosAlmacenamiento = preciosNVMe[opcionNVMe - 1];
+                                            System.out.println("Ha seleccionado " + AlmacenamientoSeleccionado);
+                                            subtotal += preciosNVMe[opcionNVMe - 1];
+                                            System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
+                                            break;
+                                        default:
+                                            System.out.println("Opcion inválida. Intentelo de nuevo.\n");
+                                            break;
                                     }
-                                    System.out.print("Ingrese su opcion: ");
-                                    opcionAlmacenamiento = scanner.nextInt();
-                                    scanner.nextLine();
-                                } while (opcionAlmacenamiento < 1 || opcionAlmacenamiento > TipoAlmacenamiento.length);
-                                opcionSeleccionada = TipoAlmacenamiento[opcionAlmacenamiento - 1];
-                                switch (opcionAlmacenamiento) {
-                                    case 1:
-                                        System.out.println("Has seleccionado HDD");
-                                        System.out.println("Estas son las opciones de HDD disponibles:\n");
-                                        int opcionHDD = 0;
-                                        do {
-                                            for (int i = 0; i < HDDsata.length; i++) {
-                                                System.out.println((i + 1) + ". " + HDDsata[i] + " $" + preciosHDD[i]);
-                                            }
-                                            System.out.print("Ingrese su opcion: ");
-                                            opcionHDD = scanner.nextInt();
-                                            scanner.nextLine();
-                                        } while (opcionHDD < 1 || opcionHDD > HDDsata.length);
-                                        opcionSeleccionada = HDDsata[opcionHDD - 1];
-                                        System.out.println("Ha seleccionado el " + opcionSeleccionada);
-                                        subtotal += preciosHDD[opcionHDD - 1];
-                                        System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
-                                        break;
-                                    case 2:
-                                        System.out.println("Has seleccionado SSD");
-                                        System.out.println("Estas son las opciones de SSD disponibles:");
-                                        int opcionSSD = 0;
-                                        do {
-                                            for (int i = 0; i < SSDsata.length; i++) {
-                                                System.out.println((i + 1) + ". " + SSDsata[i] + " $" + preciosSSD[i]);
-                                            }
-                                            System.out.print("Ingrese su opcion: ");
-                                            opcionSSD = scanner.nextInt();
-                                            scanner.nextLine();
-                                        } while (opcionSSD < 1 || opcionSSD > SSDsata.length);
-                                        opcionSeleccionada = SSDsata[opcionSSD - 1];
-                                        System.out.println("Ha seleccionado " + opcionSeleccionada);
-                                        subtotal += preciosSSD[opcionSSD - 1];
-                                        System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
-                                        break;
-                                    case 3:
-                                        System.out.println("Has seleccionado NVMe");
-                                        System.out.println("Estas son las opciones de NVMe disponibles:\n");
-                                        int opcionNVMe = 0;
-                                        do {
-                                            for (int i = 0; i < NVMe.length; i++) {
-                                                System.out.println((i + 1) + ". " + NVMe[i] + " $" + preciosNVMe[i]);
-                                            }
-                                            System.out.print("Ingrese su opcion: ");
-                                            opcionNVMe = scanner.nextInt();
-                                            scanner.nextLine();
-                                        } while (opcionNVMe < 1 || opcionNVMe > NVMe.length);
-                                        opcionSeleccionada = NVMe[opcionNVMe - 1];
-                                        System.out.println("Ha seleccionado " + opcionSeleccionada);
-                                        subtotal += preciosNVMe[opcionNVMe - 1];
-                                        System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
-                                        break;
-                                    default:
-                                        System.out.println("Opcion inválida. Intentelo de nuevo.\n");
-                                        break;
-                                }
                                 // ----------------------------------------------------------------------------------------------------------------- Gabinetes
                                 System.out.println("Es hora de seleccionar un Gabinete\n");
                                 System.out.println("Este es el catálogo de gabinetes disponibles compatibles con tu placa madre\n");
-                                int opcionGabinete = 0;
+                                opcionGabinete = 0;
                                 if (opcionMotherboard <= 2) { // Si es una placa MicroATX
                                     do {
-                                        for (int i = 0; i < catalogoPlacaMicroATX.length; i++) {
+                                        for (i = 0; i < catalogoPlacaMicroATX.length; i++) {
                                             System.out.println((i + 1) + ". " + catalogoPlacaMicroATX[i] + " $" + precioMicroATX[i]);
                                         }
                                         System.out.print("Ingrese su opcion: ");
@@ -1456,7 +1469,7 @@ public class App {
                                     } while (opcionGabinete < 1 || opcionGabinete > catalogoPlacaMicroATX.length);
                                 } else { // Si es una placa ATX
                                     do {
-                                        for (int i = 0; i < catalogoPlacaATX.length; i++) {
+                                        for (i = 0; i < catalogoPlacaATX.length; i++) {
                                             System.out.println((i + 1) + ". " + catalogoPlacaATX[i] + " $" + precioATX[i]);
                                         }
                                         System.out.print("Ingrese su opcion: ");
@@ -1464,10 +1477,10 @@ public class App {
                                         scanner.nextLine();
                                     } while (opcionGabinete < 1 || opcionGabinete > catalogoPlacaATX.length);
                                 }
-                                String gabineteSeleccionado = (opcionMotherboard <= 2)
+                                gabineteSeleccionado = (opcionMotherboard <= 2)
                                         ? catalogoPlacaMicroATX[opcionGabinete - 1]
                                         : catalogoPlacaATX[opcionGabinete - 1];
-                                double precioGabinete = (opcionMotherboard <= 2)
+                                precioGabinete = (opcionMotherboard <= 2)
                                         ? precioMicroATX[opcionGabinete - 1]
                                         : precioATX[opcionGabinete - 1];
                                 System.out.println("Ha seleccionado " + gabineteSeleccionado);
@@ -1478,7 +1491,6 @@ public class App {
                                 System.out.println("Este es el catálogo de Tarjetas Gráficas disponibles:\n");
                                 System.out.println("1. Nvidia Geforce");
                                 System.out.println("2. AMD Radeon");
-                                int opcionGPU = 0;
                                 do {
                                     System.out.print("Ingrese su opcion (1 para Nvidia, 2 para AMD): \n");
                                     opcionGPU = scanner.nextInt();
@@ -1488,56 +1500,53 @@ public class App {
                                     case 1: // Nvidia
                                         System.out.println("Has seleccionado Nvidia Geforce");
                                         System.out.println("Estas son las generaciones de Nvidia Geforce disponibles:");
-                                        int opcionGenNvidia = 0;
+                                        opcionGenNvidia = 0;
                                         do {
-                                            for (int i = 0; i < NvidiaGenGPU.length; i++) {
+                                            for (i = 0; i < NvidiaGenGPU.length; i++) {
                                                 System.out.println((i + 1) + ". " + NvidiaGenGPU[i]);
                                             }
                                             System.out.print("Ingrese su opcion: ");
                                             opcionGenNvidia = scanner.nextInt();
                                             scanner.nextLine();
                                         } while (opcionGenNvidia < 1 || opcionGenNvidia > NvidiaGenGPU.length);
-                                        String genSeleccionada = NvidiaGenGPU[opcionGenNvidia - 1];
+                                        genSeleccionada = NvidiaGenGPU[opcionGenNvidia - 1];
                                         whatts += whattsNvidia[opcionGenNvidia - 1];
                                         System.out.println("Has seleccionado " + genSeleccionada);
                                         System.out.println("Estas son las opciones disponibles para " + genSeleccionada + ":");
-                                        String[] opcionesNvidia = null;
-                                        double[] preciosNvidia = null;
-                                        double[] wattsNvidia = null;
                                         switch (genSeleccionada) {
                                             case "RTX 2000":
-                                                opcionesNvidia = NvidiaRTX2000;
-                                                preciosNvidia = PreciosRTX2000;
-                                                wattsNvidia = whattsRTX2000;
+                                                opcionesGPU = NvidiaRTX2000;
+                                                preciosGPU = PreciosRTX2000;
+                                                wattsGPU = whattsRTX2000;
                                                 break;
                                             case "RTX 3000":
-                                                opcionesNvidia = NvidiaRTX3000;
-                                                preciosNvidia = PreciosRTX3000;
-                                                wattsNvidia = whattsRTX3000;
+                                                opcionesGPU = NvidiaRTX3000;
+                                                preciosGPU = PreciosRTX3000;
+                                                wattsGPU = whattsRTX3000;
                                                 break;
                                             case "RTX 4000":
-                                                opcionesNvidia = NvidiaRTX4000;
-                                                preciosNvidia = PreciosRTX4000;
-                                                wattsNvidia = whattsRTX4000;
+                                                opcionesGPU = NvidiaRTX4000;
+                                                preciosGPU = PreciosRTX4000;
+                                                wattsGPU = whattsRTX4000;
                                                 break;
                                             default:
                                                 System.out.println("Opcion inválida. Intentelo de nuevo.\n");
                                                 break;
                                         }
-                                        if (opcionesNvidia != null) {
-                                            opcionNvidia = 0;
+                                        if (opcionesGPU != null) {
+                                            SeleccionGPU = 0;
                                             do {
-                                                for (int i = 0; i < opcionesNvidia.length; i++) {
-                                                    System.out.println((i + 1) + ". " + opcionesNvidia[i] + " $" + preciosNvidia[i]);
+                                                for (i = 0; i < opcionesGPU.length; i++) {
+                                                    System.out.println((i + 1) + ". " + opcionesGPU[i] + " $" + preciosGPU[i]);
                                                 }
                                                 System.out.print("Ingrese su opcion: ");
-                                                opcionNvidia = scanner.nextInt();
+                                                SeleccionGPU = scanner.nextInt();
                                                 scanner.nextLine();
-                                            } while (opcionNvidia < 1 || opcionNvidia > opcionesNvidia.length);
-                                            String gpuNvidiaSeleccionada = opcionesNvidia[opcionNvidia - 1];
-                                            whatts += wattsNvidia[opcionNvidia - 1];
-                                            subtotal += preciosNvidia[opcionNvidia - 1];
-                                            System.out.println("Ha seleccionado " + gpuNvidiaSeleccionada);
+                                            } while (SeleccionGPU < 1 || SeleccionGPU > opcionesGPU.length);
+                                            gpuSeleccionada = opcionesGPU[SeleccionGPU - 1];
+                                            whatts += wattsGPU[SeleccionGPU - 1];
+                                            subtotal += preciosGPU[SeleccionGPU - 1];
+                                            System.out.println("Ha seleccionado " + gpuSeleccionada);
                                             System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                             System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                         }
@@ -1545,57 +1554,54 @@ public class App {
                                     case 2: // AMD
                                         System.out.println("Has seleccionado AMD Radeon");
                                         System.out.println("Estas son las generaciones de AMD Radeon disponibles:");
-                                        int opcionGenAMD = 0;
+                                        opcionGenAMD = 0;
                                         do {
-                                            for (int i = 0; i < AMDGenGPU.length; i++) {
+                                            for (i = 0; i < AMDGenGPU.length; i++) {
                                                 System.out.println((i + 1) + ". " + AMDGenGPU[i]);
                                             }
                                             System.out.print("Ingrese su opcion: ");
                                             opcionGenAMD = scanner.nextInt();
                                             scanner.nextLine();
                                         } while (opcionGenAMD < 1 || opcionGenAMD > AMDGenGPU.length);
-                                        String genAMDSeleccionada = AMDGenGPU[opcionGenAMD - 1];
+                                        genAMDSeleccionada = AMDGenGPU[opcionGenAMD - 1];
                                         whatts += whattsAMD[opcionGenAMD - 1];
                                         System.out.println("Has seleccionado " + genAMDSeleccionada);
                                         System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                         System.out.println("Estas son las opciones disponibles para " + genAMDSeleccionada + ":");
-                                        String[] opcionesAMD = null;
-                                        double[] preciosAMD = null;
-                                        double[] wattsAMD = null;
                                         switch (genAMDSeleccionada) {
                                             case "RX 5000":
-                                                opcionesAMD = AMDRX5000;
-                                                preciosAMD = PreciosRX5000;
-                                                wattsAMD = whattsRX5000;
+                                                opcionesGPU = AMDRX5000;
+                                                preciosGPU = PreciosRX5000;
+                                                wattsGPU = whattsRX5000;
                                                 break;
                                             case "RX 6000":
-                                                opcionesAMD = AMDRX6000;
-                                                preciosAMD = PreciosRX6000;
-                                                wattsAMD = whattsRX6000;
+                                                opcionesGPU = AMDRX6000;
+                                                preciosGPU = PreciosRX6000;
+                                                wattsGPU = whattsRX6000;
                                                 break;
                                             case "RX 7000":
-                                                opcionesAMD = AMDRX7000;
-                                                preciosAMD = PreciosRX7000;
-                                                wattsAMD = whattsRX7000;
+                                                opcionesGPU = AMDRX7000;
+                                                preciosGPU = PreciosRX7000;
+                                                wattsGPU = whattsRX7000;
                                                 break;
                                             default:
                                                 System.out.println("Opcion inválida. Intentelo de nuevo.\n");
                                                 break;
                                         }
-                                        if (opcionesAMD != null) {
-                                            opcionAMD = 0;
+                                        if (opcionesGPU != null) {
+                                            SeleccionGPU = 0;
                                             do {
-                                                for (int i = 0; i < opcionesAMD.length; i++) {
-                                                    System.out.println((i + 1) + ". " + opcionesAMD[i] + " $" + preciosAMD[i]);
+                                                for (i = 0; i < opcionesGPU.length; i++) {
+                                                    System.out.println((i + 1) + ". " + opcionesGPU[i] + " $" + preciosGPU[i]);
                                                 }
                                                 System.out.print("Ingrese su opcion: ");
-                                                opcionAMD = scanner.nextInt();
+                                                SeleccionGPU = scanner.nextInt();
                                                 scanner.nextLine();
-                                            } while (opcionAMD < 1 || opcionAMD > opcionesAMD.length);
-                                            String gpuAMDSeleccionada = opcionesAMD[opcionAMD - 1];
-                                            whatts += wattsAMD[opcionAMD - 1];
-                                            subtotal += preciosAMD[opcionAMD - 1];
-                                            System.out.println("Ha seleccionado " + gpuAMDSeleccionada);
+                                            } while (SeleccionGPU < 1 || SeleccionGPU > opcionesGPU.length);
+                                            gpuSeleccionada = opcionesGPU[SeleccionGPU - 1];
+                                            whatts += wattsGPU[SeleccionGPU - 1];
+                                            subtotal += preciosGPU[opcionGPU - 1];
+                                            System.out.println("Ha seleccionado " + gpuSeleccionada);
                                             System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                             System.out.printf("El consumo actual es de: %.0f Watts%n", whatts);
                                         }
@@ -1605,64 +1611,64 @@ public class App {
                                         break;
                                 }
                                 //----------------------------------------------------------------------------------------fuentes de poder
-                                int opcionFuente = 0;
+                                opcionFuente = 0;
                                 if (whatts <= 600) {// si el consumo es menor o igual a 600 watts
                                     System.out.println("tu ensamble es compatible con las siguientes fuentes de poder:");
                                     do {
-                                        for (int i = 0; i < PSUs600.length; i++) {
+                                        for (i = 0; i < PSUs600.length; i++) {
                                             System.out.println((i + 1) + ". " + PSUs600[i] + " $" + preciosPSUs600[i]);
                                         }
                                         System.out.print("Ingrese su opcion: ");
                                         opcionFuente = scanner.nextInt();
                                         scanner.nextLine();
                                     } while (opcionFuente < 1 || opcionFuente > PSUs600.length);
-                                    String fuenteSeleccionada = PSUs600[opcionFuente - 1];
-                                    double precioFuente = preciosPSUs600[opcionFuente - 1];
+                                    fuenteSeleccionada = PSUs600[opcionFuente - 1];
+                                    precioFuente = preciosPSUs600[opcionFuente - 1];
                                     System.out.println("Ha seleccionado " + fuenteSeleccionada);
                                     subtotal += precioFuente; // Sumar el precio de la fuente al subtotal
                                     System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                 } else if (whatts <= 800) {// si el consumo es menor o igual a 800 watts
                                     System.out.println("tu ensamble es compatible con las siguientes fuentes de poder:");
                                     do {
-                                        for (int i = 0; i < PSUs800.length; i++) {
+                                        for (i = 0; i < PSUs800.length; i++) {
                                             System.out.println((i + 1) + ". " + PSUs800[i] + " $" + preciosPSUs800[i]);
                                         }
                                         System.out.print("Ingrese su opcion: ");
                                         opcionFuente = scanner.nextInt();
                                         scanner.nextLine();
                                     } while (opcionFuente < 1 || opcionFuente > PSUs800.length);
-                                    String fuenteSeleccionada = PSUs800[opcionFuente - 1];
-                                    double precioFuente = preciosPSUs800[opcionFuente - 1];
+                                    fuenteSeleccionada = PSUs800[opcionFuente - 1];
+                                    precioFuente = preciosPSUs800[opcionFuente - 1];
                                     System.out.println("Ha seleccionado " + fuenteSeleccionada);
                                     subtotal += precioFuente; // Sumar el precio de la fuente al subtotal
                                     System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                 } else if (whatts <= 1200) {// si el consumo es menor o igual a 1200 watts
                                     System.out.println("tu ensamble es compatible con las siguientes fuentes de poder:");
                                     do {
-                                        for (int i = 0; i < PSUs1200.length; i++) {
+                                        for (i = 0; i < PSUs1200.length; i++) {
                                             System.out.println((i + 1) + ". " + PSUs1200[i] + " $" + preciosPSUs1200[i]);
                                         }
                                         System.out.print("Ingrese su opcion: ");
                                         opcionFuente = scanner.nextInt();
                                         scanner.nextLine();
                                     } while (opcionFuente < 1 || opcionFuente > PSUs1200.length);
-                                    String fuenteSeleccionada = PSUs1200[opcionFuente - 1];
-                                    double precioFuente = preciosPSUs1200[opcionFuente - 1];
+                                    fuenteSeleccionada = PSUs1200[opcionFuente - 1];
+                                    precioFuente = preciosPSUs1200[opcionFuente - 1];
                                     System.out.println("Ha seleccionado " + fuenteSeleccionada);
                                     subtotal += precioFuente; // Sumar el precio de la fuente al subtotal
                                     System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
                                 } else {// si el consumo es mayor a 1200 watts
                                     System.out.println("tu ensamble es compatible con las siguientes fuentes de poder:\n");
                                     do {
-                                        for (int i = 0; i < PSUs1600.length; i++) {
+                                        for (i = 0; i < PSUs1600.length; i++) {
                                             System.out.println((i + 1) + ". " + PSUs1600[i] + " $" + preciosPSUs1600[i]);
                                         }
                                         System.out.print("Ingrese su opcion: ");
                                         opcionFuente = scanner.nextInt();
                                         scanner.nextLine();
                                     } while (opcionFuente < 1 || opcionFuente > PSUs1600.length);
-                                    String fuenteSeleccionada = PSUs1600[opcionFuente - 1];
-                                    double precioFuente = preciosPSUs1600[opcionFuente - 1];
+                                    fuenteSeleccionada = PSUs1600[opcionFuente - 1];
+                                    precioFuente = preciosPSUs1600[opcionFuente - 1];
                                     System.out.println("Ha seleccionado " + fuenteSeleccionada);
                                     subtotal += precioFuente; // Sumar el precio de la fuente al subtotal
                                     System.out.println("El subtotal actual es de: $" + String.format("%.2f", subtotal));
@@ -1670,24 +1676,29 @@ public class App {
                                 System.out.println("Muy bonito tu ensamble, pero ahora es momento de pasar por caja\n");
                                 System.out.println("Imprimiendo ticket de compra...\n");
                                 System.out.println("--------------------------------------------------");
-                                System.out.println("                PC COMPONENTES");
+                                System.out.println("                 PC COMPONENTES");
                                 System.out.println("--------------------------------------------------\n");
-                                String fuenteSeleccionada = "";
-                                int i = 0;
-                                System.out.println("Procesador: " + opcionSeleccionada);
-                                    System.out.println("Motherboard: " + opcionSeleccionada);
-                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
-                                    System.out.println("RAM: " + opcionSeleccionada);
-                                    System.out.println("Almacenamiento: " + opcionSeleccionada);
-                                    System.out.println("Gabinete: " + gabineteSeleccionado);
-                                    System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
-                                    System.out.println("Fuente de poder: " + fuenteSeleccionada);
-                                System.out.println("--------------------------------------------------");
+                                i = 0;
+                                System.out.print("Procesador: " + ((opcionAMD == 1) ? amd3000CPU[opcionCPU - 1] : 
+                                                                    (opcionAMD == 2) ? amd5000CPU[opcionCPU - 1] : 
+                                                                    amd7000CPU[opcionCPU - 1]));
+                                System.out.print(" $" + ((opcionAMD == 1) ? String.format("%.2f", preciosAmd3000[opcionCPU - 1]) : 
+                                                        (opcionAMD == 2) ? String.format("%.2f", preciosAmd5000[opcionCPU - 1]) : 
+                                                        String.format("%.2f", preciosAmd7000[opcionCPU - 1])) + "\n");
+                                System.out.println("Motherboard: " + ((opcionAMD == 1) ? amd3000[opcionMotherboard - 1] : amd5000[opcionMotherboard - 1]) + 
+                                                " $" + ((opcionAMD == 1) ? preciosMotheramd3000[opcionMotherboard - 1] : preciosMotheramd5000[opcionMotherboard - 1]));
+                                System.out.println("Refrigeracion: " + refrigeracionSeleccionada + " $" + precioRefrigeracion);
+                                System.out.println("RAM: " + opcionRAMSeleccionada + " $" + preciosRAM);
+                                System.out.println("Almacenamiento: " + AlmacenamientoSeleccionado + " $" + PreciosAlmacenamiento);
+                                System.out.println("Gabinete: " + gabineteSeleccionado + " $" + precioGabinete);
+                                System.out.println("Tarjeta de video: " + gpuSeleccionada + " $" + preciosGPU[SeleccionGPU - 1]);
+                                System.out.println("Fuente de poder: " + fuenteSeleccionada + " $" + precioFuente);
+                                System.out.println("--------------------------------------------------\n");
                                 System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                 System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
-                                double iva = subtotal * 0.16; // IVA
+                                iva = subtotal * 0.16; // IVA
                                 System.out.println("Total: $" + String.format("%.2f", subtotal + iva));
-                                int metodoPago = 0;
+                                metodoPago = 0;
                                 do {
                                     System.out.println("Seleccione el metodo de pago:");
                                     System.out.println("1. Efectivo");
@@ -1702,7 +1713,7 @@ public class App {
 
                                 if (metodoPago == 1) {
                                     // Generar un número de recibo simple
-                                    long numeroRecibo = Math.abs((long) (Math.random() * 9000000000L) + 1000000000L);
+                                    numeroRecibo = Math.abs((long) (Math.random() * 9000000000L) + 1000000000L);
                                     try {
                                         Thread.sleep(500); // 500 milisegundos = medio segundo
                                     } catch (InterruptedException e) {
@@ -1712,17 +1723,24 @@ public class App {
                                     System.out.println("Número de recibo: " + numeroRecibo);
                                     System.out.println("Detalles del pago:");
                                     System.out.println("--------------------------------------------------");
-                                    System.out.println("                PC COMPONENTES");
+                                    System.out.println("                 PC COMPONENTES");
                                     System.out.println("--------------------------------------------------\n");
-                                    System.out.println("Procesador: " + opcionSeleccionada);
-                                    System.out.println("Motherboard: " + opcionSeleccionada);
-                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
-                                    System.out.println("RAM: " + opcionSeleccionada);
-                                    System.out.println("Almacenamiento: " + opcionSeleccionada);
-                                    System.out.println("Gabinete: " + gabineteSeleccionado);
-                                    System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
-                                    System.out.println("Fuente de poder: " + fuenteSeleccionada);
-                                    System.out.println("--------------------------------------------------");
+                                    i = 0;
+                                    System.out.print("Procesador: " + ((opcionAMD == 1) ? amd3000CPU[opcionCPU - 1] : 
+                                                                        (opcionAMD == 2) ? amd5000CPU[opcionCPU - 1] : 
+                                                                        amd7000CPU[opcionCPU - 1]));
+                                    System.out.print(" $" + ((opcionAMD == 1) ? String.format("%.2f", preciosAmd3000[opcionCPU - 1]) : 
+                                                            (opcionAMD == 2) ? String.format("%.2f", preciosAmd5000[opcionCPU - 1]) : 
+                                                            String.format("%.2f", preciosAmd7000[opcionCPU - 1])) + "\n");
+                                    System.out.println("Motherboard: " + ((opcionAMD == 1) ? amd3000[opcionMotherboard - 1] : amd5000[opcionMotherboard - 1]) + 
+                                                    " $" + ((opcionAMD == 1) ? preciosMotheramd3000[opcionMotherboard - 1] : preciosMotheramd5000[opcionMotherboard - 1]));
+                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada + " $" + precioRefrigeracion);
+                                    System.out.println("RAM: " + opcionRAMSeleccionada + " $" + preciosRAM);
+                                    System.out.println("Almacenamiento: " + AlmacenamientoSeleccionado + " $" + PreciosAlmacenamiento);
+                                    System.out.println("Gabinete: " + gabineteSeleccionado + " $" + precioGabinete);
+                                    System.out.println("Tarjeta de video: " + gpuSeleccionada + " $" + preciosGPU[SeleccionGPU - 1]);
+                                    System.out.println("Fuente de poder: " + fuenteSeleccionada + " $" + precioFuente);
+                                    System.out.println("--------------------------------------------------\n");
                                     System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                     System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
                                     System.out.println("Total: $" + String.format("%.2f", subtotal + iva));
@@ -1731,14 +1749,14 @@ public class App {
                                     System.out.println("Gracias por su compra.");
                                 } else if (metodoPago == 2) {
                                     System.out.print("Ingrese el nombre del titular de la tarjeta: ");
-                                    String titularTarjeta = scanner.nextLine();
+                                    titularTarjeta = scanner.nextLine();
                                     try {
                                         Thread.sleep(500); // 500 milisegundos = medio segundo
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
                                     System.out.print("Ingrese los 16 digitos de la tarjeta: ");
-                                    String numeroTarjeta = scanner.nextLine();
+                                    numeroTarjeta = scanner.nextLine();
                                     try {
                                         Thread.sleep(500); // 500 milisegundos = medio segundo
                                     } catch (InterruptedException e) {
@@ -1750,7 +1768,7 @@ public class App {
                                         break;
                                     }
                                     System.out.print("Ingrese la fecha de vencimiento (MM/AA): ");
-                                    String fechaVencimiento = scanner.nextLine();
+                                    fechaVencimiento = scanner.nextLine();
                                     try {
                                         Thread.sleep(500); // 500 milisegundos = medio segundo
                                     } catch (InterruptedException e) {
@@ -1772,6 +1790,7 @@ public class App {
 
                                                 System.out.println(
                                                         "Ingrese una fecha de vencimiento válida en formato MM/AA\n");
+                                                        
                                                 break;
                                             }
                                         } else {
@@ -1779,46 +1798,61 @@ public class App {
 
                                                 System.out.println(
                                                         "Ingrese una fecha de vencimiento válida en formato MM/AA\n");
+                                                        
                                                 break;
                                             }
                                         }
                                     }
                                     // Verificar si el mes está en el rango válido (01 - 12)
-                                    int mes = Integer.parseInt(fechaVencimiento.substring(0, 2));
+                                    mes = Integer.parseInt(fechaVencimiento.substring(0, 2));
                                     if (mes < 1 || mes > 12) {
                                         System.out.println("El mes debe estar entre 01 y 12\n");
+                                        
                                         break;
                                     }
                                     // Verificar si el año está en el rango válido (25 - 99)
-                                    int año = Integer.parseInt(fechaVencimiento.substring(3));
+                                    año = Integer.parseInt(fechaVencimiento.substring(3));
                                     if (año < 25 || año > 99) {
                                         System.out.println("El año debe estar entre 25 y 99\n");
+                                        
                                         break;
                                     }
                                     // -----------------------------------------------------------------validar
                                     // codigo de seguridad
                                     System.out.print("Ingrese el codigo de seguridad (3 digitos): \n");
-                                    String codigoSeguridad = scanner.nextLine();
+                                    codigoSeguridad = scanner.nextLine();
                                     if (codigoSeguridad.length() != 3) {
                                         System.out
                                                 .println("El codigo de seguridad debe tener exactamente 3 digitos.\n");
+                                                
                                         break;
                                     }
                                     System.out.println("Procesando el pago con tarjeta a nombre de " + titularTarjeta + "...\n");
                                     System.out.println("Pago realizado con exito.");
                                     System.out.println("Detalles del pago:");
                                     System.out.println("--------------------------------------------------");
-                                    System.out.println("                PC COMPONENTES");
+                                    System.out.println("                 PC COMPONENTES");
                                     System.out.println("--------------------------------------------------\n");
-                                    System.out.println("Procesador: " + opcionSeleccionada);
-                                    System.out.println("Motherboard: " + opcionSeleccionada);
-                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada);
-                                    System.out.println("RAM: " + opcionSeleccionada);
-                                    System.out.println("Almacenamiento: " + opcionSeleccionada);
-                                    System.out.println("Gabinete: " + gabineteSeleccionado);
-                                    System.out.println("Tarjeta Gráfica: " + opcionSeleccionada);
-                                    System.out.println("Fuente de poder: " + fuenteSeleccionada);
-                                    System.out.println("--------------------------------------------------");
+                                    i = 0;
+                                    System.out.print("Procesador: " + ((opcionAMD == 1) ? amd3000CPU[opcionCPU - 1] : 
+                                                                        (opcionAMD == 2) ? amd5000CPU[opcionCPU - 1] : 
+                                                                        amd7000CPU[opcionCPU - 1]));
+                                    System.out.print(" $" + ((opcionAMD == 1) ? String.format("%.2f", preciosAmd3000[opcionCPU - 1]) : 
+                                                            (opcionAMD == 2) ? String.format("%.2f", preciosAmd5000[opcionCPU - 1]) : 
+                                                            String.format("%.2f", preciosAmd7000[opcionCPU - 1])) + "\n");
+                                    System.out.println("Motherboard: " + ((opcionAMD == 1) ? amd3000[opcionMotherboard - 1] : amd5000[opcionMotherboard - 1]) + 
+                                                    " $" + ((opcionAMD == 1) ? preciosMotheramd3000[opcionMotherboard - 1] : preciosMotheramd5000[opcionMotherboard - 1]));
+                                    System.out.println("Refrigeracion: " + refrigeracionSeleccionada + " $" + precioRefrigeracion);
+                                    System.out.println("RAM: " + opcionRAMSeleccionada + " $" + preciosRAM);
+                                    System.out.println("Almacenamiento: " + AlmacenamientoSeleccionado + " $" + PreciosAlmacenamiento);
+                                    System.out.println("Gabinete: " + gabineteSeleccionado + " $" + precioGabinete);
+                                    System.out.println("Tarjeta de video: " + gpuSeleccionada + " $" + preciosGPU[SeleccionGPU - 1]);
+                                    System.out.println("Fuente de poder: " + fuenteSeleccionada + " $" + precioFuente);
+                                    System.out.println("--------------------------------------------------\n");
+                                    System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
+                                    System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
+                                    System.out.println("Total: $" + String.format("%.2f", subtotal + iva));
+                                    System.out.println("--------------------------------------------------\n");
                                     System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
                                     System.out.println("IVA: $" + String.format("%.2f", subtotal * 0.16));
                                     System.out.println("Total: $" + String.format("%.2f", subtotal + iva));
@@ -1828,6 +1862,7 @@ public class App {
                             
                             default:
                                 System.out.println("Opcion inválida. Intentelo de nuevo.\n");
+                                
                                 break;
                             }
                             
@@ -1837,7 +1872,7 @@ public class App {
                         case 3:
                             repetir = false; // Salir del bucle despues de procesar la opcion 3
                             System.out.print("Saliendo");
-                            for (int i = 0; i < 3; i++) {// bucle para repetir 3 veces el . que colocamos para que se mire
+                            for (i = 0; i < 3; i++) {// bucle para repetir 3 veces el . que colocamos para que se mire
                                                          // bien el salir y este no sea instantaneo
                                 try {
                                     Thread.sleep(500); // 500 milisegundos = medio segundo
