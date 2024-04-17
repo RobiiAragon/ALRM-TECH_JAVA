@@ -6,8 +6,9 @@ public class App {
     public static void main(String[] args) {
         String genAMDSeleccionada, AlmacenamientoSeleccionado, gpuSeleccionada, genSeleccionada, codigoSeguridad, fechaVencimiento, numeroTarjeta, titularTarjeta, compraProducto, gabineteSeleccionado, fuenteSeleccionada, refrigeracionSeleccionada, opcionRAMSeleccionada;
         int MenuPrincipal, opcion, opcionAMD, opcionNvidia, opcionCarrito, categoriaSeleccionada, opcionFuente, opcionCPU, opcionGenAMD, opcionIntel, SeleccionGPU, opcionMotherboard, opcionHDD, opcionSSD, opcionNVMe, opcionGabinete, DDR, indiceCarrito, i, indice, año, mes, metodoPago, opcionAlmacenamiento, opcionRAM, opcionGPU, opcionGenNvidia, opcionRefrigeracion;
-        boolean repetir, salir, productoEncontrado;
+        boolean repetir, salir, productoEncontrado, reiniciarPrograma , MenuPiezas;
         double whatts, iva, subtotal, total, precioGabinete, precioRAM, precioRefrigeracion, precioFuente, precioSeleccionado, precioINTELSeleccionado, PreciosAlmacenamiento, preciosRAM;
+
         Long numeroRecibo;
         precioINTELSeleccionado = 0.0;
         PreciosAlmacenamiento = 0.0;
@@ -15,9 +16,10 @@ public class App {
         indiceCarrito = 0;
         subtotal = 0.0;
         SeleccionGPU = 0;
-        opcionCPU = 0;
+        opcionCPU = 0; 
         repetir = true;
         salir = false;
+        reiniciarPrograma = false;
         gpuSeleccionada = null;
         String[] opcionesGPU = { "No se seleccionó GPU" };
         String[] carrito = new String[1000];
@@ -281,6 +283,8 @@ public class App {
         // ----------------------------------------------------------------termina declaraciones del apartado de Preensamblado
         while (!salir) {
             while (repetir) {
+                do {
+                System.out.println();
                 System.out.println("Bienvenido a ALRM-TECH Encuentra todo para tu PC ideal aqui");
                 System.out.println("1. Piezas");
                 System.out.println("2. Sistema de armado guiado");
@@ -289,14 +293,16 @@ public class App {
                 MenuPrincipal = scanner.nextInt();
                 switch (MenuPrincipal) {
                     case 1:
+                        MenuPiezas = false;
                         repetir = false; // Salir del bucle despues de procesar la opcion 1
-                        while (!salir) {
+                        do{
                             System.out.println("Bienvenido al ALRM-TECH Piezas\n");
                             try {
                                 Thread.sleep(500); // 500 milisegundos = medio segundo
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
+                        
                             System.out.println("¿Que desea comprar?\n");
                             try {
                                 Thread.sleep(500); // 500 milisegundos = medio segundo
@@ -307,7 +313,7 @@ public class App {
                                 System.out.println((i + 1) + ". " + categorias[i]);
                             }
                             System.out.println((categorias.length + 1) + ". Ver carrito");
-                            System.out.println((categorias.length + 2) + ". Salir\n");
+                            System.out.println((categorias.length + 2) + ". Volver al menu principal\n");
                             System.out.print("Ingrese su opcion: ");
                             try {
                                 opcion = scanner.nextInt();
@@ -355,6 +361,7 @@ public class App {
                                                     + " al carrito.\n");
                                             indiceCarrito++;
                                             productoEncontrado = true;
+                                            MenuPiezas = true;
                                             break;
                                         }
                                     }
@@ -456,6 +463,10 @@ public class App {
                                                             .println("Total: $" + String.format("%.2f", total));
                                                     System.out.println(
                                                             "Presente este recibo para recoger su compra en una tienda de conveniencia (Oxxo, 7eleven, etc.).");
+                                                            carrito[indiceCarrito - 1] = null;
+                                                    preciosCarrito[indiceCarrito - 1] = 0.0;
+                                                    indiceCarrito--;
+                                                    subtotal = 0;
                                                     salir = true;
                                                 } else if (metodoPago == 2) {
                                                     System.out.print("Ingrese el nombre del titular de la tarjeta: ");
@@ -538,6 +549,10 @@ public class App {
                                                     System.out.println("IVA: $" + String.format("%.2f", iva));
                                                     System.out.println("Total: $" + String.format("%.2f", total));
                                                     System.out.println("Titular de la tarjeta: " + titularTarjeta);
+                                                    carrito[indiceCarrito - 1] = null;
+                                                    preciosCarrito[indiceCarrito - 1] = 0.0;
+                                                    indiceCarrito--;
+                                                    subtotal = 0;
                                                     salir = true;
                                                 } else {
                                                     System.out.println("Opcion de pago inválida.\n");
@@ -552,11 +567,10 @@ public class App {
                                         }
                                     }
                                     break;
-                                case 17:
-                                    repetir = false; // Salir del bucle despues de procesar la opcion 17
-                                    System.out.print("Saliendo");
+                                    case 17:
+                                    System.out.print("Volviendo al menu principal");
                                     for (i = 0; i < 3; i++) {// bucle para repetir 3 veces el . que colocamos para
-                                                                 // que se mire bien el salir y este no sea instantaneo
+                                        // que se mire bien el salir y este no sea instantaneo
                                         try {
                                             Thread.sleep(500); // 500 milisegundos = medio segundo
                                         } catch (InterruptedException e) {
@@ -564,14 +578,16 @@ public class App {
                                         }
                                         System.out.print(".");
                                     }
-                                    salir = true;
+                                    reiniciarPrograma = true;
                                     break;
                                 default:
                                     System.out.println("Opcion inválida. Intentelo de nuevo.\n");
+                                    break;
+                            }
+                            if (reiniciarPrograma) {
                                 break;
                             }
-                        }
-                        scanner.close();
+                        }while (MenuPiezas);
                         break;
                     case 2:
                     while (!salir) {
@@ -584,6 +600,7 @@ public class App {
                         for (i = 0; i < marcaCPU.length; i++) {
                             System.out.println((i + 1) + ". " + marcaCPU[i]);
                         }
+                        System.out.println("3. Salir\n");
                         System.out.print("Ingrese su opcion: ");
                         try {
                             opcion = scanner.nextInt();
@@ -1858,14 +1875,21 @@ public class App {
                                     System.out.println("Gracias por su compra.\n");
                                 }
                                 break;
-                            
-                            default:
-                                System.out.println("Opcion inválida. Intentelo de nuevo.\n");
-                                
-                                break;
+                                case 3:
+                            repetir = false; // Salir del bucle despues de procesar la opcion 3
+                            System.out.print("Saliendo");
+                            for (i = 0; i < 3; i++) {// bucle para repetir 3 veces el . que colocamos para que se mire
+                                                         // bien el salir y este no sea instantaneo
+                                try {
+                                    Thread.sleep(500); // 500 milisegundos = medio segundo
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                System.out.print(".");
+                    } 
+                    salir = true;
+                        break;
                             }
-                            
-                        
                         }
                         break;
                         case 3:
@@ -1885,11 +1909,12 @@ public class App {
                         default:
                             System.out.println("Opcion no válida. Intente de nuevo.");
                         break;
-                }
+                    }
                 
+                } while (reiniciarPrograma);
+                reiniciarPrograma = false;
             }
-            
         }
-        
+        scanner.close();
     }
 }
