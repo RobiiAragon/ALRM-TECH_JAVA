@@ -2161,6 +2161,7 @@ public class App {
                                             } catch (InterruptedException e) {
                                                 e.printStackTrace();
                                             }
+                                            
                                             System.out.print(".");
                                         }
                                         salir = true;
