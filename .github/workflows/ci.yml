@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Compile
+        run: javac -Xlint:all -encoding UTF-8 -d out src/*.java test/*.java
+      - name: Unit tests
+        run: java -cp out TarjetaTest
+      - name: Smoke test
+        run: printf 'abc\n3\n' | java -cp out App | grep -q "Saliendo"
